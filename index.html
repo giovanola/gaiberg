@@ -160,6 +160,11 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .aqi-section{margin-bottom:32px}
 .aqi-card{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden;box-shadow:var(--shadow-sm)}
 .aqi-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+@media(max-width:640px){
+  .aqi-header{flex-direction:column;align-items:stretch;gap:8px;padding:16px 18px}
+  .aqi-header-main{flex-direction:column!important;align-items:flex-start!important;gap:6px!important}
+  .aqi-header-source{font-size:10px}
+}
 .aqi-badge{font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px}
 .aqi-badge.good{background:#D1FAE5;color:#065F46}
 .aqi-badge.fair{background:#FEF3C7;color:#92400E}
@@ -167,9 +172,14 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .aqi-badge.poor{background:#EDE9FE;color:#4C1D95}
 .aqi-badge.very-poor{background:#FEF2F2;color:#7F1D1D}
 .aqi-label-text{font-size:13px;font-weight:500;color:var(--text-secondary)}
-.aqi-grid{display:grid;grid-template-columns:repeat(4,1fr)}
-@media(max-width:640px){.aqi-grid{grid-template-columns:1fr}}
-@media(max-width:640px){.aqi-item{border-right:none;border-bottom:1px solid var(--border)}}
+.aqi-grid{display:grid;grid-template-columns:repeat(5,1fr)}
+@media(max-width:640px){
+  .aqi-grid{grid-template-columns:repeat(2,1fr)}
+  .aqi-item{border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+  .aqi-item:nth-child(2n){border-right:none}
+  .aqi-item:last-child{border-bottom:none}
+  .aqi-item:nth-last-child(2):nth-child(odd){border-bottom:none}
+}
 .aqi-item{padding:14px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
 .aqi-item:last-child{border-right:none}
 .aqi-item-val{font-family:var(--font-display);font-size:22px;font-weight:300;color:var(--text-primary);letter-spacing:-.02em;line-height:1}
@@ -443,10 +453,6 @@ footer a{color:var(--text-secondary);text-decoration:none}
         <span id="t-lbl-set-h">&#x1F307; Sonnenuntergang</span>
         <span id="cur-set" style="color:var(--text-primary);margin-left:4px;">—:—</span>
       </span>
-      <span style="white-space:nowrap;">
-        <span id="t-lbl-sun-h">&#x2600;&#xFE0F; Sonne heute</span>
-        <span id="cur-sun" style="color:var(--text-primary);margin-left:4px;">—h</span>
-      </span>
     </div>
   </div>
 </section>
@@ -466,6 +472,7 @@ footer a{color:var(--text-secondary);text-decoration:none}
       <div class="current-meta-item"><div class="val" id="cur-rain">—%</div><div class="lbl" id="t-lbl-rain">Regenrisiko</div></div>
       <div class="current-meta-item" id="precip-mm-item"><div class="val" id="cur-precip-mm">— mm</div><div class="lbl" id="t-lbl-precip">Niederschlag</div></div>
       <div class="current-meta-item"><div class="val" id="cur-pressure">— hPa</div><div class="lbl" id="t-lbl-pressure">Luftdruck</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-sun">—h</div><div class="lbl" id="t-lbl-sun">Sonne Std.</div></div>
     </div>
   </div>
 
@@ -479,6 +486,11 @@ footer a{color:var(--text-secondary);text-decoration:none}
       </div>
     </div>
     <div class="forecast-grid view-3" id="forecast-grid"></div>
+  </div>
+
+  <div class="warnings-section" id="warnings-section">
+    <div class="section-label" id="t-warn-label">DWD-Wetterwarnungen Gemeinde Gaiberg</div>
+    <div id="warnings-grid"></div>
   </div>
 
   <!-- UV PROTECTION BLOCK -->
@@ -573,19 +585,14 @@ footer a{color:var(--text-secondary);text-decoration:none}
     <div class="section-label" id="t-aqi-label">Luftqualität</div>
     <div class="aqi-card">
       <div class="aqi-header">
-        <div style="display:flex;align-items:center;gap:12px">
+        <div class="aqi-header-main" style="display:flex;align-items:center;gap:12px">
           <span class="aqi-badge good" id="aqi-badge">—</span>
           <span class="aqi-label-text" id="aqi-sub">…</span>
         </div>
-        <span style="font-size:11px;color:var(--text-tertiary)">European AQI &middot; Copernicus CAMS · <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener" style="color:var(--text-tertiary);text-decoration:none;border-bottom:1px dotted var(--border)" id="t-lubw-link">LUBW Messwerte</a></span>
+        <span class="aqi-header-source" style="font-size:11px;color:var(--text-tertiary)">European AQI &middot; Copernicus CAMS · <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener" style="color:var(--text-tertiary);text-decoration:none;border-bottom:1px dotted var(--border)" id="t-lubw-link">LUBW Messwerte</a></span>
       </div>
       <div class="aqi-grid" id="aqi-grid"></div>
     </div>
-  </div>
-
-  <div class="warnings-section" id="warnings-section">
-    <div class="section-label" id="t-warn-label">DWD-Wetterwarnungen Gemeinde Gaiberg</div>
-    <div id="warnings-grid"></div>
   </div>
 
   <!-- KLIMAKONTEXT -->
@@ -754,7 +761,7 @@ const T = {
     stormWindow:'Kritisches Zeitfenster heute: {from} – {to} Uhr – Aktivitäten auf dem See meiden.',
     dangerDisc:'Hinweis: Basierend auf numerischen Wettermodellen (MeteoSwiss ICON-CH via Open-Meteo), keine offizielle Warnung. Vor dem Wasserausflug aktuelle Daten prüfen, z. B. bei MeteoSwiss, ARPA Piemonte und lokalen Wetterstationen. Das Wetter am Lago Maggiore kann sich schnell ändern. Im Zweifel nicht aufs Wasser gehen.',
     navGotthard:'Gotthard',
-    curLabel:'Aktuell',lblHigh:'Tageshoch',lblLow:'Tagestief',lblNight:'Nachttief',lblHum:'Feuchte',lblRain:'Regenrisiko',lblPrecip:'Niederschlag',lblSun:'Sonne heute',lblPressure:'Luftdruck',
+    curLabel:'Aktuell',lblHigh:'Tageshoch',lblLow:'Tagestief',lblNight:'Nachttief',lblHum:'Feuchte',lblRain:'Regenrisiko',lblPrecip:'Niederschlag',lblSun:'Sonne Std.',lblPressure:'Luftdruck',
     showersShort:'Schauer',
     windBlockTitle:'Wind',windDirLbl:'Richtung',windGustsLbl:'B\u00f6en',wind80mLbl:'80 m H\u00f6he',wind120mLbl:'120 m H\u00f6he',
     windNote:'Bodenwind in 10 m H\u00f6he. H\u00f6henwerte relevant f\u00fcr Gleitschirm und Drachenflieger.',
@@ -854,7 +861,7 @@ const T = {
     stormWindow:'Critical time window today: {from} – {to} – avoid lake activities.',
     dangerDisc:'Note: Based on numerical weather models (MeteoSwiss ICON-CH via Open-Meteo), not an official warning. Before any water activity, check current data, e.g. at MeteoSwiss, ARPA Piemonte and local weather stations. Weather on Lake Maggiore can change quickly. If in doubt, stay off the water.',
     navGotthard:'Gotthard',
-    curLabel:'Current',lblHigh:'Day high',lblLow:'Day low',lblNight:'Night low',lblHum:'Humidity',lblRain:'Rain risk',lblPrecip:'Precipitation',lblSun:'Sun today',lblPressure:'Pressure',
+    curLabel:'Current',lblHigh:'Day high',lblLow:'Day low',lblNight:'Night low',lblHum:'Humidity',lblRain:'Rain risk',lblPrecip:'Precipitation',lblSun:'Sun hrs',lblPressure:'Pressure',
     showersShort:'showers',
     windBlockTitle:'Wind',windDirLbl:'Direction',windGustsLbl:'Gusts',wind80mLbl:'80 m height',wind120mLbl:'120 m height',
     windNote:'Surface wind at 10 m. Higher altitudes relevant for paragliding and hang gliding.',
