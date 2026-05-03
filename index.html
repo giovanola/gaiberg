@@ -4,8 +4,8 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Wetter Gaiberg | Pollenflug, Waldbrandgefahr &amp; Luftqualität im Rhein-Neckar-Kreis</title>
-<meta name="description" content="Aktuelles Wetter für Gaiberg im Rhein-Neckar-Kreis mit DWD-Warnungen, Pollenflug für Oberrhein und unteres Neckartal, Waldbrandgefahrenindex und Luftqualität. 7-Tage-Prognose für den staatlich anerkannten Erholungsort südlich von Heidelberg.">
-<meta name="keywords" content="Wetter Gaiberg, DWD Warnungen Gaiberg, Pollenflug Oberrhein Neckartal, Waldbrandgefahr Baden-Württemberg, Luftqualität Heidelberg, Rhein-Neckar-Kreis Wettervorhersage">
+<meta name="description" content="Aktuelle Wetterprognose für Gaiberg im Rhein-Neckar-Kreis mit Temperatur, Niederschlag, UV-Index und Luftqualität. Inklusive 7-Tage-Trend und DWD-Warnungen.">
+<meta name="keywords" content="Wetter Gaiberg, DWD Warnungen Gaiberg, Pollenflug Oberrhein Neckartal, Waldbrandgefahr Baden-Württemberg, Rhein-Neckar-Kreis">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://giovanola.github.io/gaiberg/">
 <link rel="alternate" hreflang="de" href="https://giovanola.github.io/gaiberg/?lang=de">
@@ -22,7 +22,7 @@
 <!-- Twitter Card -->
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Wetter Gaiberg im Rhein-Neckar-Kreis">
-<meta name="twitter:description" content="DWD-Wetter, Pollenflug, Waldbrandgefahr und Luftqualität für Gaiberg.">
+<meta name="twitter:description" content="DWD-Wetter, Pollenflug, Waldbrandgefahr und Luftqualität für Gaiberg, den staatlich anerkannten Erholungsort südlich von Heidelberg.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
@@ -34,7 +34,6 @@
   --accent:#1B6B45;--accent-pale:#EBF7F1;
   --gold:#B7791F;--gold-pale:#FFFBEB;
   --sky:#1565C0;--sky-pale:#E3F2FD;
-  --forest:#2D5F3F;--forest-pale:#E8F0EA;
   --rel-high:#1B6B45;--rel-mid:#B7791F;--rel-low:#C0392B;
   --radius-sm:6px;--radius-md:12px;--radius-lg:20px;
   --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
@@ -50,7 +49,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .topbar{position:sticky;top:0;z-index:100;background:rgba(250,250,249,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(16px,4vw,24px)}
 .topbar-inner{max-width:var(--max-w);margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
 .topbar-brand{display:flex;align-items:center;gap:10px}
-.topbar-icon{width:28px;height:28px;background:var(--forest);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar-icon{width:28px;height:28px;background:var(--sky);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
 .topbar-icon svg{width:16px;height:16px;fill:#fff}
 .topbar-name{font-family:var(--font-display);font-size:15px;font-weight:300;color:var(--text-primary);white-space:nowrap}
 .topbar-right{display:flex;align-items:center;gap:8px}
@@ -59,6 +58,12 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .lang-btn{padding:4px 10px;border-radius:6px;border:none;background:transparent;color:var(--text-secondary);font-family:var(--font-body);font-size:12px;font-weight:500;cursor:pointer;transition:all var(--transition);white-space:nowrap}
 .lang-btn.active{background:var(--surface);color:var(--text-primary);box-shadow:var(--shadow-sm)}
 
+/* SITE NAV */
+.site-nav{display:flex;gap:2px;background:var(--border);border-radius:8px;padding:2px}
+.site-nav-link{padding:4px 12px;border-radius:6px;font-family:var(--font-body);font-size:12px;font-weight:500;color:var(--text-secondary);text-decoration:none;transition:all var(--transition);white-space:nowrap}
+.site-nav-link:hover{color:var(--text-primary)}
+.site-nav-active{background:var(--surface);color:var(--text-primary);box-shadow:var(--shadow-sm)}
+
 /* OFFLINE DATA CHIP */
 .data-chip-bar{max-width:var(--max-w);margin:0 auto;padding:10px clamp(16px,4vw,24px) 0;display:none}
 .data-chip-bar.visible{display:block}
@@ -66,10 +71,10 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 
 /* HERO */
 .hero{padding:clamp(24px,5vw,52px) clamp(16px,4vw,24px) 8px;max-width:var(--max-w);margin:0 auto}
-.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);margin-bottom:20px}
-.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--forest)}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--sky);margin-bottom:20px}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--sky)}
 .hero h1{font-family:var(--font-display);font-size:clamp(32px,6vw,54px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;max-width:640px}
-.hero h1 em{font-style:italic;color:var(--forest)}
+.hero h1 em{font-style:italic;color:var(--sky)}
 .hero-sub{font-size:16px;color:var(--text-secondary);font-weight:300;max-width:520px;line-height:1.7}
 
 /* CONTENT */
@@ -78,158 +83,375 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .view-toggle-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
 .view-toggle{display:flex;gap:2px;background:var(--border);border-radius:10px;padding:3px}
 .view-btn{padding:6px 18px;border-radius:8px;border:none;background:transparent;color:var(--text-secondary);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;transition:all var(--transition);white-space:nowrap}
-.view-btn.active{background:var(--forest);color:#fff;font-weight:600;box-shadow:var(--shadow-sm)}
+.view-btn.active{background:var(--sky);color:#fff;font-weight:600;box-shadow:var(--shadow-sm)}
 
 /* CURRENT CARD */
-.current-card{background:var(--forest);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:12px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
-@media(max-width:560px){.current-card{grid-template-columns:1fr;text-align:center}}
+.current-card{background:var(--sky);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:12px;color:#fff;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
 .current-left .label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
 .current-left .temp-big{font-family:var(--font-display);font-size:clamp(48px,10vw,72px);font-weight:300;line-height:1;letter-spacing:-.03em}
 .current-left .condition{font-size:15px;font-weight:300;opacity:.8;margin-top:6px}
-.current-meta{display:grid;grid-template-columns:repeat(3,minmax(72px,1fr));gap:14px 20px;font-size:13px}
-@media(max-width:560px){.current-meta{grid-template-columns:repeat(3,1fr);justify-items:center}}
-.current-meta-item{text-align:left}
-@media(max-width:560px){.current-meta-item{text-align:center}}
-.current-meta-item .val{font-family:var(--font-display);font-size:18px;font-weight:400;line-height:1.2}
-.current-meta-item .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-top:2px}
+.current-meta{display:grid;grid-template-columns:repeat(2,1fr);gap:16px 24px}
+.current-meta-item{text-align:center}
+.current-meta-item .val{font-family:var(--font-display);font-size:22px;font-weight:300;letter-spacing:-.02em}
+.current-meta-item .lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;opacity:.6;margin-top:2px}
+@media(min-width:640px){
+  .current-meta{grid-template-columns:repeat(4,1fr)}
+  .current-card{flex-wrap:nowrap}
+}
 
-/* UV BLOCK */
-.uv-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+/* UV PROTECTION BLOCK */
+.uv-block{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);padding:16px 20px;margin-bottom:12px}
 .uv-block-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px}
-.uv-block-grid{display:grid;gap:10px}
-.uv-item{background:var(--bg);border-radius:var(--radius-md);padding:12px 14px;text-align:center}
-.uv-item-val{font-family:var(--font-display);font-size:22px;font-weight:400;line-height:1.1}
-.uv-item-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-top:4px}
-.uv-block-note{font-size:11px;color:var(--text-tertiary);margin-top:10px;text-align:center;font-style:italic}
+.uv-block-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:0;border:1px solid var(--border);border-radius:var(--radius-sm);overflow:hidden;margin-bottom:10px}
+.uv-item{flex:1;padding:12px 10px;text-align:center;border-right:1px solid var(--border)}
+.uv-item:last-child{border-right:none}
+.uv-item-val{font-family:var(--font-display);font-size:20px;font-weight:300;letter-spacing:-.02em;line-height:1;margin-bottom:4px}
+.uv-item-lbl{font-size:10px;font-weight:600;letter-spacing:.07em;text-transform:uppercase;color:var(--text-tertiary)}
+.uv-none{background:#FEF2F2}.uv-none .uv-item-val{color:#C0392B}
+.uv-spf30{background:#FFFBEB}.uv-spf30 .uv-item-val{color:#B7791F}
+.uv-spf50{background:#ECFDF5}.uv-spf50 .uv-item-val{color:#1B6B45}
+.uv-block-note{font-size:11px;color:var(--text-tertiary);line-height:1.55}
 
-/* POLLEN BLOCK */
-.pollen-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
-.pollen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
-.pollen-item{background:var(--bg);border-radius:var(--radius-md);padding:10px 12px;text-align:center;border-left:3px solid var(--text-tertiary)}
+/* FORECAST */
+.forecast-section{margin-bottom:32px}
+.forecast-grid{display:grid;gap:12px}
+.forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
+.forecast-grid.view-7{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
+.day-card{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);overflow:hidden;transition:box-shadow var(--transition),transform var(--transition)}
+.day-card.today{border-color:var(--sky);box-shadow:0 0 0 2px rgba(21,101,192,.12)}
+.day-card-top{padding:12px 14px 10px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between}
+.day-name-label{font-size:13px;font-weight:600;color:var(--text-primary)}
+.day-date-label{font-size:11px;color:var(--text-tertiary);margin-top:1px}
+.today-badge{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--sky);color:#fff;border-radius:20px;padding:2px 8px}
+.day-card-body{padding:12px 14px 14px}
+.wx-icon{display:flex;align-items:center;margin-bottom:10px}
+.wx-icon svg{width:32px;height:32px}
+.temp-row{display:flex;align-items:baseline;gap:6px;margin-bottom:12px}
+.temp-high{font-family:var(--font-display);font-size:26px;font-weight:300;color:var(--text-primary);letter-spacing:-.02em;line-height:1}
+.temp-low{font-size:13px;color:var(--text-tertiary)}
+.stat-rows{display:flex;flex-direction:column;gap:6px}
+.stat-row{display:flex;align-items:center;justify-content:space-between;gap:6px}
+.stat-label{font-size:10px;color:var(--text-tertiary);font-weight:500;white-space:nowrap}
+.stat-value{font-size:11px;font-weight:600;color:var(--text-primary);white-space:nowrap}
+.stat-bar-wrap{flex:1;height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.stat-bar{height:100%;border-radius:2px}
+.bar-rain{background:#1E88E5}.bar-wind{background:#78909C}.bar-sun{background:#F59E0B}.bar-hum{background:#26A69A}
+.rel-row{margin-top:10px;padding-top:8px;border-top:1px solid var(--border)}
+.rel-label-row{display:flex;align-items:center;justify-content:space-between;margin-bottom:4px}
+.rel-label{font-size:9px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary)}
+.rel-pct{font-size:11px;font-weight:700}
+.rel-pct.high{color:var(--rel-high)}.rel-pct.mid{color:var(--rel-mid)}.rel-pct.low{color:var(--rel-low)}
+.rel-bar-wrap{height:3px;background:var(--border);border-radius:2px;overflow:hidden}
+.rel-bar{height:100%;border-radius:2px}
+.rel-bar.high{background:var(--rel-high)}.rel-bar.mid{background:var(--rel-mid)}.rel-bar.low{background:var(--rel-low)}
+.rel-note{font-size:9px;color:var(--text-tertiary);margin-top:3px;line-height:1.4}
+
+/* RELIABILITY LEGEND */
+.rel-legend{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);padding:16px 20px;margin-bottom:48px}
+.rel-legend-title{font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px}
+.rel-legend-rows{display:flex;flex-direction:column;gap:6px}
+.rel-legend-row{display:flex;align-items:baseline;gap:8px}
+.rel-legend-dot{width:7px;height:7px;border-radius:50%;flex-shrink:0;margin-top:3px}
+.rel-legend-text{font-size:12px;color:var(--text-secondary);line-height:1.5}
+.rel-legend-text strong{color:var(--text-primary);font-weight:600}
+
+/* AIR QUALITY */
+.aqi-section{margin-bottom:32px}
+.aqi-card{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden;box-shadow:var(--shadow-sm)}
+.aqi-header{padding:18px 22px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:12px}
+.aqi-badge{font-size:13px;font-weight:700;padding:4px 12px;border-radius:20px}
+.aqi-badge.good{background:#D1FAE5;color:#065F46}
+.aqi-badge.fair{background:#FEF3C7;color:#92400E}
+.aqi-badge.moderate{background:#FFE4E6;color:#9F1239}
+.aqi-badge.poor{background:#EDE9FE;color:#4C1D95}
+.aqi-badge.very-poor{background:#FEF2F2;color:#7F1D1D}
+.aqi-label-text{font-size:13px;font-weight:500;color:var(--text-secondary)}
+.aqi-grid{display:grid;grid-template-columns:repeat(4,1fr)}
+@media(max-width:640px){.aqi-grid{grid-template-columns:1fr}}
+@media(max-width:640px){.aqi-item{border-right:none;border-bottom:1px solid var(--border)}}
+.aqi-item{padding:14px 18px;border-right:1px solid var(--border);border-bottom:1px solid var(--border)}
+.aqi-item:last-child{border-right:none}
+.aqi-item-val{font-family:var(--font-display);font-size:22px;font-weight:300;color:var(--text-primary);letter-spacing:-.02em;line-height:1}
+.aqi-item-unit{font-size:10px;color:var(--text-tertiary);margin-left:2px}
+.aqi-item-label{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-top:4px}
+.aqi-item-bar{height:3px;background:var(--border);border-radius:2px;margin-top:6px;overflow:hidden}
+.aqi-item-bar-fill{height:100%;border-radius:2px}
+
+/* WARNINGS */
+.warnings-section{margin-bottom:48px;display:none}
+.warning-card{display:flex;align-items:flex-start;gap:14px;padding:14px 18px;border-radius:var(--radius-md);border:1px solid;margin-bottom:8px}
+.warning-card.level-1{border-color:#FDE68A;background:#FFFBEB}
+.warning-card.level-2{border-color:#FCA5A5;background:#FEF2F2}
+.warning-card.level-3{border-color:#EF4444;background:#FEE2E2}
+.warning-icon{width:28px;height:28px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:12px;font-weight:700}
+.level-1 .warning-icon{background:#FCD34D;color:#78350F}
+.level-2 .warning-icon{background:#F87171;color:#fff}
+.level-3 .warning-icon{background:#EF4444;color:#fff}
+.warning-body{flex:1}
+.warning-title{font-size:13px;font-weight:600;color:var(--text-primary)}
+.warning-detail{font-size:12px;color:var(--text-secondary);margin-top:2px;line-height:1.5}
+.warning-level-label{font-size:10px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin-top:4px}
+.warnings-ok{padding:14px 18px;border-radius:var(--radius-md);border:1px solid #A7F3D0;background:#ECFDF5;display:flex;align-items:center;gap:10px;font-size:13px;color:var(--accent);font-weight:500}
+.warnings-ok-dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.ext-link{display:inline-flex;align-items:center;gap:4px;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--sky);text-decoration:none;border:1px solid var(--sky-pale);background:var(--sky-pale);padding:5px 12px;border-radius:20px}
+.official-links{display:flex;flex-wrap:wrap;gap:8px;margin-top:10px}
+
+/* NEWS */
+.news-section{margin-bottom:64px}
+.news-grid{border:1px solid var(--border);border-radius:var(--radius-lg);overflow:hidden;box-shadow:var(--shadow-sm);background:var(--surface)}
+.news-item{display:block;padding:16px 20px;border-bottom:1px solid var(--border);text-decoration:none;transition:background var(--transition)}
+.news-item:last-of-type{border-bottom:none}
+.news-item-meta{font-size:11px;color:var(--text-tertiary);font-weight:500;margin-bottom:4px;display:flex;align-items:center;gap:6px}
+.news-item-meta::before{content:'';display:inline-block;width:4px;height:4px;border-radius:50%;background:var(--accent);flex-shrink:0}
+.news-item-title{font-size:14px;font-weight:500;color:var(--text-primary);line-height:1.5}
+.news-item-excerpt{font-size:12px;color:var(--text-secondary);margin-top:4px;line-height:1.55}
+.news-item-source{font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);margin-top:6px}
+.news-loading{padding:24px 20px;text-align:center;font-size:13px;color:var(--text-tertiary)}
+.news-footer{padding:12px 20px;background:var(--bg);border-top:1px solid var(--border)}
+.news-more{font-size:12px;color:var(--sky);text-decoration:none;font-weight:500}
+
+/* WEBCAMS */
+.webcam-section{margin-bottom:64px}
+.cam-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:12px;width:100%}
+.cam-card{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);overflow:hidden;cursor:pointer;transition:box-shadow var(--transition),transform var(--transition)}
+.cam-img-wrap{position:relative;aspect-ratio:16/9;overflow:hidden;background:#e0e0e0}
+.cam-img-wrap img{width:100%;height:100%;object-fit:cover;display:block;transition:transform var(--transition)}
+.cam-overlay{position:absolute;inset:0;background:rgba(0,0,0,0);display:flex;align-items:center;justify-content:center;transition:background var(--transition)}
+.cam-zoom-icon{opacity:0;transition:opacity var(--transition)}
+.cam-zoom-icon svg{width:26px;height:26px;fill:#fff;filter:drop-shadow(0 1px 3px rgba(0,0,0,.5))}
+.live-dot{position:absolute;top:8px;left:8px;display:flex;align-items:center;gap:5px;background:rgba(0,0,0,.5);color:#fff;font-size:10px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;padding:2px 7px;border-radius:20px;backdrop-filter:blur(4px)}
+.live-pulse{width:6px;height:6px;border-radius:50%;background:#F44336;animation:pulse 1.4s ease-in-out infinite}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.4;transform:scale(.8)}}
+.cam-footer{padding:8px 12px;border-top:1px solid var(--border)}
+.cam-name{font-size:12px;font-weight:600;color:var(--text-primary)}
+.cam-location{font-size:11px;color:var(--text-tertiary);margin-top:1px}
+
+/* LIGHTBOX */
+.lightbox{display:none;position:fixed;inset:0;z-index:1000;background:rgba(0,0,0,.85);backdrop-filter:blur(8px);-webkit-backdrop-filter:blur(8px);align-items:center;justify-content:center;padding:24px;cursor:zoom-out}
+.lightbox.open{display:flex}
+.lightbox-inner{position:relative;max-width:960px;width:100%;cursor:default}
+.lightbox-img{width:100%;border-radius:var(--radius-md);display:block;box-shadow:var(--shadow-lg)}
+.lightbox-caption{margin-top:12px;text-align:center;font-size:13px;color:rgba(255,255,255,.65)}
+.lightbox-close{position:absolute;top:-16px;right:-16px;width:36px;height:36px;border-radius:50%;border:none;background:#fff;font-size:18px;cursor:pointer;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-md)}
+
+/* INFO + FOOTER */
+.info-block{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);padding:20px 24px;margin-bottom:64px}
+.info-block p{font-size:13px;color:var(--text-secondary);line-height:1.65}
+.info-block a{color:var(--sky);text-decoration:none}
+footer{border-top:1px solid var(--border);padding:24px;text-align:center}
+footer p{font-size:12px;color:var(--text-tertiary)}
+footer a{color:var(--text-secondary);text-decoration:none}
+
+/* WIND & WAVE SECTION */
+.wind-card{border:1px solid var(--border);border-radius:var(--radius-lg);background:var(--surface);overflow:hidden;box-shadow:var(--shadow-sm)}
+.wind-top{display:flex;align-items:center;gap:24px;padding:20px 22px;border-bottom:1px solid var(--border);flex-wrap:wrap}
+.wind-main{display:flex;align-items:center;gap:16px;flex-shrink:0}
+.wind-compass{position:relative;width:72px;height:72px;border-radius:50%;border:2px solid var(--border);flex-shrink:0;background:var(--bg)}
+.wind-compass-n,.wind-compass-s,.wind-compass-e,.wind-compass-w{position:absolute;font-size:9px;font-weight:700;color:var(--text-tertiary);letter-spacing:.04em}
+.wind-compass-n{top:4px;left:50%;transform:translateX(-50%)}
+.wind-compass-s{bottom:4px;left:50%;transform:translateX(-50%)}
+.wind-compass-e{right:4px;top:50%;transform:translateY(-50%)}
+.wind-compass-w{left:4px;top:50%;transform:translateY(-50%)}
+.wind-arrow{position:absolute;top:50%;left:50%;width:3px;height:26px;background:var(--sky);border-radius:2px;transform-origin:bottom center;transform:translateX(-50%) translateY(-100%) rotate(0deg);transition:transform 0.8s ease}
+.wind-values{flex:1}
+.wind-speed-big{font-family:var(--font-display);font-size:42px;font-weight:300;line-height:1;letter-spacing:-.03em;color:var(--text-primary)}
+.wind-speed-unit{font-size:12px;color:var(--text-tertiary);font-weight:500;margin-top:2px}
+.wind-dir-label{font-size:13px;color:var(--text-secondary);margin-top:4px;font-weight:500}
+.wind-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:0;flex:1;border-left:1px solid var(--border)}
+@media(max-width:600px){.wind-top{flex-direction:column;align-items:flex-start}.wind-stats{border-left:none;border-top:1px solid var(--border);width:100%;grid-template-columns:repeat(2,1fr)}}
+.wind-stat{padding:12px 16px;border-right:1px solid var(--border);text-align:center}
+.wind-stat:last-child{border-right:none}
+.wind-stat-val{font-family:var(--font-display);font-size:20px;font-weight:300;color:var(--text-primary);letter-spacing:-.02em}
+.wind-stat-lbl{font-size:10px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--text-tertiary);margin-top:3px}
+.sail-bar{display:flex;align-items:center;gap:10px;padding:12px 18px;border-bottom:none;background:var(--surface)!important}
+.sail-dot{width:10px;height:10px;border-radius:50%;flex-shrink:0}
+.sail-info-btn{display:inline-flex;align-items:center;justify-content:center;width:16px;height:16px;border-radius:50%;border:1px solid var(--text-tertiary);background:transparent;color:var(--text-tertiary);font-size:9px;font-weight:700;cursor:pointer;flex-shrink:0;transition:all var(--transition);margin-left:4px}
+.sail-info-btn:hover{background:var(--text-tertiary);color:#fff}
+
+/* Sail popup */
+.sail-popup-overlay{display:none;position:fixed;inset:0;z-index:499;background:rgba(0,0,0,.3);backdrop-filter:blur(2px)}
+.sail-popup-overlay.open{display:block}
+.sail-popup{display:none;position:fixed;z-index:500;left:50%;top:50%;transform:translate(-50%,-50%);background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);box-shadow:var(--shadow-lg);padding:20px;max-width:340px;width:calc(100vw - 48px)}
+.sail-popup.open{display:block}
+.sail-popup-title{font-family:var(--font-display);font-size:18px;font-weight:300;margin-bottom:8px;color:var(--text-primary)}
+.sail-popup-body{font-size:13px;color:var(--text-secondary);line-height:1.65}
+.sail-popup-disc{margin-top:12px;padding-top:10px;border-top:1px solid var(--border);font-size:11px;color:var(--text-tertiary);line-height:1.6}
+.sail-popup-close{position:absolute;top:12px;right:14px;background:none;border:none;font-size:18px;cursor:pointer;color:var(--text-tertiary)}
+.sail-dot{width:12px;height:12px;border-radius:50%;flex-shrink:0}
+.sail-status{font-size:13px;font-weight:600;color:var(--text-primary)}
+.sail-note{font-size:11px;color:var(--text-secondary);margin-top:2px}
+.wind-chart-wrap{padding:16px 22px}
+.wind-chart-label{font-size:10px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:10px}
+.wind-chart{display:flex;align-items:flex-end;gap:3px;height:80px;padding-top:18px}
+.wind-chart-bar{flex:1;border-radius:2px 2px 0 0;min-height:3px;cursor:default;position:relative}
+.wind-chart-labels{display:flex;justify-content:space-between;margin-top:5px}
+.wind-chart-lbl{font-size:10px;color:var(--text-tertiary)}
+.wind-disclaimer{padding:10px 22px 14px;font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border);line-height:1.5}
+
+/* AQI INFO POPUP */
+.aqi-item { position: relative; }
+.aqi-info-btn { display: inline-flex; align-items: center; justify-content: center; width: 14px; height: 14px; border-radius: 50%; border: 1px solid var(--text-tertiary); background: transparent; color: var(--text-tertiary); font-size: 9px; font-weight: 700; cursor: pointer; margin-left: 4px; vertical-align: middle; flex-shrink: 0; transition: all var(--transition); }
+.aqi-info-btn:hover { background: var(--text-tertiary); color: #fff; }
+.aqi-item-name-row { display: flex; align-items: center; margin-top: 4px; }
+.aqi-item-desc { font-size: 10px; color: var(--text-secondary); margin-top: 3px; line-height: 1.4; }
+.aqi-popup { display: none; position: fixed; z-index: 500; left: 50%; top: 50%; transform: translate(-50%, -50%); background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); box-shadow: var(--shadow-lg); padding: 20px; max-width: 320px; width: calc(100vw - 48px); }
+.aqi-popup.open { display: block; }
+.aqi-popup-overlay { display: none; position: fixed; inset: 0; z-index: 499; background: rgba(0,0,0,0.3); backdrop-filter: blur(2px); }
+.aqi-popup-overlay.open { display: block; }
+.aqi-popup-title { font-family: var(--font-display); font-size: 18px; font-weight: 300; margin-bottom: 8px; color: var(--text-primary); }
+.aqi-popup-body { font-size: 13px; color: var(--text-secondary); line-height: 1.65; }
+.aqi-popup-source { margin-top: 12px; padding-top: 10px; border-top: 1px solid var(--border); font-size: 11px; color: var(--text-tertiary); }
+.aqi-popup-source a { color: var(--sky); text-decoration: none; }
+.aqi-popup-close { position: absolute; top: 12px; right: 14px; background: none; border: none; font-size: 18px; cursor: pointer; color: var(--text-tertiary); line-height: 1; }
+/* HOVER */
+@media(hover:hover){
+  .day-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+  .cam-card:hover{box-shadow:var(--shadow-md);transform:translateY(-2px)}
+  .cam-card:hover .cam-img-wrap img{transform:scale(1.03)}
+  .cam-card:hover .cam-overlay{background:rgba(0,0,0,.18)}
+  .cam-card:hover .cam-zoom-icon{opacity:1}
+  .news-item:hover{background:#F7F6F3}
+  .ext-link:hover{background:#BBDEFB}
+  .lang-btn:not(.active):hover{background:rgba(255,255,255,.5);color:var(--text-primary)}
+}
+@media(hover:none){.cam-zoom-icon{opacity:1}.cam-overlay{background:rgba(0,0,0,.08)}}
+
+/* BREAKPOINTS */
+@media(max-width:640px){
+  .update-chip{display:none}
+  .current-card{flex-direction:column}
+  .forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
+  .forecast-grid.view-7{grid-template-columns:repeat(2,1fr)}
+}
+@media(max-width:480px){
+  .forecast-grid.view-7{grid-template-columns:repeat(2,1fr)}
+}
+
+/* POLLEN, ASTRO, CLIMATE SECTIONS — match uv-block style */
+.pollen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(95px,1fr));gap:10px}
+.pollen-item{background:var(--bg);border-radius:var(--radius-md);padding:12px 10px;text-align:center;border-left:3px solid var(--text-tertiary);position:relative}
 .pollen-item.lvl-0{border-left-color:#9B9890}
 .pollen-item.lvl-1{border-left-color:#FBBF24}
 .pollen-item.lvl-2{border-left-color:#F59E0B}
 .pollen-item.lvl-3{border-left-color:#DC2626}
-.pollen-item-name{font-size:12px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
+.pollen-item-name{font-size:11px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
 .pollen-item-val{font-size:11px;color:var(--text-secondary)}
 .pollen-item-bar{display:flex;gap:2px;justify-content:center;margin-top:6px}
-.pollen-dot{width:6px;height:6px;border-radius:50%;background:#E8E6E1}
+.pollen-dot{width:5px;height:5px;border-radius:50%;background:#E8E6E1}
 .pollen-dot.active{background:#DC2626}
-.pollen-region{font-size:11px;color:var(--text-tertiary);text-align:center;margin-top:8px;font-style:italic}
+.pollen-dot.active.lvl-1{background:#FBBF24}
+.pollen-dot.active.lvl-2{background:#F59E0B}
 
-/* FOREST FIRE BLOCK */
-.fire-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:32px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
-.fire-left{display:flex;align-items:center;gap:14px}
-.fire-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;background:var(--forest-pale);color:var(--forest)}
-.fire-icon.lvl-3,.fire-icon.lvl-4,.fire-icon.lvl-5{background:#FEF2F2;color:#DC2626}
-.fire-icon.lvl-2{background:#FFFBEB;color:#B7791F}
-.fire-text-title{font-size:13px;font-weight:600;color:var(--text-primary)}
-.fire-text-sub{font-size:11px;color:var(--text-secondary);margin-top:2px}
-.fire-level{font-family:var(--font-display);font-size:32px;font-weight:300;color:var(--forest);line-height:1}
-.fire-level.lvl-3,.fire-level.lvl-4,.fire-level.lvl-5{color:#DC2626}
-.fire-level.lvl-2{color:#B7791F}
-.fire-level-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);text-align:right;margin-top:2px}
+.astro-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px}
+.astro-item{background:var(--bg);border-radius:var(--radius-md);padding:14px 12px;text-align:center}
+.astro-item-icon{font-size:20px;margin-bottom:4px}
+.astro-item-val{font-family:var(--font-display);font-size:18px;font-weight:400;line-height:1.1}
+.astro-item-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-top:4px}
 
-/* FORECAST */
-.forecast-grid{display:grid;gap:10px;margin-bottom:32px}
-.forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
-.forecast-grid.view-7{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
-.forecast-day{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 10px;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition);position:relative;overflow:hidden}
-.forecast-day::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
-.forecast-day.rel-high::before{background:var(--rel-high)}
-.forecast-day.rel-mid::before{background:var(--rel-mid)}
-.forecast-day.rel-low::before{background:var(--rel-low)}
-.fday-day{font-size:11px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.06em}
-.fday-icon{font-size:28px;margin:8px 0 4px}
-.fday-temp{font-family:var(--font-display);font-size:16px;font-weight:400;letter-spacing:-.01em}
-.fday-temp .high{color:var(--text-primary)}
-.fday-temp .low{color:var(--text-tertiary);font-size:14px;margin-left:3px}
-.fday-rain{font-size:11px;color:var(--sky);font-weight:500;margin-top:4px}
+.climate-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(120px,1fr));gap:10px;margin-bottom:14px}
+.climate-item{background:var(--bg);border-radius:var(--radius-md);padding:14px 12px;text-align:center}
+.climate-item-val{font-family:var(--font-display);font-size:22px;font-weight:400;line-height:1.1}
+.climate-item-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-top:4px}
+.climate-bar-wrap{margin-top:6px}
+.climate-bar-row{display:flex;align-items:center;gap:10px;font-size:11px;color:var(--text-secondary);margin-bottom:6px}
+.climate-bar-label{width:80px;flex-shrink:0;font-weight:500;color:var(--text-primary)}
+.climate-bar-track{flex:1;height:6px;background:var(--border);border-radius:3px;position:relative;overflow:hidden}
+.climate-bar-fill{height:100%;border-radius:3px;transition:width var(--transition)}
+.climate-bar-fill.summer{background:#F59E0B}
+.climate-bar-fill.hot{background:#DC2626}
+.climate-bar-fill.frost{background:#1565C0}
+.climate-bar-val{width:32px;flex-shrink:0;text-align:right;font-variant-numeric:tabular-nums;color:var(--text-primary);font-weight:500}
 
-/* AQI */
-.aqi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:32px;box-shadow:var(--shadow-sm)}
-.aqi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
-.aqi-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:600}
-.aqi-badge.good{background:var(--accent-pale);color:var(--accent)}
-.aqi-badge.fair{background:var(--gold-pale);color:var(--gold)}
-.aqi-badge.poor{background:#FEF2F2;color:var(--rel-low)}
-.aqi-label-text{font-size:13px;color:var(--text-secondary)}
-.aqi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:10px}
-.aqi-item{background:var(--bg);border-radius:var(--radius-md);padding:10px;text-align:center}
-.aqi-val{font-family:var(--font-display);font-size:18px;font-weight:400;line-height:1.1}
-.aqi-lbl{font-size:10px;text-transform:uppercase;color:var(--text-tertiary);margin-top:4px;letter-spacing:.06em}
+/* PM forecast chart — vertical bars, x-axis = days */
+.pmchart{display:flex;align-items:flex-end;justify-content:space-around;gap:8px;height:140px;padding:0 4px 28px 4px;border-bottom:1px solid var(--border);position:relative}
+.pmchart-day{flex:1;display:flex;flex-direction:column;align-items:center;gap:4px;height:100%;position:relative;min-width:0}
+.pmchart-bars{flex:1;display:flex;align-items:flex-end;gap:4px;width:100%;justify-content:center;padding-top:18px}
+.pmchart-bar{width:14px;border-radius:3px 3px 0 0;position:relative;min-height:2px;transition:all var(--transition)}
+.pmchart-bar.pm25{background:#6366F1}
+.pmchart-bar.pm10{background:#8B5CF6}
+.pmchart-bar-val{position:absolute;top:-16px;left:50%;transform:translateX(-50%);font-size:10px;font-variant-numeric:tabular-nums;color:var(--text-secondary);font-weight:500;white-space:nowrap}
+.pmchart-day-lbl{position:absolute;bottom:-22px;left:0;right:0;text-align:center;font-size:11px;font-weight:500;color:var(--text-primary);letter-spacing:.02em}
 
-/* WARNINGS */
-.warnings-section{margin-bottom:32px}
-.warning-item{background:var(--surface);border-left:4px solid var(--rel-mid);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:8px;box-shadow:var(--shadow-sm)}
-.warning-item.sev-major{border-left-color:#DC2626}
-.warning-item.sev-severe{border-left-color:#7F1D1D}
-.warning-item-title{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
-.warning-item-time{font-size:11px;color:var(--text-tertiary);margin-bottom:6px}
-.warning-item-desc{font-size:12px;color:var(--text-secondary);line-height:1.5}
-.no-warnings{padding:14px 18px;background:var(--accent-pale);color:var(--accent);border-radius:var(--radius-md);font-size:13px;font-weight:500;text-align:center}
-.official-links{margin-top:10px;text-align:right}
-.ext-link{font-size:11px;color:var(--text-secondary);text-decoration:none;border-bottom:1px dashed var(--border)}
-.ext-link:hover{color:var(--forest)}
+/* Climate comparison: normal range vs current year projection */
+.climate-cmp-row{display:grid;grid-template-columns:90px 1fr 60px;align-items:center;gap:10px;font-size:12px;margin-bottom:10px}
+.climate-cmp-label{font-weight:500;color:var(--text-primary);font-size:12px}
+.climate-cmp-track{position:relative;height:18px;background:var(--bg);border-radius:9px;overflow:visible;border:1px solid var(--border)}
+.climate-cmp-normal{position:absolute;top:0;bottom:0;background:var(--border);border-radius:9px 0 0 9px}
+.climate-cmp-current{position:absolute;top:-2px;bottom:-2px;width:3px;border-radius:2px;box-shadow:0 0 0 2px var(--surface)}
+.climate-cmp-current.summer{background:#F59E0B}
+.climate-cmp-current.hot{background:#DC2626}
+.climate-cmp-current.frost{background:#1565C0}
+.climate-cmp-marker{position:absolute;top:50%;transform:translate(-50%,-50%);width:8px;height:8px;border-radius:50%;background:var(--text-primary);border:2px solid var(--surface);box-shadow:0 1px 3px rgba(0,0,0,.2)}
+.climate-cmp-val{font-variant-numeric:tabular-nums;font-weight:600;color:var(--text-primary);text-align:right;font-size:12px}
+.climate-cmp-val .delta{display:block;font-size:10px;font-weight:500;margin-top:1px}
+.climate-cmp-val .delta.up{color:#DC2626}
+.climate-cmp-val .delta.down{color:#1565C0}
+.climate-cmp-val .delta.neutral{color:var(--text-tertiary)}
+.climate-cmp-legend{display:flex;align-items:center;gap:14px;font-size:11px;color:var(--text-secondary);margin-bottom:10px;flex-wrap:wrap}
+.climate-cmp-legend-item{display:inline-flex;align-items:center;gap:6px}
+.climate-cmp-legend-dot{width:8px;height:8px;border-radius:50%}
+.climate-cmp-legend-bar{width:14px;height:6px;border-radius:2px;background:var(--border)}
 
-/* RELIABILITY LEGEND */
-.rel-legend{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:24px}
-.rel-legend-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px}
-.rel-legend-rows{display:grid;gap:6px}
-.rel-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-secondary)}
-.rel-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
-.rel-dot.high{background:var(--rel-high)}
-.rel-dot.mid{background:var(--rel-mid)}
-.rel-dot.low{background:var(--rel-low)}
-
-.info-block{background:var(--bg);border-radius:var(--radius-md);padding:16px 20px;font-size:11px;color:var(--text-tertiary);line-height:1.7}
-.info-block a{color:var(--text-secondary);text-decoration:none;border-bottom:1px dotted var(--border)}
-.info-block a:hover{color:var(--forest)}
-
-footer{text-align:center;padding:30px 20px;font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border)}
-footer a{color:var(--text-secondary);text-decoration:none}
-footer a:hover{color:var(--forest)}
-
-@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
-.loading{animation:pulse 1.5s ease-in-out infinite}
+@media(max-width:480px){
+  .climate-cmp-row{grid-template-columns:70px 1fr 56px;gap:8px}
+  .pmchart-bar{width:11px}
+}
 </style>
 </head>
 <body>
 
-<div class="topbar">
+<header class="topbar">
   <div class="topbar-inner">
     <div class="topbar-brand">
       <div class="topbar-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 2L4 9v13h6v-7h4v7h6V9z"/></svg>
+        <svg viewBox="0 0 24 24"><path d="M6.76 4.84l-1.8-1.79-1.41 1.41 1.79 1.79 1.42-1.41zM4 10.5H1v2h3v-2zm9-9.95h-2V3.5h2V.55zm7.45 3.91l-1.41-1.41-1.79 1.79 1.41 1.41 1.79-1.79zm-3.21 13.7l1.79 1.8 1.41-1.41-1.8-1.79-1.4 1.4zM20 10.5v2h3v-2h-3zm-8-5c-3.31 0-6 2.69-6 6s2.69 6 6 6 6-2.69 6-6-2.69-6-6-6zm-1 16.95h2V19.5h-2v2.95zm-7.45-3.91l1.41 1.41 1.79-1.8-1.41-1.41-1.79 1.8z"/></svg>
       </div>
       <span class="topbar-name" id="t-brand">Gaiberg Wetter</span>
     </div>
     <div class="topbar-right">
-      <span class="update-chip" id="update-chip">…</span>
-      <div class="lang-switcher" role="group" aria-label="Sprache">
+      <span class="update-chip" id="update-time"></span>
+      <div class="lang-switcher">
         <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
         <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
       </div>
     </div>
   </div>
-</div>
+</header>
 
 <div class="data-chip-bar" id="data-chip-bar">
-  <span class="data-chip" id="data-chip">⚠ <span id="t-data-chip">Datenquelle nicht erreichbar — angezeigte Werte ggf. veraltet</span></span>
+  <span class="data-chip" id="data-chip-text"></span>
 </div>
 
-<div class="hero">
-  <div class="hero-eyebrow" id="t-eyebrow">Rhein-Neckar-Kreis · 49.37° N · 280 m ü. NN</div>
-  <h1 id="t-h1">Wetter in <em>Gaiberg</em></h1>
-  <p class="hero-sub" id="t-sub">Staatlich anerkannter Erholungsort südlich von Heidelberg, am Übergang vom Königstuhl zum Kleinen Odenwald. Aktuelle DWD-Daten für den Rhein-Neckar-Kreis.</p>
-</div>
+<section class="hero">
+  <div class="hero-eyebrow" id="t-eyebrow">Rhein-Neckar-Kreis &middot; 49.37&deg; N &middot; 280 m ü. NN</div>
+  <h1 id="t-h1">Wettervorhersage<br><em>Gaiberg</em></h1>
+  <p class="hero-sub" id="t-sub">Prognose, Luftqualität, UV-Index und DWD-Warnungen für Gaiberg, den staatlich anerkannten Erholungsort südlich von Heidelberg.</p>
+  <div id="hero-timestamp" style="margin-top:12px;font-size:12px;color:var(--text-tertiary);font-weight:400;line-height:1.8;">
+    <div style="display:inline-flex;align-items:center;gap:8px;">
+      <span style="display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--accent);flex-shrink:0;animation:pulse 2s ease-in-out infinite;"></span>
+      <span id="hero-ts-text">—</span>
+    </div>
+    <div style="display:flex;flex-wrap:wrap;gap:16px;color:var(--text-tertiary);font-size:12px;font-weight:400;">
+      <span style="white-space:nowrap;">
+        <span id="t-lbl-rise-h">&#x1F305; Sonnenaufgang</span>
+        <span id="cur-rise" style="color:var(--text-primary);margin-left:4px;">—:—</span>
+      </span>
+      <span style="white-space:nowrap;">
+        <span id="t-lbl-set-h">&#x1F307; Sonnenuntergang</span>
+        <span id="cur-set" style="color:var(--text-primary);margin-left:4px;">—:—</span>
+      </span>
+      <span style="white-space:nowrap;">
+        <span id="t-lbl-sun-h">&#x2600;&#xFE0F; Sonne heute</span>
+        <span id="cur-sun" style="color:var(--text-primary);margin-left:4px;">—h</span>
+      </span>
+    </div>
+  </div>
+</section>
 
 <div class="content">
-
-  <!-- CURRENT CARD -->
   <div class="current-card">
     <div class="current-left">
-      <div class="label" id="t-now">Aktuell</div>
+      <div class="label" id="t-cur-label">Aktuell</div>
       <div class="temp-big" id="cur-temp">—°</div>
       <div class="condition" id="cur-cond">…</div>
     </div>
@@ -239,7 +461,8 @@ footer a:hover{color:var(--forest)}
       <div class="current-meta-item"><div class="val" id="cur-night">—°</div><div class="lbl" id="t-lbl-night">Nachttief</div></div>
       <div class="current-meta-item"><div class="val" id="cur-hum">—%</div><div class="lbl" id="t-lbl-hum">Feuchte</div></div>
       <div class="current-meta-item"><div class="val" id="cur-rain">—%</div><div class="lbl" id="t-lbl-rain">Regenrisiko</div></div>
-      <div class="current-meta-item"><div class="val" id="cur-wind">— km/h</div><div class="lbl" id="t-lbl-wind">Wind</div></div>
+      <div class="current-meta-item" id="precip-mm-item"><div class="val" id="cur-precip-mm">— mm</div><div class="lbl" id="t-lbl-precip">Niederschlag</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-pressure">— hPa</div><div class="lbl" id="t-lbl-pressure">Luftdruck</div></div>
     </div>
   </div>
 
@@ -247,25 +470,27 @@ footer a:hover{color:var(--forest)}
   <div class="uv-block" id="uv-block">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
       <div class="uv-block-title" id="t-uv-block-title" style="margin-bottom:0;">Sonnenschutz heute</div>
-      <div id="uv-insight-header" style="display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:20px;background:var(--forest-pale);font-size:12px;font-weight:600;color:var(--forest);">
+      <div id="uv-insight-header" style="display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:20px;background:var(--sky-pale);font-size:12px;font-weight:600;color:var(--sky);">
         <span id="uv-insight-val">—</span>
         <span id="uv-insight-label">—</span>
       </div>
     </div>
     <div class="uv-block-grid" style="grid-template-columns:repeat(4,1fr);">
-      <div class="uv-item" id="uv-index-card" style="background:var(--forest-pale);">
-        <div class="uv-item-val" id="cur-uv" style="color:var(--forest);">—</div>
+      <!-- UV-INDEX: first, with actionable insight -->
+      <div class="uv-item" id="uv-index-card" style="background:var(--sky-pale);position:relative;">
+        <div class="uv-item-val" id="cur-uv" style="color:var(--sky);">—</div>
         <div class="uv-item-lbl" id="t-uv-index-lbl">UV-Index</div>
+
       </div>
-      <div class="uv-item">
+      <div class="uv-item uv-none">
         <div class="uv-item-val" id="uv-none-val">—</div>
         <div class="uv-item-lbl" id="t-uv-none">Ohne Schutz</div>
       </div>
-      <div class="uv-item">
+      <div class="uv-item uv-spf30">
         <div class="uv-item-val" id="uv-spf30-val">—</div>
         <div class="uv-item-lbl" id="t-uv-spf30">LSF 30</div>
       </div>
-      <div class="uv-item">
+      <div class="uv-item uv-spf50">
         <div class="uv-item-val" id="uv-spf50-val">—</div>
         <div class="uv-item-lbl" id="t-uv-spf50">LSF 50</div>
       </div>
@@ -273,33 +498,38 @@ footer a:hover{color:var(--forest)}
     <div class="uv-block-note" id="t-uv-note">Richtwert für Hauttyp II. WHO-Standard MED 200 J/m².</div>
   </div>
 
-  <!-- POLLEN BLOCK -->
-  <div class="pollen-block" id="pollen-block">
+  <!-- WIND BLOCK -->
+  <div class="uv-block" id="wind-block">
     <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
-      <div class="uv-block-title" id="t-pollen-title" style="margin-bottom:0;">Pollenflug heute</div>
+      <div class="uv-block-title" id="t-wind-block-title" style="margin-bottom:0;">Wind</div>
+      <div id="wind-insight-header" style="display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:20px;background:var(--sky-pale);font-size:12px;font-weight:600;color:var(--sky);">
+        <span id="wind-insight-val">—</span>
+        <span id="wind-insight-label">—</span>
+      </div>
+    </div>
+    <div class="uv-block-grid" style="grid-template-columns:repeat(2,1fr);">
+      <div class="uv-item" style="background:var(--sky-pale);">
+        <div class="uv-item-val" id="wind-dir-val" style="color:var(--sky);font-size:18px;">—</div>
+        <div class="uv-item-lbl" id="t-wind-dir-lbl">Richtung</div>
+      </div>
+      <div class="uv-item">
+        <div class="uv-item-val" id="wind-gusts-val">—</div>
+        <div class="uv-item-lbl" id="t-wind-gusts-lbl">Böen</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- POLLEN BLOCK -->
+  <div class="uv-block" id="pollen-block">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <div class="uv-block-title" id="t-pollen-block-title" style="margin-bottom:0;">Pollenflug heute</div>
       <span style="font-size:11px;color:var(--text-tertiary)" id="t-pollen-source">DWD Pollenflug-Gefahrenindex</span>
     </div>
     <div class="pollen-grid" id="pollen-grid"></div>
-    <div class="pollen-region" id="t-pollen-region">Region: Oberrhein und unteres Neckartal</div>
+    <div class="uv-block-note" id="t-pollen-region" style="text-align:center">Region: Oberrhein und unteres Neckartal · Quelle: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;border-bottom:1px dotted var(--border)">DWD Medizin-Meteorologie</a></div>
   </div>
 
-  <!-- FOREST FIRE BLOCK -->
-  <div class="fire-block" id="fire-block">
-    <div class="fire-left">
-      <div class="fire-icon" id="fire-icon">🌲</div>
-      <div>
-        <div class="fire-text-title" id="t-fire-title">Waldbrandgefahr</div>
-        <div class="fire-text-sub" id="fire-text-sub">DWD WBI für Baden-Württemberg</div>
-      </div>
-    </div>
-    <div style="text-align:right">
-      <div class="fire-level" id="fire-level">—</div>
-      <div class="fire-level-lbl" id="fire-level-lbl">Stufe von 5</div>
-    </div>
-  </div>
-
-  <!-- FORECAST -->
-  <div class="forecast-section" style="margin-bottom:32px">
+  <div class="forecast-section">
     <div class="view-toggle-wrap">
       <div class="section-label" id="t-forecast-label" style="margin-bottom:0">Prognose</div>
       <div class="view-toggle">
@@ -310,8 +540,32 @@ footer a:hover{color:var(--forest)}
     <div class="forecast-grid view-3" id="forecast-grid"></div>
   </div>
 
-  <!-- AQI -->
-  <div class="aqi-section" style="margin-bottom:32px">
+  <!-- ASTRONOMIE BLOCK -->
+  <div class="uv-block" id="astro-block">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <div class="uv-block-title" id="t-astro-block-title" style="margin-bottom:0;">Astronomische Daten</div>
+      <span style="font-size:11px;color:var(--text-tertiary)" id="t-astro-source">Open-Meteo · NOAA</span>
+    </div>
+    <div class="astro-grid">
+      <div class="astro-item">
+        <div class="astro-item-icon" id="astro-moon-icon">&#127765;</div>
+        <div class="astro-item-val" id="astro-moon-phase">—</div>
+        <div class="astro-item-lbl" id="t-astro-moon-phase">Mondphase</div>
+      </div>
+      <div class="astro-item">
+        <div class="astro-item-icon">&#127747;</div>
+        <div class="astro-item-val" id="astro-moonrise">—:—</div>
+        <div class="astro-item-lbl" id="t-astro-moonrise">Mondaufgang</div>
+      </div>
+      <div class="astro-item">
+        <div class="astro-item-icon">&#127747;</div>
+        <div class="astro-item-val" id="astro-moonset">—:—</div>
+        <div class="astro-item-lbl" id="t-astro-moonset">Monduntergang</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="aqi-section">
     <div class="section-label" id="t-aqi-label">Luftqualität</div>
     <div class="aqi-card">
       <div class="aqi-header">
@@ -319,16 +573,86 @@ footer a:hover{color:var(--forest)}
           <span class="aqi-badge good" id="aqi-badge">—</span>
           <span class="aqi-label-text" id="aqi-sub">…</span>
         </div>
-        <span style="font-size:11px;color:var(--text-tertiary)">European AQI · Copernicus CAMS</span>
+        <span style="font-size:11px;color:var(--text-tertiary)">European AQI &middot; Copernicus CAMS · <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener" style="color:var(--text-tertiary);text-decoration:none;border-bottom:1px dotted var(--border)" id="t-lubw-link">LUBW Messwerte</a></span>
       </div>
       <div class="aqi-grid" id="aqi-grid"></div>
     </div>
   </div>
 
-  <!-- WARNINGS -->
   <div class="warnings-section" id="warnings-section">
     <div class="section-label" id="t-warn-label">DWD-Wetterwarnungen Gemeinde Gaiberg</div>
     <div id="warnings-grid"></div>
+  </div>
+
+  <!-- KLIMAKONTEXT -->
+  <div style="margin-bottom:32px;">
+    <div class="section-label" id="t-climate-label">Klimakontext</div>
+    <div class="uv-block">
+      <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:14px;">
+        <div class="uv-block-title" id="t-climate-block-title" style="margin-bottom:0;">Klimanormalwerte 1991–2020</div>
+        <span style="font-size:11px;color:var(--text-tertiary)" id="t-climate-source">ERA5 Reanalyse · Open-Meteo</span>
+      </div>
+      <div class="climate-grid" id="climate-normals">
+        <div class="climate-item">
+          <div class="climate-item-val" id="climate-temp">—°</div>
+          <div class="climate-item-lbl" id="t-climate-temp">Jahresmitteltemp.</div>
+        </div>
+        <div class="climate-item">
+          <div class="climate-item-val" id="climate-precip">— mm</div>
+          <div class="climate-item-lbl" id="t-climate-precip">Jahresniederschlag</div>
+        </div>
+        <div class="climate-item">
+          <div class="climate-item-val" id="climate-sun">— h</div>
+          <div class="climate-item-lbl" id="t-climate-sun">Sonnenstunden/Jahr</div>
+        </div>
+      </div>
+      <div style="margin-top:18px;padding-top:16px;border-top:1px solid var(--border);">
+        <div style="display:flex;align-items:baseline;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+          <div style="font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;color:var(--text-tertiary);" id="t-climate-days-label">Tage pro Jahr: aktuelles Jahr vs. Normalwert</div>
+          <span style="font-size:11px;color:var(--text-tertiary);" id="t-climate-current-year">2026 hochgerechnet</span>
+        </div>
+        <div class="climate-cmp-legend">
+          <span class="climate-cmp-legend-item"><span class="climate-cmp-legend-bar"></span><span id="t-climate-legend-normal">Normalwert 1991\u20132020</span></span>
+          <span class="climate-cmp-legend-item"><span class="climate-cmp-legend-dot" style="background:var(--text-primary)"></span><span id="t-climate-legend-current">Aktuelles Jahr</span></span>
+        </div>
+        <div id="climate-cmp-rows">
+          <div class="climate-cmp-row">
+            <div class="climate-cmp-label" id="t-climate-summer">Sommertage</div>
+            <div class="climate-cmp-track" id="climate-cmp-track-summer">
+              <div class="climate-cmp-normal" id="climate-cmp-normal-summer" style="width:0%"></div>
+              <div class="climate-cmp-marker" id="climate-cmp-marker-summer" style="left:0%"></div>
+            </div>
+            <div class="climate-cmp-val">
+              <span id="climate-summer-current">—</span>
+              <span class="delta neutral" id="climate-summer-delta">—</span>
+            </div>
+          </div>
+          <div class="climate-cmp-row">
+            <div class="climate-cmp-label" id="t-climate-hot">Hitzetage</div>
+            <div class="climate-cmp-track" id="climate-cmp-track-hot">
+              <div class="climate-cmp-normal" id="climate-cmp-normal-hot" style="width:0%"></div>
+              <div class="climate-cmp-marker" id="climate-cmp-marker-hot" style="left:0%"></div>
+            </div>
+            <div class="climate-cmp-val">
+              <span id="climate-hot-current">—</span>
+              <span class="delta neutral" id="climate-hot-delta">—</span>
+            </div>
+          </div>
+          <div class="climate-cmp-row">
+            <div class="climate-cmp-label" id="t-climate-frost">Frosttage</div>
+            <div class="climate-cmp-track" id="climate-cmp-track-frost">
+              <div class="climate-cmp-normal" id="climate-cmp-normal-frost" style="width:0%"></div>
+              <div class="climate-cmp-marker" id="climate-cmp-marker-frost" style="left:0%"></div>
+            </div>
+            <div class="climate-cmp-val">
+              <span id="climate-frost-current">—</span>
+              <span class="delta neutral" id="climate-frost-delta">—</span>
+            </div>
+          </div>
+        </div>
+        <div class="uv-block-note" id="t-climate-days-note" style="margin-top:10px;text-align:left">Sommertage: T<sub>max</sub> ≥ 25 °C · Hitzetage: T<sub>max</sub> ≥ 30 °C · Frosttage: T<sub>min</sub> &lt; 0 °C. Definition nach DWD.</div>
+      </div>
+    </div>
   </div>
 
   <div class="rel-legend">
@@ -337,9 +661,17 @@ footer a:hover{color:var(--forest)}
   </div>
 
   <div class="info-block">
-    <p id="t-info">Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0) auf Basis des DWD ICON-D2 Modells. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Pollenflug: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medizin-Meteorologie</a>. Waldbrandgefahr: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD Waldbrandgefahrenindex</a>. Luftqualität: European AQI (Copernicus CAMS), Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.</p>
+    <p id="t-info">Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0) auf Basis des DWD ICON-D2 Modells. Luftqualität: European AQI, Copernicus CAMS. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a> Baden-Württemberg.</p>
   </div>
 
+</div>
+
+<div class="lightbox" id="lightbox" onclick="closeLightbox(event)">
+  <div class="lightbox-inner">
+    <button class="lightbox-close" onclick="document.getElementById('lightbox').classList.remove('open')">&times;</button>
+    <img class="lightbox-img" id="lightbox-img" src="" alt="">
+    <div class="lightbox-caption" id="lightbox-caption"></div>
+  </div>
 </div>
 
 <section style="border-top:1px solid var(--border);padding:clamp(28px,4vw,48px) clamp(16px,4vw,24px);max-width:var(--max-w);margin:0 auto;">
@@ -358,530 +690,1629 @@ footer a:hover{color:var(--forest)}
     </div>
   </div>
 </section>
-
 <footer>
-  <p>Gaiberg, Rhein-Neckar-Kreis &middot; <a href="https://www.gaiberg.de" target="_blank" rel="noopener">gaiberg.de</a> &middot; <a href="https://www.dwd.de" target="_blank" rel="noopener">DWD</a> &middot; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
+  <p>Gaiberg, Rhein-Neckar-Kreis &mdash; <a href="https://www.gaiberg.de" target="_blank" rel="noopener">gaiberg.de</a> &mdash; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> &mdash; <a href="https://www.dwd.de" target="_blank" rel="noopener">DWD</a></p>
   <p style="margin-top:6px;font-size:11px;color:var(--text-tertiary);opacity:0.7;">
-    v1.1 &middot; 3. Mai 2026
+    v1.0 &mdash; 3. Mai 2026 &mdash; <a href="https://giovanola.github.io/gaiberg/" style="color:var(--text-tertiary);text-decoration:none;" target="_blank" rel="noopener">giovanola.github.io/gaiberg</a>
   </p>
 </footer>
 
 <script>
 /* =========================================================
-   TRANSLATIONS (DE / EN)
+   TRANSLATIONS
 ========================================================= */
 const T = {
   de:{
     brand:'Gaiberg Wetter',eyebrow:'Rhein-Neckar-Kreis \u00b7 49.37\u00b0 N \u00b7 280 m \u00fc. NN',
-    h1:'Wetter in <em>Gaiberg</em>',
-    sub:'Staatlich anerkannter Erholungsort s\u00fcdlich von Heidelberg, am \u00dcbergang vom K\u00f6nigstuhl zum Kleinen Odenwald. Aktuelle DWD-Daten f\u00fcr den Rhein-Neckar-Kreis.',
-    now:'Aktuell',high:'Tageshoch',low:'Tagestief',night:'Nachttief',hum:'Feuchte',rain:'Regenrisiko',wind:'Wind',
-    uvBlock:'Sonnenschutz heute',uvIndex:'UV-Index',uvNone:'Ohne Schutz',uvSpf30:'LSF 30',uvSpf50:'LSF 50',
-    uvNote:'Richtwert f\u00fcr Hauttyp II. WHO-Standard MED 200 J/m\u00b2.',
-    pollenTitle:'Pollenflug heute',pollenSource:'DWD Pollenflug-Gefahrenindex',pollenRegion:'Region: Oberrhein und unteres Neckartal',
-    fireTitle:'Waldbrandgefahr',fireSub:'DWD WBI f\u00fcr Baden-W\u00fcrttemberg',fireLvl:'Stufe von 5',
+    h1:'Wettervorhersage<br><em>Gaiberg</em>',
+    sub:'Prognose, Luftqualit\u00e4t und DWD-Warnungen f\u00fcr Gaiberg, den staatlich anerkannten Erholungsort s\u00fcdlich von Heidelberg.',
+    navWetter:'Wetter',navRifiuti:'Abfall',
+    windLabel:'Wind & Wellenbericht',windGust:'Böen',windBft:'Beaufort',
+    waveHeight:'Wellengang',wavePeriod:'Periode',windChartLabel:'Windprognose 12h',
+    windDisc:'Hinweis: Basierend auf numerischen Wettermodellen (MeteoSwiss ICON-CH via Open-Meteo), keine offizielle Warnung. Vor dem Wasserausflug aktuelle Daten prüfen, z. B. bei MeteoSwiss, ARPA Piemonte und lokalen Wetterstationen. Das Wetter am Lago Maggiore kann sich schnell ändern. Im Zweifel nicht aufs Wasser gehen.',
+    sail0:'Windstille (0–1 Bft)',sail0Note:'Zu wenig Wind. Ideal für SUP und Kajak.',
+    sail23:'Schwachwind (2–3 Bft)',sail23Note:'Angenehme Bedingungen für Einsteiger und Segelboote.',
+    sail4:'Mäßiger Wind (4 Bft)',sail4Note:'Erfahrene Segler. Kite/Windsurf günstig. Anfänger nicht empfohlen.',
+    sail5:'Frischer Wind (5 Bft)',sail5Note:'Nur geübte Segler. Wellen und Böen beachten.',
+    sail6:'Starker Wind (6+ Bft)',sail6Note:'Im Hafen bleiben. Gefährliche Bedingungen.',
+    riskLow:'Gering',riskLowNote:'Unkritische Bedingungen',
+    riskMod:'Mäßig',riskModNote:'Aufmerksamkeit erforderlich',
+    riskHigh:'Hoch',riskHighNote:'Nur mit Erfahrung',
+    riskVeryHigh:'Sehr hoch',riskVeryHighNote:'Im Hafen bleiben',
+    sailCalm:'Windstille – kein Segeln möglich',
+    sailCalmNote:'Wind unter 1 Bft. Zu wenig Wind zum Segeln. Ideal für Stand-up-Paddling oder Kajakfahren.',
+    sailGood:'Günstig – angenehme Segelbedingungen',
+    sailGoodNote:'Wind 1–3 Bft. Ideale Bedingungen für Katamarane, SUP und Segelboote.',
+    sailMedium:'Vorsicht – mässiger Wind',
+    sailMediumNote:'Wind 3–5 Bft. Erfahrene Segler. Kite/Windsurfer günstig. SUP nicht empfohlen.',
+    sailBad:'Nicht empfohlen – starker Wind',
+    sailBadNote:'Wind 5+ Bft. Nur für sehr erfahrene Segler. Kleine Boote im Hafen lassen.',
+    uvLow:'Niedrig – kein Schutz nötig',
+    uvMed:'Mässig – LSF 30 empfohlen',
+    uvHigh:'Hoch – LSF 50 nötig',
+    uvVeryHigh:'Sehr hoch – Mittag meiden',
+    uvExtreme:'Extrem – draussen vermeiden',
+    capeExtreme:'extrem hohes Gewitterpotenzial',
+    capeHigh:'hohes Gewitterpotenzial',
+    capeMed:'mässiges Gewitterpotenzial',
+    thunderForecast:'Gewitter im Tagesverlauf prognostiziert',
+    dangerNoFactors:'Keine kritischen Faktoren identifiziert.',
+    dataFrom:'Daten von ',
+    dangerLabel:'Risiken',
+    dangerLow:'Geringes Risiko – günstige Bedingungen',
+    dangerMed:'Erhöhtes Risiko – Vorsicht geboten',
+    dangerHigh:'Hohes Risiko – Wasserausflug nicht empfohlen',
+    dangerExtreme:'Extremes Risiko – NICHT aufs Wasser gehen',
+    factorThunder:'Gewittergefahr: CAPE {val} J/kg – {desc}',
+    factorGusts:'Starke Böen: bis {val} km/h erwartet',
+    factorRain:'Starkregen: bis {val} mm/h möglich',
+    factorWind:'Windstärke: {val} Bft – kritisch für kleine Boote',
+    stormWindow:'Kritisches Zeitfenster heute: {from} – {to} Uhr – Aktivitäten auf dem See meiden.',
+    dangerDisc:'Hinweis: Basierend auf numerischen Wettermodellen (MeteoSwiss ICON-CH via Open-Meteo), keine offizielle Warnung. Vor dem Wasserausflug aktuelle Daten prüfen, z. B. bei MeteoSwiss, ARPA Piemonte und lokalen Wetterstationen. Das Wetter am Lago Maggiore kann sich schnell ändern. Im Zweifel nicht aufs Wasser gehen.',
+    navGotthard:'Gotthard',
+    curLabel:'Aktuell',lblHigh:'Tageshoch',lblLow:'Tagestief',lblNight:'Nachttief',lblHum:'Feuchte',lblRain:'Regenrisiko',lblPrecip:'Niederschlag',lblSun:'Sonne heute',lblPressure:'Luftdruck',
+    showersShort:'Schauer',
+    windBlockTitle:'Wind',windDirLbl:'Richtung',windGustsLbl:'B\u00f6en',wind80mLbl:'80 m H\u00f6he',wind120mLbl:'120 m H\u00f6he',
+    windNote:'Bodenwind in 10 m H\u00f6he. H\u00f6henwerte relevant f\u00fcr Gleitschirm und Drachenflieger.',
+    beaufort:'Bft',
+    pollenBlockTitle:'Pollenflug heute',pollenSource:'DWD Pollenflug-Gefahrenindex',
+    pollenRegion:'Region: Oberrhein und unteres Neckartal',
+    pollenNames:{Hasel:'Hasel',Erle:'Erle',Esche:'Esche',Birke:'Birke',Graeser:'Gr\u00e4ser',Roggen:'Roggen',Beifuss:'Beifu\u00df',Ambrosia:'Ambrosia'},
+    pollenLevels:{'0':'keine','0-1':'keine\u2013gering','1':'gering','1-2':'gering\u2013mittel','2':'mittel','2-3':'mittel\u2013hoch','3':'hoch','-1':'k.A.'},
+    astroBlockTitle:'Astronomische Daten',astroSource:'Open-Meteo \u00b7 NOAA',
+    astroRise:'Sonnenaufgang',astroSet:'Sonnenuntergang',astroDaylen:'Tagesl\u00e4nge',
+    astroMoonPhase:'Mondphase',astroMoonrise:'Mondaufgang',astroMoonset:'Monduntergang',
+    climateLabel:'Klimakontext',climateBlockTitle:'Klimanormalwerte 1991\u20132020',
+    climateSource:'ERA5 Reanalyse \u00b7 Open-Meteo',
+    climateTemp:'Jahresmitteltemp.',climatePrecip:'Jahresniederschlag',climateSun:'Sonnenstunden/Jahr',
+    climateDaysLabel:'Tage pro Jahr: aktuelles Jahr vs. Normalwert',
+    climateSummer:'Sommertage',climateHot:'Hitzetage',climateFrost:'Frosttage',
+    climateDaysNote:'Sommertage: T<sub>max</sub> \u2265 25 \u00b0C \u00b7 Hitzetage: T<sub>max</sub> \u2265 30 \u00b0C \u00b7 Frosttage: T<sub>min</sub> &lt; 0 \u00b0C. Definition nach DWD.',
+    aqiForecastLabel:'PM-Vorhersage 4 Tage',
+    lubwLink:'LUBW Messwerte',
     forecastLabel:'Prognose',btn3:'3 Tage',btn7:'7 Tage',
-    aqiLabel:'Luftqualit\u00e4t',
-    warnLabel:'DWD-Wetterwarnungen Gemeinde Gaiberg',noWarnings:'Aktuell keine Warnungen f\u00fcr Gaiberg',
-    relTitle:'Prognosegenauigkeit',relHigh:'Hoch \u00b7 Tag 1\u20133',relMid:'Mittel \u00b7 Tag 4\u20135',relLow:'Niedrig \u00b7 Tag 6\u20137',
-    info:'Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) auf Basis des DWD ICON-D2 Modells. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Pollenflug: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medizin-Meteorologie</a>. Waldbrandgefahr: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD Waldbrandgefahrenindex</a>. Luftqualit\u00e4t: European AQI (Copernicus CAMS), Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.',
-    dataChip:'Datenquelle nicht erreichbar \u2014 angezeigte Werte ggf. veraltet',
-    days:['So','Mo','Di','Mi','Do','Fr','Sa'],
-    cond:{0:'Klar',1:'Heiter',2:'Wolkig',3:'Bedeckt',45:'Nebel',48:'Reifnebel',51:'Niesel',53:'Niesel',55:'Niesel',61:'Regen',63:'Regen',65:'Starker Regen',71:'Schnee',73:'Schnee',75:'Starker Schnee',77:'Schnee',80:'Schauer',81:'Schauer',82:'Heftige Schauer',95:'Gewitter',96:'Gewitter mit Hagel',99:'Schweres Gewitter'},
-    seo:[
-      ['Gaiberg im Rhein-Neckar-Kreis','Gaiberg ist eine Gemeinde mit rund 2500 Einwohnern, gelegen in 200 bis 445 Meter H\u00f6he am Westrand des Rhein-Neckar-Kreises an der Grenze zum kleinen Odenwald und zum Kraichgau. Der Ort liegt rund zehn Kilometer s\u00fcdlich von Heidelberg auf der S\u00fcdost-Abdachung des K\u00f6nigstuhls, im Naturpark Neckartal-Odenwald. Seit 1967 ist Gaiberg staatlich anerkannter Erholungsort.'],
-      ['Klima und Wetter','Das Klima in Gaiberg unterscheidet sich aufgrund der H\u00f6henlage deutlich vom milden Heidelberger Talklima. Wer von Heidelberg-Bismarckplatz \u00fcber Drei Eichen nach Gaiberg f\u00e4hrt, sp\u00fcrt rasch den Temperaturwechsel: oft 2 bis 4 Grad k\u00fchler als im Neckartal, mehr Niederschlag und h\u00e4ufigere Nebelbildung. Pollenflug, Waldbrandgefahr und Sonnenschutz spielen f\u00fcr Wanderer und Erholungssuchende eine besondere Rolle.'],
-      ['Naherholung und Wandern','Gaiberg ist Ausgangspunkt zahlreicher Wanderwege durch W\u00e4lder und Wiesen rund um den K\u00f6nigstuhl. Die Region ist beliebt bei Heidelberger Tagesausfl\u00fcglern. F\u00fcr die Tourenplanung sind aktuelle Wetterdaten, der Pollenflug-Index f\u00fcr Oberrhein und unteres Neckartal sowie die Waldbrandgefahrenstufe entscheidend, gerade in den Sommermonaten und w\u00e4hrend der Bl\u00fctezeit.']
+    relTitle:'Prognosegenauigkeit',
+    relRows:[
+      {dot:'var(--rel-high)',text:'<strong>Tag 1\u20132 (90\u201395\u00a0%)</strong>: Sehr zuverl\u00e4ssig. ICON-CH MeteoSwiss erfasst kurzfristige Entwicklungen pr\u00e4zise.'},
+      {dot:'var(--rel-mid)', text:'<strong>Tag 3\u20135 (65\u201380\u00a0%)</strong>: Bedingt verl\u00e4sslich. Temperaturtendenz gesichert, Zeitpunkte unsicher.'},
+      {dot:'var(--rel-low)', text:'<strong>Tag 6\u20137 (40\u201355\u00a0%)</strong>: Orientierungswert. Grosswetterlage erkennbar, Details statistisch wenig belastbar.'},
     ],
-    pollen:{Hasel:'Hasel',Erle:'Erle',Esche:'Esche',Birke:'Birke',Graeser:'Gr\u00e4ser',Roggen:'Roggen',Beifuss:'Beifu\u00df',Ambrosia:'Ambrosia'},
-    pollenLevels:{0:'keine',1:'gering',2:'mittel',3:'hoch','-1':'k.A.','0-1':'keine\u2013gering','1-2':'gering\u2013mittel','2-3':'mittel\u2013hoch'},
-    fireLevels:{1:'sehr gering',2:'gering',3:'mittel',4:'hoch',5:'sehr hoch'},
-    aqiLevels:{good:'Gute Luft',fair:'M\u00e4\u00dfige Belastung',poor:'Hohe Belastung',moderate:'Moderate Luft'},
-    aqiSub:'PM2.5, PM10, NO\u2082 und Ozon-Belastung',
-    warnSeverity:{Minor:'Geringf\u00fcgig',Moderate:'M\u00e4\u00dfig',Severe:'Schwer',Extreme:'Extrem'}
+    aqiLabel:'Luftqualit\u00e4t',aqiSub:'Europ\u00e4ischer Luftqualit\u00e4tsindex f\u00fcr Gaiberg',
+    aqiNames:['Sehr gut','Gut','M\u00e4ssig','Schlecht','Sehr schlecht','Extrem schlecht'],
+    warnLabel:'DWD-Wetterwarnungen Gemeinde Gaiberg',
+    warnOk:'Keine aktiven Warnungen f\u00fcr Gaiberg',
+    warnLevels:{1:'Vorwarnung',2:'Warnung',3:'Unwetterwarnung',4:'Extreme Wetterwarnung'},
+    newsLabel:'Nachrichten Gaiberg',newsLoading:'Nachrichten werden geladen\u2026',
+    newsMore:'',
+    camsLabel:'Live-Webcams',
+    offlineChip:'Offline-Daten',standChip:'Stand',standUhr:'Uhr',
+    wx:['Klarer Himmel','Leicht bew\u00f6lkt','Bew\u00f6lkt','Neblig','Nieselregen','Regen','Schneefall','Starkregen','Schneeschauer','Gewitter','Wechselhaft'],
+    days:['Sonntag','Montag','Dienstag','Mittwoch','Donnerstag','Freitag','Samstag'],
+    today:'Heute',statSun:'Sonne',statRain:'Regen',statHum:'Feuchte',statWind:'Wind',statAcc:'Genauigkeit',lblUv:'UV-Index',
+    lblRise:'Sonnenaufgang',lblSet:'Sonnenuntergang',
+    uvBlockTitle:'Sonnenschutz heute',uvIndexLbl:'UV-Index',uvNone:'Ohne Schutz',uvSpf30:'LSF\u00a030',uvSpf50:'LSF\u00a050',
+    uvNote:'Richtwert f\u00fcr Hauttyp II mit korrektem Eincremen (2\u00a0mg/cm\u00b2). LSF\u00a030: max.\u00a02\u00a0h Mittagssonne, dann Nachcremen. LSF\u00a050: max.\u00a03\u00a0h, dann Nachcremen und Schatten suchen. Quelle: WHO, Bundesamt f\u00fcr Strahlenschutz.',
+    relNotes:['Kurzzeitprognose, sehr verl\u00e4sslich','Tendenz gesichert, Timing unsicher','Grosswetterlage, Details unsicher'],
+    info:'Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) auf Basis des DWD ICON-D2 Modells. Luftqualit\u00e4t: European AQI, Copernicus CAMS. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a> Baden-W\u00fcrttemberg.',
+    camLocs:{},
+    seoM1:'Wetter Gaiberg heute',
+    seoM1p:'Aktuelle Wetterprognose f\u00fcr Gaiberg im Rhein-Neckar-Kreis. Daten von Open-Meteo (CC BY 4.0) auf Basis des DWD ICON-D2 Modells. T\u00e4gliche Aktualisierung mit Temperatur, Niederschlag, Sonnenstunden und UV-Index.',
+    seoM2:'Luftqualit\u00e4t Rhein-Neckar-Kreis',
+    seoM2p:'Europ\u00e4ischer Luftqualit\u00e4tsindex (AQI) f\u00fcr Gaiberg basierend auf Copernicus CAMS Daten. Echtzeit-Messung von PM2.5, PM10, NO\u2082 und Ozon. Erg\u00e4nzt durch LUBW-Messdaten.',
+    seoM3:'DWD-Warnungen Gaiberg',
+    seoM3p:'Aktuelle amtliche Warnungen des Deutschen Wetterdienstes f\u00fcr die Gemeinde Gaiberg auf Gemeindeebene. Gewitter, Starkregen, Sturm, Frost, Hitze und Schneef\u00e4lle.',
   },
   en:{
     brand:'Gaiberg Weather',eyebrow:'Rhein-Neckar District \u00b7 49.37\u00b0 N \u00b7 280 m AMSL',
-    h1:'Weather in <em>Gaiberg</em>',
-    sub:'Officially recognised health resort south of Heidelberg, on the eastern slope of the K\u00f6nigstuhl massif at the edge of the Lesser Odenwald. Live data from the German Weather Service.',
-    now:'Now',high:'High',low:'Low',night:'Night low',hum:'Humidity',rain:'Rain risk',wind:'Wind',
-    uvBlock:'Sun protection today',uvIndex:'UV index',uvNone:'No protection',uvSpf30:'SPF 30',uvSpf50:'SPF 50',
-    uvNote:'Reference value for skin type II. WHO standard MED 200 J/m\u00b2.',
-    pollenTitle:'Pollen forecast today',pollenSource:'DWD pollen risk index',pollenRegion:'Region: Upper Rhine & lower Neckar valley',
-    fireTitle:'Forest fire risk',fireSub:'DWD WBI for Baden-W\u00fcrttemberg',fireLvl:'Level of 5',
+    h1:'Weather forecast<br><em>Gaiberg</em>',
+    sub:'Forecast, air quality, UV index and DWD warnings for Gaiberg, the officially recognised health resort south of Heidelberg.',
+    navWetter:'Weather',navRifiuti:'Waste',
+    windLabel:'Wind & Wave Report',windGust:'Gusts',windBft:'Beaufort',
+    waveHeight:'Wave height',wavePeriod:'Period',windChartLabel:'12h wind forecast',
+    windDisc:'Note: Based on numerical weather models (MeteoSwiss ICON-CH via Open-Meteo), not an official warning. Before any water activity, check current data at MeteoSwiss, ARPA Piemonte and local weather stations. Weather on Lake Maggiore can change quickly. If in doubt, stay off the water.',
+    sail0:'Calm (0–1 Bft)',sail0Note:'Too little wind for sailing. Ideal for SUP and kayaking.',
+    sail23:'Light wind (2–3 Bft)',sail23Note:'Pleasant conditions for beginners and sailing boats.',
+    sail4:'Moderate wind (4 Bft)',sail4Note:'Experienced sailors. Kite/windsurf favourable. Beginners not recommended.',
+    sail5:'Fresh wind (5 Bft)',sail5Note:'Skilled sailors only. Watch for waves and gusts.',
+    sail6:'Strong wind (6+ Bft)',sail6Note:'Stay in harbour. Dangerous conditions.',
+    riskLow:'Low',riskLowNote:'Uncritical conditions',
+    riskMod:'Moderate',riskModNote:'Attention required',
+    riskHigh:'High',riskHighNote:'Experienced only',
+    riskVeryHigh:'Very high',riskVeryHighNote:'Stay in harbour',
+    sailCalm:'Calm – no sailing possible',
+    sailCalmNote:'Wind below 1 Bft. Too little wind for sailing. Ideal for stand-up paddling or kayaking.',
+    sailGood:'Favourable – pleasant sailing conditions',
+    sailGoodNote:'Wind 1–3 Bft. Ideal for catamarans, SUP and sailing boats.',
+    sailMedium:'Caution – moderate wind',
+    sailMediumNote:'Wind 3–5 Bft. Experienced sailors. Kite/windsurf favourable. SUP not recommended.',
+    sailBad:'Not recommended – strong wind',
+    sailBadNote:'Wind 5+ Bft. Experienced sailors only. Keep small boats in harbour.',
+    uvLow:'Low – no protection needed',
+    uvMed:'Moderate – SPF 30 recommended',
+    uvHigh:'High – SPF 50 required',
+    uvVeryHigh:'Very high – avoid midday sun',
+    uvExtreme:'Extreme – avoid outdoor exposure',
+    capeExtreme:'extreme thunderstorm potential',
+    capeHigh:'high thunderstorm potential',
+    capeMed:'moderate thunderstorm potential',
+    thunderForecast:'Thunderstorms forecast during the day',
+    dangerNoFactors:'No critical factors identified.',
+    dataFrom:'Updated ',
+    dangerLabel:'Risks',
+    dangerLow:'Low risk – favourable conditions',
+    dangerMed:'Elevated risk – caution advised',
+    dangerHigh:'High risk – water activities not recommended',
+    dangerExtreme:'Extreme risk – DO NOT go on the water',
+    factorThunder:'Thunderstorm risk: CAPE {val} J/kg – {desc}',
+    factorGusts:'Strong gusts: up to {val} km/h expected',
+    factorRain:'Heavy rain: up to {val} mm/h possible',
+    factorWind:'Wind force: {val} Bft – critical for small vessels',
+    stormWindow:'Critical time window today: {from} – {to} – avoid lake activities.',
+    dangerDisc:'Note: Based on numerical weather models (MeteoSwiss ICON-CH via Open-Meteo), not an official warning. Before any water activity, check current data, e.g. at MeteoSwiss, ARPA Piemonte and local weather stations. Weather on Lake Maggiore can change quickly. If in doubt, stay off the water.',
+    navGotthard:'Gotthard',
+    curLabel:'Current',lblHigh:'Day high',lblLow:'Day low',lblNight:'Night low',lblHum:'Humidity',lblRain:'Rain risk',lblPrecip:'Precipitation',lblSun:'Sun today',lblPressure:'Pressure',
+    showersShort:'showers',
+    windBlockTitle:'Wind',windDirLbl:'Direction',windGustsLbl:'Gusts',wind80mLbl:'80 m height',wind120mLbl:'120 m height',
+    windNote:'Surface wind at 10 m. Higher altitudes relevant for paragliding and hang gliding.',
+    beaufort:'Bft',
+    pollenBlockTitle:'Pollen forecast today',pollenSource:'DWD pollen risk index',
+    pollenRegion:'Region: Upper Rhine & lower Neckar valley',
+    pollenNames:{Hasel:'Hazel',Erle:'Alder',Esche:'Ash',Birke:'Birch',Graeser:'Grasses',Roggen:'Rye',Beifuss:'Mugwort',Ambrosia:'Ragweed'},
+    pollenLevels:{'0':'none','0-1':'none\u2013low','1':'low','1-2':'low\u2013moderate','2':'moderate','2-3':'moderate\u2013high','3':'high','-1':'n/a'},
+    astroBlockTitle:'Astronomical data',astroSource:'Open-Meteo \u00b7 NOAA',
+    astroRise:'Sunrise',astroSet:'Sunset',astroDaylen:'Daylight',
+    astroMoonPhase:'Moon phase',astroMoonrise:'Moonrise',astroMoonset:'Moonset',
+    climateLabel:'Climate context',climateBlockTitle:'Climate normals 1991\u20132020',
+    climateSource:'ERA5 reanalysis \u00b7 Open-Meteo',
+    climateTemp:'Annual mean temp.',climatePrecip:'Annual precipitation',climateSun:'Sunshine hours/year',
+    climateDaysLabel:'Days per year: current year vs. normal',
+    climateSummer:'Summer days',climateHot:'Hot days',climateFrost:'Frost days',
+    climateDaysNote:'Summer days: T<sub>max</sub> \u2265 25 \u00b0C \u00b7 Hot days: T<sub>max</sub> \u2265 30 \u00b0C \u00b7 Frost days: T<sub>min</sub> &lt; 0 \u00b0C. DWD definition.',
+    aqiForecastLabel:'4-day PM forecast',
+    lubwLink:'LUBW measurements',
     forecastLabel:'Forecast',btn3:'3 days',btn7:'7 days',
-    aqiLabel:'Air quality',
-    warnLabel:'DWD weather warnings for Gaiberg municipality',noWarnings:'No active warnings for Gaiberg',
-    relTitle:'Forecast accuracy',relHigh:'High \u00b7 day 1\u20133',relMid:'Medium \u00b7 day 4\u20135',relLow:'Low \u00b7 day 6\u20137',
-    info:'Weather data: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) based on the DWD ICON-D2 model. Warnings: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">German Weather Service</a> (municipality level). Pollen: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medical Meteorology</a>. Forest fire: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD WBI</a>. Air quality: European AQI (Copernicus CAMS), measurements from <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.',
-    dataChip:'Data source unavailable \u2014 displayed values may be outdated',
-    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
-    cond:{0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Rime fog',51:'Drizzle',53:'Drizzle',55:'Drizzle',61:'Rain',63:'Rain',65:'Heavy rain',71:'Snow',73:'Snow',75:'Heavy snow',77:'Snow',80:'Showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunder & hail',99:'Severe storm'},
-    seo:[
-      ['Gaiberg in the Rhein-Neckar District','Gaiberg is a municipality with around 2,500 inhabitants, located between 200 and 445 metres elevation on the western edge of the Rhein-Neckar district, at the boundary of the Lesser Odenwald and Kraichgau regions. The village lies roughly ten kilometres south of Heidelberg on the south-eastern slope of the K\u00f6nigstuhl massif, within the Neckartal-Odenwald nature park. Gaiberg has been an officially recognised health resort since 1967.'],
-      ['Climate and weather','The climate in Gaiberg differs noticeably from the mild Heidelberg valley climate due to its elevation. Anyone driving from Heidelberg-Bismarckplatz via Drei Eichen up to Gaiberg will quickly notice the temperature change: often 2 to 4 degrees cooler than in the Neckar valley, with higher rainfall and more frequent fog. Pollen, forest fire risk and sun protection are particularly relevant for hikers and visitors.'],
-      ['Recreation and hiking','Gaiberg is the starting point for numerous trails through forests and meadows around the K\u00f6nigstuhl. The region is popular with day-trippers from Heidelberg. For trip planning, current weather, the pollen risk index for the Upper Rhine area and the forest fire warning level are decisive, particularly during summer and pollen season.']
+    relTitle:'Forecast reliability',
+    relRows:[
+      {dot:'var(--rel-high)',text:'<strong>Day 1\u20132 (90\u201395\u00a0%)</strong>: Very reliable. ICON-CH MeteoSwiss captures short-term developments with high accuracy.'},
+      {dot:'var(--rel-mid)', text:'<strong>Day 3\u20135 (65\u201380\u00a0%)</strong>: Moderately reliable. Temperature trends are sound; timing details less so.'},
+      {dot:'var(--rel-low)', text:'<strong>Day 6\u20137 (40\u201355\u00a0%)</strong>: Indicative only. Synoptic pattern visible, details statistically unreliable.'},
     ],
-    pollen:{Hasel:'Hazel',Erle:'Alder',Esche:'Ash',Birke:'Birch',Graeser:'Grasses',Roggen:'Rye',Beifuss:'Mugwort',Ambrosia:'Ragweed'},
-    pollenLevels:{0:'none',1:'low',2:'moderate',3:'high','-1':'n/a','0-1':'none\u2013low','1-2':'low\u2013moderate','2-3':'moderate\u2013high'},
-    fireLevels:{1:'very low',2:'low',3:'moderate',4:'high',5:'very high'},
-    aqiLevels:{good:'Good air',fair:'Moderate pollution',poor:'High pollution',moderate:'Moderate air'},
-    aqiSub:'PM2.5, PM10, NO\u2082 and ozone levels',
-    warnSeverity:{Minor:'Minor',Moderate:'Moderate',Severe:'Severe',Extreme:'Extreme'}
-  }
+    aqiLabel:'Air quality',aqiSub:'European Air Quality Index for Gaiberg',
+    aqiNames:['Very good','Good','Moderate','Poor','Very poor','Extremely poor'],
+    warnLabel:'DWD weather warnings for Gaiberg municipality',
+    warnOk:'No active warnings for Gaiberg',
+    warnLevels:{1:'Pre-warning',2:'Warning',3:'Severe warning',4:'Extreme warning'},
+    newsLabel:'Gaiberg news',newsLoading:'Loading news\u2026',
+    newsMore:'',
+    camsLabel:'Live webcams',
+    offlineChip:'Offline data',standChip:'Updated at',standUhr:'',
+    wx:['Clear sky','Partly cloudy','Cloudy','Foggy','Drizzle','Rain','Snowfall','Heavy rain','Snow showers','Thunderstorm','Variable'],
+    days:['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'],
+    today:'Today',statSun:'Sun',statRain:'Rain',statHum:'Humidity',statWind:'Wind',statAcc:'Reliability',lblUv:'UV index',
+    lblRise:'Sunrise',lblSet:'Sunset',
+    uvBlockTitle:'Sun protection today',uvIndexLbl:'UV Index',uvNone:'No protection',uvSpf30:'SPF\u00a030',uvSpf50:'SPF\u00a050',
+    uvNote:'Guideline for skin type II with correct application (2\u00a0mg/cm\u00b2). SPF\u00a030: max.\u00a02\u00a0h midday sun, then reapply. SPF\u00a050: max.\u00a03\u00a0h, then reapply and seek shade. Source: WHO, BfS.',
+    relNotes:['Short-range, highly reliable','Trend confirmed, timing uncertain','Synoptic pattern, details unreliable'],
+    info:'Weather data: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) based on the DWD ICON-D2 model. Air quality: European AQI, Copernicus CAMS. Warnings: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">German Weather Service</a> (municipality level). Measurements from <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a> Baden-W\u00fcrttemberg.',
+    camLocs:{},
+    seoM1:"Weather in Gaiberg today",
+    seoM1p:"Up-to-date weather forecast for Gaiberg in the Rhein-Neckar district. Data based on Open-Meteo (CC BY 4.0) using the DWD ICON-D2 model. Daily updates with temperature, precipitation, sunshine hours and UV index.",
+    seoM2:"Air quality Rhein-Neckar district",
+    seoM2p:"European Air Quality Index (AQI) for Gaiberg, based on Copernicus CAMS data. Real-time measurement of PM2.5, PM10, nitrogen dioxide and ozone. Complemented by LUBW measurements.",
+    seoM3:"DWD warnings Gaiberg",
+    seoM3p:"Current official warnings from the German Weather Service for the Gaiberg municipality at municipal level. Thunderstorms, heavy rain, storms, frost, heat and snowfall." 
+  },
 };
 
 /* =========================================================
-   CONSTANTS
+   STATE
 ========================================================= */
-const LAT = 49.3664;
-const LON = 8.74972;
-const TZ = 'Europe/Berlin';
-const GEMEINDENAME = 'Gemeinde Gaiberg';
-const POLLEN_PARTREGION = 111; // Oberrhein und unteres Neckartal
-const PROXY = 'https://corsproxy.io/?';
-
-let currentLang = 'de';
-let currentView = 3;
-let forecastData = null;
-let dataIssue = false;
+let lang='de', globalData=null, activeView=3;
 
 /* =========================================================
-   LANGUAGE & QUERY STRING
+   LANGUAGE
 ========================================================= */
-function getQueryLang(){
-  const p = new URLSearchParams(window.location.search);
-  const l = p.get('lang');
-  return (l === 'en' || l === 'de') ? l : 'de';
-}
+function tr(k){return T[lang][k]??T.de[k]??k}
 
-function setLang(lang){
-  currentLang = lang;
-  document.documentElement.lang = lang;
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === lang);
-  });
-  const u = new URL(window.location);
-  u.searchParams.set('lang', lang);
-  window.history.replaceState({}, '', u);
-  applyTranslations();
-  if (forecastData) renderForecast();
-}
-
-function applyTranslations(){
-  const t = T[currentLang];
-  const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
-  set('t-brand', t.brand);
-  set('t-eyebrow', t.eyebrow);
-  set('t-h1', t.h1);
-  set('t-sub', t.sub);
-  set('t-now', t.now);
-  set('t-lbl-high', t.high);
-  set('t-lbl-low', t.low);
-  set('t-lbl-night', t.night);
-  set('t-lbl-hum', t.hum);
-  set('t-lbl-rain', t.rain);
-  set('t-lbl-wind', t.wind);
-  set('t-uv-block-title', t.uvBlock);
-  set('t-uv-index-lbl', t.uvIndex);
-  set('t-uv-none', t.uvNone);
-  set('t-uv-spf30', t.uvSpf30);
-  set('t-uv-spf50', t.uvSpf50);
-  set('t-uv-note', t.uvNote);
-  set('t-pollen-title', t.pollenTitle);
-  set('t-pollen-source', t.pollenSource);
-  set('t-pollen-region', t.pollenRegion);
-  set('t-fire-title', t.fireTitle);
-  set('fire-text-sub', t.fireSub);
-  set('fire-level-lbl', t.fireLvl);
-  set('t-forecast-label', t.forecastLabel);
-  set('t-btn-3', t.btn3);
-  set('t-btn-7', t.btn7);
-  set('t-aqi-label', t.aqiLabel);
-  set('t-warn-label', t.warnLabel);
-  set('t-rel-title', t.relTitle);
-  set('t-info', t.info);
-  set('t-data-chip', t.dataChip);
-  set('aqi-sub', t.aqiSub);
-
-  const rels = document.getElementById('t-rel-rows');
-  if (rels) rels.innerHTML =
-    `<div class="rel-row"><span class="rel-dot high"></span>${t.relHigh}</div>
-     <div class="rel-row"><span class="rel-dot mid"></span>${t.relMid}</div>
-     <div class="rel-row"><span class="rel-dot low"></span>${t.relLow}</div>`;
-
-  // SEO blocks
-  t.seo.forEach((s, i) => {
-    set(`t-seo-m${i+1}`, s[0]);
-    set(`t-seo-m${i+1}p`, s[1]);
-  });
-
-  // Page meta
-  document.title = currentLang === 'de'
-    ? 'Wetter Gaiberg | Pollenflug, Waldbrandgefahr & Luftqualität im Rhein-Neckar-Kreis'
-    : 'Gaiberg Weather | Pollen, Forest Fire Risk & Air Quality near Heidelberg';
-}
-
-function setView(days){
-  currentView = days;
-  document.querySelectorAll('.view-btn').forEach(b => {
-    b.classList.toggle('active', parseInt(b.dataset.days) === days);
-  });
-  if (forecastData) renderForecast();
-}
-
-/* =========================================================
-   WEATHER (Open-Meteo / DWD ICON-D2)
-========================================================= */
-function flagDataIssue(){
-  dataIssue = true;
-  document.getElementById('data-chip-bar').classList.add('visible');
-}
-
-async function fetchWeather(){
-  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
-    + `&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index`
-    + `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,uv_index`
-    + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,uv_index_max,sunrise,sunset`
-    + `&models=icon_d2`
-    + `&timezone=${encodeURIComponent(TZ)}&forecast_days=7`;
-  try{
-    const r = await fetch(url);
-    if (!r.ok) throw new Error('weather fetch failed');
-    const data = await r.json();
-    forecastData = data;
-    renderCurrent(data);
-    renderForecast();
-    renderUV(data);
-    return data;
-  } catch(e){
-    console.error(e);
-    flagDataIssue();
+function setLang(l){
+  lang=l;
+  document.documentElement.lang=l;
+  document.querySelectorAll('.lang-btn').forEach(b=>b.classList.toggle('active',b.dataset.lang===l));
+  applyT();
+  renderRelLegend();
+  if(globalData){
+    renderCards(globalData,activeView);
+    renderWindBlock(globalData);
+    renderAstro(globalData);
   }
+  if(window._newsCache)renderNews(window._newsCache);
+  rebuildCams();
+  loadPollen();
+  loadClimate();
+}
+
+function applyT(){
+  const id=(id,k,html)=>{ const el=document.getElementById(id); if(el){html?el.innerHTML=tr(k):el.textContent=tr(k);} };
+  id('t-brand','brand'); id('t-eyebrow','eyebrow'); id('t-h1','h1',true); id('t-sub','sub');
+  id('t-cur-label','curLabel'); id('t-lbl-high','lblHigh'); id('t-lbl-low','lblLow'); id('t-lbl-night','lblNight'); id('t-lbl-hum','lblHum');
+  id('t-lbl-rain','lblRain'); id('t-lbl-precip','lblPrecip'); id('t-lbl-sun','lblSun'); id('t-uv-index-lbl','lblUv');
+  id('t-lbl-pressure','lblPressure');
+  id('t-lbl-rise','lblRise'); id('t-lbl-set','lblSet');
+  id('t-lbl-rise-h','lblRise'); id('t-lbl-set-h','lblSet'); id('t-lbl-sun-h','lblSun');
+  id('t-uv-block-title','uvBlockTitle'); id('t-uv-none','uvNone'); id('t-uv-spf30','uvSpf30'); id('t-uv-spf50','uvSpf50');
+  id('t-uv-index-lbl','uvIndexLbl');
+  id('t-uv-note','uvNote');
+  // Wind block
+  id('t-wind-block-title','windBlockTitle');
+  id('t-wind-dir-lbl','windDirLbl'); id('t-wind-gusts-lbl','windGustsLbl');
+  // Pollen block
+  id('t-pollen-block-title','pollenBlockTitle'); id('t-pollen-source','pollenSource');
+  // Astro block
+  id('t-astro-block-title','astroBlockTitle'); id('t-astro-source','astroSource');
+  id('t-astro-moon-phase','astroMoonPhase'); id('t-astro-moonrise','astroMoonrise'); id('t-astro-moonset','astroMoonset');
+  // Climate block
+  id('t-climate-label','climateLabel'); id('t-climate-block-title','climateBlockTitle');
+  id('t-climate-source','climateSource'); id('t-climate-temp','climateTemp');
+  id('t-climate-precip','climatePrecip'); id('t-climate-sun','climateSun');
+  id('t-climate-days-label','climateDaysLabel');
+  id('t-climate-summer','climateSummer'); id('t-climate-hot','climateHot'); id('t-climate-frost','climateFrost');
+  id('t-climate-days-note','climateDaysNote',true);
+  // LUBW link
+  id('t-lubw-link','lubwLink');
+  // Pollen region with link
+  const pr=document.getElementById('t-pollen-region');
+  if(pr) pr.innerHTML=tr('pollenRegion')+' \u00b7 '+(lang==='en'?'Source':'Quelle')+': <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;border-bottom:1px dotted var(--border)">DWD</a>';
+  id('t-forecast-label','forecastLabel'); id('t-btn-3','btn3'); id('t-btn-7','btn7');
+  id('t-rel-title','relTitle'); id('t-aqi-label','aqiLabel'); id('t-warn-label','warnLabel');
+  id('t-news-label','newsLabel'); id('t-cams-label','camsLabel'); id('t-info','info',true);
+  const sub=document.getElementById('aqi-sub'); if(sub)sub.textContent=tr('aqiSub');
+  // SEO
+  const sm=(id,k)=>{const el=document.getElementById(id);if(el&&T[lang][k])el.textContent=T[lang][k];};
+  sm('t-seo-m1','seoM1');sm('t-seo-m1p','seoM1p');sm('t-seo-m2','seoM2');sm('t-seo-m2p','seoM2p');sm('t-seo-m3','seoM3');sm('t-seo-m3p','seoM3p');
+  // Dynamic SEO meta per language
+  const SEO = {
+    de: {
+      title: "Wetter Gaiberg | Pollenflug, Waldbrandgefahr & Luftqualität im Rhein-Neckar-Kreis",
+      desc:  "Aktuelle Wetterprognose für Gaiberg im Rhein-Neckar-Kreis mit Temperatur, Niederschlag, UV-Index und Luftqualität. Inklusive 7-Tage-Trend und DWD-Warnungen.",
+      ogTitle: "Wetter Gaiberg im Rhein-Neckar-Kreis",
+      ogDesc:  "DWD-Wetter, Luftqualität und Warnungen für Gaiberg, den staatlich anerkannten Erholungsort südlich von Heidelberg."
+    },
+    en: {
+      title: "Gaiberg Weather | DWD Warnings & Air Quality near Heidelberg",
+      desc:  "Weather forecast for Gaiberg in the Rhein-Neckar district with temperature, precipitation, UV index and air quality. Includes 7-day outlook and DWD warnings.",
+      ogTitle: "Gaiberg Weather in the Rhein-Neckar District",
+      ogDesc:  "DWD weather, air quality and warnings for Gaiberg, the officially recognised health resort south of Heidelberg."
+    }
+  };
+  const s = SEO[lang] || SEO.de;
+  document.title = s.title;
+  const metaDesc = document.querySelector('meta[name="description"]');
+  if(metaDesc) metaDesc.setAttribute('content', s.desc);
+  const ogTitle = document.querySelector('meta[property="og:title"]');
+  if(ogTitle) ogTitle.setAttribute('content', s.ogTitle);
+  const ogDesc = document.querySelector('meta[property="og:description"]');
+  if(ogDesc) ogDesc.setAttribute('content', s.ogDesc);
+  const twTitle = document.querySelector('meta[name="twitter:title"]');
+  if(twTitle) twTitle.setAttribute('content', s.ogTitle);
+  const twDesc = document.querySelector('meta[name="twitter:description"]');
+  if(twDesc) twDesc.setAttribute('content', s.ogDesc);
+  // nav labels
+  const nw=document.getElementById('nav-wetter'); if(nw)nw.textContent=tr('navWetter');
+  const nr=document.getElementById('nav-rifiuti'); if(nr)nr.textContent=tr('navRifiuti');
+  const ng=document.getElementById('nav-gotthard'); if(ng)ng.textContent=tr('navGotthard')||'Gotthard';
+  // offline chip
+  const chip=document.getElementById('data-chip-text');
+  if(chip&&chip.dataset.mode==='offline')chip.textContent=tr('offlineChip');
+}
+
+function renderRelLegend(){
+  document.getElementById('t-rel-rows').innerHTML=T[lang].relRows.map(r=>
+    `<div class="rel-legend-row"><div class="rel-legend-dot" style="background:${r.dot}"></div><div class="rel-legend-text">${r.text}</div></div>`
+  ).join('');
+}
+
+/* =========================================================
+   WIND & WAVE
+========================================================= */
+function degToCompass(deg) {
+  const dirs = {
+    de: ['N','NNO','NO','ONO','O','OSO','SO','SSO','S','SSW','SW','WSW','W','WNW','NW','NNW'],
+    it: ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSO','SO','OSO','O','ONO','NO','NNO'],
+    en: ['N','NNE','NE','ENE','E','ESE','SE','SSE','S','SSW','SW','WSW','W','WNW','NW','NNW'],
+  };
+  const idx = Math.round(deg / 22.5) % 16;
+  return (dirs[lang] || dirs.de)[idx];
+}
+
+function kmhToBft(kmh) {
+  const thresholds = [1,6,12,20,29,39,50,62,75,89,103,117];
+  for (let i = 0; i < thresholds.length; i++) {
+    if (kmh < thresholds[i]) return i;
+  }
+  return 12;
+}
+
+// Wave height estimation for Lago Maggiore (fetch ~60km N-S, ~10km E-W)
+// Using simplified SMB method: Hs ≈ 0.0248 × U^2 / g, capped by fetch
+function estimateWave(windKmh, windDirDeg) {
+  const u = windKmh / 3.6; // m/s
+  // Effective fetch based on wind direction (N-S axis longer)
+  const isNS = (windDirDeg >= 315 || windDirDeg < 45) || (windDirDeg >= 135 && windDirDeg < 225);
+  const fetch = isNS ? 55000 : 9000; // metres
+  const g = 9.81;
+  // Significant wave height (m): empirical for inland water
+  const hs = Math.min(0.00178 * u * Math.sqrt(fetch), 0.0248 * u * u / g);
+  const hsCm = Math.round(hs * 100);
+  // Wave period (s)
+  const tp = Math.max(1, Math.round(0.54 * Math.pow(hs, 0.5) * 2));
+  return { hs: hsCm, tp };
+}
+
+function sailCondition(windKmh, gustKmh, waveHsCm) {
+  const t = T[lang];
+  const bft = kmhToBft(windKmh);
+  const gustBft = kmhToBft(gustKmh);
+  const wave = waveHsCm || 0;
+  if (bft <= 1) return { dot:'#9B9890', windStatus: t.sail0||'Windstille (0–1 Bft)',   note: t.sail0Note||'Zu wenig Wind. Ideal für SUP und Kajak.', risk:'low' };
+  if (bft <= 3) return { dot:'#1B6B45', windStatus: t.sail23||'Schwachwind (2–3 Bft)', note: t.sail23Note||'Angenehme Bedingungen für Einsteiger und Segelboote.', risk:'low' };
+  if (bft === 4) return { dot:'#F0A500', windStatus: t.sail4||'Mäßiger Wind (4 Bft)', note: t.sail4Note||'Erfahrene Segler. Kite/Windsurf günstig. Anfänger nicht empfohlen.', risk: gustBft>=5||wave>40?'high':'moderate' };
+  if (bft === 5) return { dot:'#E67E22', windStatus: t.sail5||'Frischer Wind (5 Bft)',     note: t.sail5Note||'Nur geübte Segler. Wellen und Böen beachten.', risk: gustBft>=6||wave>60?'veryhigh':'high' };
+  return               { dot:'#C0392B', windStatus: t.sail6||'Starker Wind (6+ Bft)',    note: t.sail6Note||'Im Hafen bleiben. Gefährliche Bedingungen.', risk:'veryhigh' };
+}
+
+function riskLevel(risk, hasThunder) {
+  const t = T[lang];
+  if (hasThunder) risk = 'veryhigh';
+  const R = {
+    low:      { icon:'&#x1F7E2;', label: t.riskLow||'Gering',     note: t.riskLowNote||'Unkritische Bedingungen',    color:'#1B6B45', bg:'var(--accent-pale)' },
+    moderate: { icon:'&#x1F7E1;', label: t.riskMod||'Mäßig',    note: t.riskModNote||'Aufmerksamkeit erforderlich', color:'#B7791F', bg:'var(--gold-pale)' },
+    high:     { icon:'&#x1F7E0;', label: t.riskHigh||'Hoch',      note: t.riskHighNote||'Nur mit Erfahrung',          color:'#E67E22', bg:'#FEF3E2' },
+    veryhigh: { icon:'&#x1F534;', label: t.riskVeryHigh||'Sehr hoch', note: t.riskVeryHighNote||'Im Hafen bleiben',  color:'#C0392B', bg:'#FDECEA' },
+  };
+  return R[risk] || R.low;
+}
+
+function renderDanger(hourly) {
+  const block = document.getElementById('water-danger-block');
+  if (!block || !hourly || !hourly.windspeed_10m) return;
+  block.style.display = '';
+
+  const t = T[lang];
+  const now = new Date();
+  const nowH = now.toISOString().slice(0,13);
+  const todayStr = now.toISOString().slice(0,10);
+  const idx = hourly.time.findIndex(x => x.startsWith(nowH));
+  const i = idx >= 0 ? idx : 0;
+
+  // Next 12h window for today
+  const hours12 = [];
+  for (let j = i; j < Math.min(i+13, hourly.time.length); j++) {
+    if (!hourly.time[j].startsWith(todayStr)) break;
+    hours12.push(j);
+  }
+
+  // Extract max values over next 12h
+  const maxGust  = Math.max(...hours12.map(j => hourly.windgusts_10m?.[j] || 0));
+  const maxWind  = Math.max(...hours12.map(j => hourly.windspeed_10m?.[j] || 0));
+  const maxCape  = Math.max(...hours12.map(j => hourly.cape?.[j] || 0));
+  const maxRain  = Math.max(...hours12.map(j => hourly.precipitation?.[j] || 0));
+  const wxCodes  = hours12.map(j => hourly.weathercode?.[j] || 0);
+  const hasThunder = wxCodes.some(c => c >= 95);
+  const maxBft   = kmhToBft(maxWind);
+
+  // Score system: 0=low, 1=medium, 2=high, 3=extreme
+  let score = 0;
+  const factors = [];
+
+  // CAPE thresholds (J/kg)
+  if (maxCape >= 1500) {
+    score = Math.max(score, 3);
+    const desc = T[lang].capeExtreme || T.de.capeExtreme;
+    factors.push({ icon:'⛈️', text: t.factorThunder.replace('{val}', Math.round(maxCape)).replace('{desc}', desc), level: 3 });
+  } else if (maxCape >= 800) {
+    score = Math.max(score, 2);
+    const desc = T[lang].capeHigh || T.de.capeHigh;
+    factors.push({ icon:'⛈️', text: t.factorThunder.replace('{val}', Math.round(maxCape)).replace('{desc}', desc), level: 2 });
+  } else if (maxCape >= 300) {
+    score = Math.max(score, 1);
+    const desc = lang==='de' ? 'm\u00e4ssiges Gewitterpotenzial' : lang==='it' ? 'moderato potenziale temporali' : 'moderate thunderstorm potential';
+    factors.push({ icon:'🌩️', text: t.factorThunder.replace('{val}', Math.round(maxCape)).replace('{desc}', desc), level: 1 });
+  }
+
+  // Thunderstorm weathercode
+  if (hasThunder) {
+    score = Math.max(score, 3);
+    factors.push({ icon:'⛈️', text: T[lang].thunderForecast || T.de.thunderForecast, level:3 });
+  }
+
+  // Gusts
+  if (maxGust >= 70) {
+    score = Math.max(score, 3);
+    factors.push({ icon:'💨', text: t.factorGusts.replace('{val}', Math.round(maxGust)), level: 3 });
+  } else if (maxGust >= 50) {
+    score = Math.max(score, 2);
+    factors.push({ icon:'💨', text: t.factorGusts.replace('{val}', Math.round(maxGust)), level: 2 });
+  } else if (maxGust >= 35) {
+    score = Math.max(score, 1);
+    factors.push({ icon:'💨', text: t.factorGusts.replace('{val}', Math.round(maxGust)), level: 1 });
+  }
+
+  // Wind Bft
+  if (maxBft >= 6) {
+    score = Math.max(score, 2);
+    factors.push({ icon:'🌬️', text: t.factorWind.replace('{val}', maxBft), level: 2 });
+  } else if (maxBft >= 5) {
+    score = Math.max(score, 1);
+    factors.push({ icon:'🌬️', text: t.factorWind.replace('{val}', maxBft), level: 1 });
+  }
+
+  // Rain
+  if (maxRain >= 10) {
+    score = Math.max(score, 2);
+    factors.push({ icon:'🌧️', text: t.factorRain.replace('{val}', maxRain.toFixed(1)), level: 2 });
+  } else if (maxRain >= 5) {
+    score = Math.max(score, 1);
+    factors.push({ icon:'🌧️', text: t.factorRain.replace('{val}', maxRain.toFixed(1)), level: 1 });
+  }
+
+  // Badge
+  const badges = [
+    { bg:'#EBF7F1', border:'#A5D6A7', color:'#1B5E20', text: t.dangerLow,     icon:'🟢' },
+    { bg:'#FEF3E2', border:'#FFCC80', color:'#7B3F00', text: t.dangerMed,     icon:'🟡' },
+    { bg:'#FDECEA', border:'#EF9A9A', color:'#7F0000', text: t.dangerHigh,    icon:'🔴' },
+    { bg:'#4A0000', border:'#B71C1C', color:'#FFFFFF', text: t.dangerExtreme, icon:'🚨' },
+  ];
+  const b = badges[score];
+  const badge = document.getElementById('danger-badge');
+  badge.style.cssText = `background:${b.bg};border:1px solid ${b.border};color:${b.color};display:inline-flex;align-items:center;gap:8px;padding:10px 16px;border-radius:12px;margin-bottom:14px;font-size:13px;font-weight:600;`;
+  document.getElementById('danger-icon').textContent = b.icon;
+  document.getElementById('danger-level-text').textContent = b.text;
+
+  // Factor list
+  const levelColors = ['#1B6B45','#E67E22','#C0392B','#7F0000'];
+  const levelBgs    = ['#EBF7F1','#FEF3E2','#FDECEA','#4A0000'];
+  const fEl = document.getElementById('danger-factors');
+  fEl.innerHTML = factors.length ? factors.map(f =>
+    `<div style="display:flex;align-items:flex-start;gap:10px;padding:9px 12px;border-radius:8px;background:${levelBgs[f.level]};font-size:12px;color:${levelColors[f.level]};line-height:1.5;">
+      <span style="flex-shrink:0;">${f.icon}</span><span>${f.text}</span>
+    </div>`
+  ).join('') :
+    `<div style="font-size:12px;color:var(--accent);padding:8px 12px;background:var(--accent-pale);border-radius:8px;">${T[lang].dangerNoFactors || T.de.dangerNoFactors}</div>`;
+
+  // Storm time window
+  const critIdx = hours12.filter(j =>
+    (hourly.cape?.[j]||0) >= 300 || (hourly.windgusts_10m?.[j]||0) >= 50 || (hourly.weathercode?.[j]||0) >= 95
+  );
+  const sw = document.getElementById('storm-window');
+  if (critIdx.length >= 2) {
+    sw.style.display = '';
+    const tFrom = new Date(hourly.time[critIdx[0]]).toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'});
+    const tTo   = new Date(hourly.time[critIdx[critIdx.length-1]]).toLocaleTimeString('de-CH',{hour:'2-digit',minute:'2-digit'});
+    sw.style.cssText = 'display:block;padding:10px 14px;border-radius:8px;background:#FEF3E2;border:1px solid #FFCC80;font-size:12px;color:#7B3F00;line-height:1.6;margin-bottom:14px;font-weight:500;';
+    sw.textContent = '⏰ ' + t.stormWindow.replace('{from}', tFrom).replace('{to}', tTo);
+  } else {
+    sw.style.display = 'none';
+  }
+
+  // Label + disclaimer
+  const lbl = document.getElementById('t-danger-label');
+  if (lbl) lbl.textContent = t.dangerLabel;
+  document.getElementById('danger-disclaimer').textContent = t.dangerDisc;
+}
+
+
+function renderWind(hourly, isBrissago) {
+  if (!hourly || !hourly.windspeed_10m || !hourly.time) return;
+  const section = document.getElementById('wind-section');
+  if(section) section.style.display = '';
+
+  const t = T[lang];
+  const now = new Date();
+  // Use local time to match API timezone (Europe/Rome)
+  const localHour = now.getFullYear() + '-'
+    + String(now.getMonth()+1).padStart(2,'0') + '-'
+    + String(now.getDate()).padStart(2,'0') + 'T'
+    + String(now.getHours()).padStart(2,'0');
+  let idx = hourly.time.findIndex(t2 => t2.startsWith(localHour));
+  if (idx < 0) idx = 0;
+  const i = idx;
+
+  const speed = Math.round(hourly.windspeed_10m[i] || 0);
+  const gust  = Math.round(hourly.windgusts_10m?.[i] || speed * 1.3);
+  const dir   = Math.round(hourly.winddirection_10m?.[i] || 0);
+  const bft   = kmhToBft(speed);
+  const wave  = estimateWave(speed, dir);
+  const sail  = sailCondition(speed, gust, wave.hs);
+
+  // ── Compass ──
+  document.getElementById('wind-arrow').style.transform =
+    `translateX(-50%) translateY(-100%) rotate(${dir}deg)`;
+
+  // ── Speed + direction ──
+  document.getElementById('wind-speed-now').textContent = speed;
+  document.getElementById('wind-dir-now').textContent = degToCompass(dir) + ' · ' + dir + '°';
+
+  // ── Stats ──
+  document.getElementById('wind-gust-now').textContent = gust + ' km/h';
+  document.getElementById('wind-bft-now').textContent  = 'Bft ' + bft;
+  document.getElementById('wave-height-now').textContent = wave.hs + ' cm';
+  document.getElementById('wave-period-now').textContent = wave.tp + ' s';
+
+  // ── Sail status ──
+  const dot = document.getElementById('sail-dot');
+  if(dot) dot.style.background = sail.dot;
+  const statusEl = document.getElementById('sail-status');
+  if(statusEl) statusEl.textContent = sail.windStatus;
+  const noteEl = document.getElementById('sail-note');
+  if(noteEl) noteEl.textContent = sail.note;
+
+  // ── Risk level ──
+  const hasThunder = (hourly.weathercode || []).slice(i, i+13).some(wc => wc >= 95);
+  const risk = riskLevel(sail.risk, hasThunder);
+  const dangerBlock = document.getElementById('water-danger-block');
+  if(dangerBlock) dangerBlock.style.display = '';
+  const badge = document.getElementById('danger-badge');
+  if(badge) {
+    badge.style.cssText = 'display:inline-flex;align-items:center;gap:6px;font-size:13px;font-weight:600;';
+    const iconEl = document.getElementById('danger-icon');
+    const lblEl  = document.getElementById('danger-level-text');
+    if(iconEl) iconEl.innerHTML = '<span style="font-size:15px;">' + risk.icon + '</span>';
+    if(lblEl)  { lblEl.textContent = risk.label; lblEl.style.color = risk.color; }
+  }
+
+  // ── Source note + disclaimer ──
+  const srcEl = document.getElementById('wind-source-note');
+  if(srcEl) srcEl.textContent = isBrissago ? '· Brissago' : '· Cannobio';
+  const discEl = document.getElementById('t-wind-disc');
+  if(discEl) discEl.textContent = t.windDisc || '';
+
+  // ── Labels ──
+  const sl = (id, key) => { const el=document.getElementById(id); if(el&&t[key])el.textContent=t[key]; };
+  sl('t-wind-label','windLabel'); sl('t-wind-gust','windGust'); sl('t-wind-bft','windBft');
+  sl('t-wave-height','waveHeight'); sl('t-wave-period','wavePeriod');
+  sl('t-wind-chart-label','windChartLabel');
+
+  // ── 12h Bar Chart ──
+  const chart    = document.getElementById('wind-chart');
+  const labelsEl = document.getElementById('wind-chart-labels');
+  if(!chart || !labelsEl) return;
+
+  const speeds = hourly.windspeed_10m;
+  const gusts  = hourly.windgusts_10m || [];
+  const maxSp  = Math.max(...speeds.slice(i, i+13).filter(v => v!=null && v>0), 1);
+
+  let chartHTML = '', labelsHTML = '';
+  for (let j = 0; j < 13; j++) {
+    const s2   = Math.round(speeds[i+j] || 0);
+    const g2   = Math.round(gusts[i+j] || s2);
+    const bftJ = kmhToBft(s2);
+    const barH = Math.max(4, Math.round(s2 / maxSp * 60));
+    const color = bftJ <= 1 ? '#9B9890' : bftJ <= 3 ? '#1B6B45' : bftJ <= 4 ? '#F0A500' : bftJ === 5 ? '#E67E22' : '#C0392B';
+    const t2   = new Date(now.getTime() + j * 3600000);
+    const tStr = t2.toLocaleTimeString('de-CH', {hour:'2-digit', minute:'2-digit'});
+    chartHTML += '<div style="flex:1;display:flex;flex-direction:column;align-items:center;justify-content:flex-end;gap:2px;">'
+      + '<span style="font-size:9px;font-weight:700;color:' + color + ';line-height:1;">' + bftJ + '</span>'
+      + '<div style="width:100%;height:' + barH + 'px;background:' + color + ';border-radius:2px 2px 0 0;" title="' + tStr + ': ' + s2 + ' km/h · Bft ' + bftJ + '"></div>'
+      + '</div>';
+    if (j === 0 || j === 6 || j === 12) {
+      labelsHTML += '<span style="font-size:10px;color:var(--text-tertiary);">' + tStr + '</span>';
+    }
+  }
+  chart.innerHTML = chartHTML;
+  labelsEl.innerHTML = labelsHTML;
+}
+
+
+function getIcon(code,rain,tHigh){
+  if(code<=2&&rain===0&&tHigh>=15)return SVG.sun;
+  if(code===3&&rain===0&&tHigh>=18)return SVG.few;
+  if(code===0)return SVG.sun;
+  if(code<=2) return SVG.few;
+  if(code<=3) return SVG.cloud;
+  if(code<=49)return SVG.cloud;
+  if(code<=67)return SVG.rain;
+  if(code<=77)return SVG.snow;
+  if(code<=82)return SVG.rain;
+  if(code<=86)return SVG.snow;
+  if(code<=99)return SVG.storm;
+  return SVG.few;
+}
+function wxLabel(c){const L=T[lang].wx;if(c===0)return L[0];if(c<=2)return L[1];if(c===3)return L[2];if(c<=49)return L[3];if(c<=57)return L[4];if(c<=67)return L[5];if(c<=77)return L[6];if(c<=82)return L[7];if(c<=86)return L[8];if(c<=99)return L[9];return L[10];}
+
+/* =========================================================
+   RELIABILITY
+========================================================= */
+function rel(i){
+  const tbl=[{pct:95,cls:'high',ni:0},{pct:92,cls:'high',ni:0},{pct:80,cls:'high',ni:1},{pct:73,cls:'mid',ni:1},{pct:66,cls:'mid',ni:2},{pct:50,cls:'low',ni:2},{pct:42,cls:'low',ni:2}];
+  const r=tbl[Math.min(i,tbl.length-1)];
+  return{...r,note:T[lang].relNotes[r.ni]};
+}
+
+/* =========================================================
+   WEATHER API
+========================================================= */
+const LAT=49.3664,LON=8.74972,TZ='Europe%2FBerlin';
+
+async function loadWeather(){
+  try{
+    const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
+      +`&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,rain_sum,showers_sum,windspeed_10m_max,sunshine_duration,daylight_duration,weathercode,uv_index_max,sunrise,sunset`
+      +`&hourly=relativehumidity_2m,temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m,pressure_msl,precipitation,precipitation_probability,rain,showers,cape,weathercode&current_weather=true&timezone=${TZ}&forecast_days=7`;
+    const data=await(await fetch(url)).json();
+    globalData=data;
+    renderCurrent(data); renderCards(data,activeView);
+    renderWindBlock(data);
+    renderAstro(data);
+    const now = new Date();
+    const timeStr = now.toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'});
+    const dateStr = now.toLocaleDateString(lang==='en'?'en-GB':'de-DE',{weekday:'long',day:'numeric',month:'long'});
+    document.getElementById('update-time').textContent=
+      tr('standChip')+' '+timeStr+' '+tr('standUhr');
+    const heroTs = document.getElementById('hero-ts-text');
+    if(heroTs) heroTs.textContent = (T[lang].dataFrom||T.de.dataFrom)+dateStr+', '+timeStr+' · Open-Meteo';
+  }catch(_){renderFallback();}
 }
 
 function renderCurrent(d){
-  const t = T[currentLang];
-  const c = d.current;
-  const today = d.daily;
-  document.getElementById('cur-temp').textContent = Math.round(c.temperature_2m) + '°';
-  document.getElementById('cur-cond').textContent = t.cond[c.weather_code] || '—';
-  document.getElementById('cur-high').textContent = Math.round(today.temperature_2m_max[0]) + '°';
-  document.getElementById('cur-low').textContent = Math.round(today.temperature_2m_min[0]) + '°';
-  document.getElementById('cur-night').textContent = Math.round(today.temperature_2m_min[1]) + '°';
-  document.getElementById('cur-hum').textContent = Math.round(c.relative_humidity_2m) + '%';
-  document.getElementById('cur-rain').textContent = Math.round(today.precipitation_probability_max[0] || 0) + '%';
-  document.getElementById('cur-wind').textContent = Math.round(c.wind_speed_10m) + ' km/h';
-  const now = new Date();
-  const hh = String(now.getHours()).padStart(2,'0');
-  const mm = String(now.getMinutes()).padStart(2,'0');
-  document.getElementById('update-chip').textContent = (currentLang === 'de' ? 'Aktualisiert ' : 'Updated ') + hh + ':' + mm;
-}
-
-function renderForecast(){
-  if (!forecastData) return;
-  const t = T[currentLang];
-  const d = forecastData.daily;
-  const grid = document.getElementById('forecast-grid');
-  grid.className = 'forecast-grid view-' + currentView;
-  grid.innerHTML = '';
-  const days = currentView;
-  for (let i = 0; i < days; i++){
-    const date = new Date(d.time[i]);
-    const dayName = i === 0 ? (currentLang === 'de' ? 'Heute' : 'Today')
-                  : i === 1 ? (currentLang === 'de' ? 'Morgen' : 'Tomorrow')
-                  : t.days[date.getDay()];
-    const code = d.weather_code[i];
-    const icon = weatherIcon(code);
-    const high = Math.round(d.temperature_2m_max[i]);
-    const low = Math.round(d.temperature_2m_min[i]);
-    const rain = Math.round(d.precipitation_probability_max[i] || 0);
-    const rel = i < 3 ? 'rel-high' : i < 5 ? 'rel-mid' : 'rel-low';
-    const card = document.createElement('div');
-    card.className = 'forecast-day ' + rel;
-    card.innerHTML = `
-      <div class="fday-day">${dayName}</div>
-      <div class="fday-icon">${icon}</div>
-      <div class="fday-temp"><span class="high">${high}°</span><span class="low">${low}°</span></div>
-      <div class="fday-rain">${rain > 0 ? rain + '%' : ''}</div>
-    `;
-    grid.appendChild(card);
+  const cw=d.current_weather,da=d.daily,h=d.hourly;
+  document.getElementById('cur-temp').textContent=Math.round(cw.temperature)+'°';
+  document.getElementById('cur-cond').textContent=wxLabel(cw.weathercode);
+  document.getElementById('cur-high').textContent=Math.round(da.temperature_2m_max[0])+'°';
+  // Day low from daily min
+  document.getElementById('cur-low').textContent=Math.round(da.temperature_2m_min[0])+'°';
+  // Night low: min of hourly temps for tonight 22:00 – tomorrow 06:00
+  if(h&&h.temperature_2m&&h.time){
+    const today=new Date().toISOString().slice(0,10);
+    const tomorrow=new Date(Date.now()+86400000).toISOString().slice(0,10);
+    const nightTemps=h.time.reduce((acc,t,i)=>{
+      const isTonight=(t.startsWith(today)&&parseInt(t.slice(11,13))>=22);
+      const isTomMorn=(t.startsWith(tomorrow)&&parseInt(t.slice(11,13))<=6);
+      if((isTonight||isTomMorn)&&h.temperature_2m[i]!=null) acc.push(h.temperature_2m[i]);
+      return acc;
+    },[]);
+    const nightLow=nightTemps.length?Math.round(Math.min(...nightTemps)):null;
+    document.getElementById('cur-night').textContent=nightLow!==null?nightLow+'°':'—';
   }
-}
-
-function weatherIcon(code){
-  if (code === 0) return '☀️';
-  if (code === 1 || code === 2) return '🌤️';
-  if (code === 3) return '☁️';
-  if (code === 45 || code === 48) return '🌫️';
-  if (code >= 51 && code <= 55) return '🌦️';
-  if (code >= 61 && code <= 65) return '🌧️';
-  if (code >= 71 && code <= 77) return '❄️';
-  if (code >= 80 && code <= 82) return '🌧️';
-  if (code >= 95 && code <= 99) return '⛈️';
-  return '🌥️';
-}
-
-/* =========================================================
-   UV INDEX
-========================================================= */
-function renderUV(d){
-  const uv = d.current.uv_index || 0;
-  const max = d.daily.uv_index_max[0] || uv;
-  const insightEl = document.getElementById('uv-insight-val');
-  const labelEl = document.getElementById('uv-insight-label');
-  insightEl.textContent = 'UV ' + uv.toFixed(1);
-  const t = currentLang === 'de'
-    ? (uv < 3 ? 'gering' : uv < 6 ? 'mittel' : uv < 8 ? 'hoch' : uv < 11 ? 'sehr hoch' : 'extrem')
-    : (uv < 3 ? 'low' : uv < 6 ? 'moderate' : uv < 8 ? 'high' : uv < 11 ? 'very high' : 'extreme');
-  labelEl.textContent = t;
-  document.getElementById('cur-uv').textContent = max.toFixed(1);
-  // Sun protection times (rough estimate, skin type II, MED 200 J/m²)
-  const baseMin = uv > 0 ? Math.round(67 / Math.max(uv, 0.5)) : 99;
-  document.getElementById('uv-none-val').textContent = baseMin > 60 ? Math.floor(baseMin/60) + 'h' : baseMin + 'min';
-  const min30 = baseMin * 30;
-  const min50 = baseMin * 50;
-  document.getElementById('uv-spf30-val').textContent = min30 >= 60 ? Math.floor(min30/60) + 'h' : min30 + 'min';
-  document.getElementById('uv-spf50-val').textContent = min50 >= 60 ? Math.floor(min50/60) + 'h' : min50 + 'min';
-}
-
-/* =========================================================
-   AIR QUALITY (Open-Meteo / Copernicus CAMS)
-========================================================= */
-async function fetchAQI(){
-  const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${LAT}&longitude=${LON}`
-    + `&current=european_aqi,pm10,pm2_5,nitrogen_dioxide,ozone&timezone=${encodeURIComponent(TZ)}`;
-  try{
-    const r = await fetch(url);
-    if (!r.ok) throw new Error('aqi fetch failed');
-    const data = await r.json();
-    renderAQI(data.current);
-  } catch(e){
-    console.error('aqi', e);
-    document.getElementById('aqi-sub').textContent = currentLang === 'de' ? 'Daten momentan nicht verfügbar' : 'Data currently unavailable';
+  const sH=da.sunshine_duration?Math.round(da.sunshine_duration[0]/3600*10)/10:null;
+  document.getElementById('cur-sun').textContent=sH!==null?sH+'h':'—';
+  // UV index + sun protection
+  const uv=da.uv_index_max?Math.round(da.uv_index_max[0]*10)/10:null;
+  const uvEl=document.getElementById('cur-uv'); if(uvEl) uvEl.textContent=uv!==null?uv:'—';
+  renderUVProtection(uv);
+  // Sunrise / Sunset
+  if(da.sunrise&&da.sunrise[0]){
+    document.getElementById('cur-rise').textContent=da.sunrise[0].substring(11,16);
+    document.getElementById('cur-set').textContent=da.sunset[0].substring(11,16);
   }
-}
-
-function renderAQI(c){
-  const t = T[currentLang];
-  const aqi = Math.round(c.european_aqi || 0);
-  const badge = document.getElementById('aqi-badge');
-  badge.textContent = 'EAQI ' + aqi;
-  let cls = 'good', label = t.aqiLevels.good;
-  if (aqi > 60) { cls = 'poor'; label = t.aqiLevels.poor; }
-  else if (aqi > 40) { cls = 'fair'; label = t.aqiLevels.fair; }
-  else if (aqi > 20) { cls = 'good'; label = t.aqiLevels.moderate; }
-  badge.className = 'aqi-badge ' + cls;
-  document.getElementById('aqi-sub').textContent = label;
-
-  const grid = document.getElementById('aqi-grid');
-  grid.innerHTML = `
-    <div class="aqi-item"><div class="aqi-val">${(c.pm2_5||0).toFixed(0)}</div><div class="aqi-lbl">PM2.5</div></div>
-    <div class="aqi-item"><div class="aqi-val">${(c.pm10||0).toFixed(0)}</div><div class="aqi-lbl">PM10</div></div>
-    <div class="aqi-item"><div class="aqi-val">${(c.nitrogen_dioxide||0).toFixed(0)}</div><div class="aqi-lbl">NO\u2082</div></div>
-    <div class="aqi-item"><div class="aqi-val">${(c.ozone||0).toFixed(0)}</div><div class="aqi-lbl">O\u2083</div></div>
-  `;
-}
-
-/* =========================================================
-   POLLEN (DWD via opendata.dwd.de/.../s31fg.json)
-   Fetched through CORS proxy because DWD does not set CORS headers.
-========================================================= */
-async function fetchPollen(){
-  const URL_POLLEN = 'https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json';
-  try{
-    let data;
-    try {
-      const r = await fetch(URL_POLLEN);
-      if (r.ok) data = await r.json();
-    } catch(_) {}
-    if (!data) {
-      const r = await fetch(PROXY + encodeURIComponent(URL_POLLEN));
-      if (!r.ok) throw new Error('pollen fetch failed');
-      data = await r.json();
+  if(h&&h.relativehumidity_2m){
+    const nowH=new Date().toISOString().slice(0,13);
+    const idx=h.time.findIndex(t=>t.startsWith(nowH));
+    document.getElementById('cur-hum').textContent=(h.relativehumidity_2m[idx>=0?idx:0]||'—')+'%';
+  }
+  // Rain: prefer current measured precipitation, then hourly probability, then daily max
+  const rainEl=document.getElementById('cur-rain');
+  const rainLblEl=document.getElementById('t-lbl-rain');
+  if(rainEl){
+    const nowH=new Date().toISOString().slice(0,13);
+    const idx=h.time?h.time.findIndex(t=>t.startsWith(nowH)):-1;
+    const i=idx>=0?idx:0;
+    const currentRain=h&&h.precipitation?h.precipitation[i]:null;
+    const hourlyProb=h&&h.precipitation_probability?h.precipitation_probability[i]:null;
+    const dailyMaxProb=da.precipitation_probability_max?da.precipitation_probability_max[0]:null;
+    if(currentRain!=null&&currentRain>=0.1){
+      // It's raining right now — show the actual rate
+      rainEl.textContent=currentRain.toFixed(1)+' mm/h';
+      if(rainLblEl) rainLblEl.textContent=lang==='en'?'Raining now':'Es regnet';
+    }else if(hourlyProb!=null){
+      rainEl.textContent=Math.round(hourlyProb)+'%';
+      if(rainLblEl) rainLblEl.textContent=tr('lblRain');
+    }else if(dailyMaxProb!=null){
+      rainEl.textContent=Math.round(dailyMaxProb)+'%';
+      if(rainLblEl) rainLblEl.textContent=tr('lblRain');
+    }else{
+      rainEl.textContent='—%';
+      if(rainLblEl) rainLblEl.textContent=tr('lblRain');
     }
-    const region = data.content.find(c => c.partregion_id === POLLEN_PARTREGION);
-    if (region) renderPollen(region.Pollen);
-    else renderPollenFallback();
-  } catch(e){
-    console.error('pollen', e);
-    renderPollenFallback();
+  }
+  // Precipitation amount today (with rain/showers split if available)
+  const precipToday = da.precipitation_sum ? da.precipitation_sum[0] : null;
+  const showersToday = da.showers_sum ? da.showers_sum[0] : null;
+  const precipEl = document.getElementById('cur-precip-mm');
+  if(precipEl) {
+    if(precipToday !== null) {
+      let txt = precipToday.toFixed(1) + ' mm';
+      if(showersToday !== null && showersToday >= 0.1 && precipToday >= 0.1) {
+        txt += ' (' + showersToday.toFixed(1) + ' ' + tr('showersShort') + ')';
+      }
+      precipEl.textContent = txt;
+      precipEl.parentElement.style.display = '';
+    } else {
+      precipEl.parentElement.style.display = 'none';
+    }
+  }
+  // Pressure (current hour)
+  if(h&&h.pressure_msl){
+    const nowH=new Date().toISOString().slice(0,13);
+    const idx=h.time.findIndex(t=>t.startsWith(nowH));
+    const p=h.pressure_msl[idx>=0?idx:0];
+    const pEl=document.getElementById('cur-pressure');
+    if(pEl&&p!=null) pEl.textContent=Math.round(p)+' hPa';
   }
 }
 
-function pollenLevelClass(v){
-  if (v === '0' || v === '0-1') return 0;
-  if (v === '1' || v === '1-2') return 1;
-  if (v === '2' || v === '2-3') return 2;
-  if (v === '3') return 3;
+function renderUVProtection(uvi){
+  const block=document.getElementById('uv-block');
+  if(!uvi||uvi<0.5){ block.style.display='none'; return; }
+  block.style.display='';
+
+  const MED=200, dosePerH=uvi*25;
+  const noneMin = Math.round(MED / dosePerH * 60);
+  const spf30Min = Math.min(Math.round(noneMin * 30 * 0.5), 120);
+  const spf50Min = Math.min(Math.round(noneMin * 50 * 0.5), 180);
+
+  const fmtH = mins => {
+    if(mins < 60) return Math.round(mins) + '\u00a0min';
+    const h = Math.floor(mins/60), m = Math.round(mins%60);
+    return m > 0 ? `${h}h\u00a0${m}min` : `${h}h`;
+  };
+
+  // UV-Index actionable insight
+  const uvCard = document.getElementById('uv-index-card');
+  const uvInsight = document.getElementById('uv-insight');
+  const uvHeaderVal = document.getElementById('uv-insight-val');
+  const uvHeaderLbl = document.getElementById('uv-insight-label');
+  const uvHeader = document.getElementById('uv-insight-header');
+  const UV_LEVELS = [
+    { max:2,  key:'uvLow',      bg:'#1B6B45', card:'var(--accent-pale)' },
+    { max:5,  key:'uvMed',      bg:'#E67E22', card:'#FEF3E2' },
+    { max:7,  key:'uvHigh',     bg:'#C0392B', card:'#FDECEA' },
+    { max:10, key:'uvVeryHigh', bg:'#7F0000', card:'#FDECEA' },
+    { max:99, key:'uvExtreme',  bg:'#4A0000', card:'#FDECEA' },
+  ];
+  const uvLevel = UV_LEVELS.find(l => uvi <= l.max) || UV_LEVELS[UV_LEVELS.length-1];
+  const insightText = T[lang][uvLevel.key] || T.de[uvLevel.key] || '';
+  const insightBg = uvLevel.bg;
+  const cardBg = uvLevel.card;
+  if (uvCard) { uvCard.style.background = cardBg; }
+  // Header badge like AQI: "UV 5.6 · Mässig – LSF 30 empfohlen"
+  if (uvHeaderVal) uvHeaderVal.textContent = 'UV\u00a0' + uvi;
+  if (uvHeaderLbl) uvHeaderLbl.textContent = '\u00b7 ' + insightText;
+  if (uvHeader) { uvHeader.style.background = cardBg; uvHeader.style.color = insightBg; }
+
+  document.getElementById('uv-none-val').textContent = fmtH(noneMin);
+  document.getElementById('uv-spf30-val').textContent = fmtH(spf30Min);
+  document.getElementById('uv-spf50-val').textContent = fmtH(spf50Min);
+}
+
+/* =========================================================
+   WIND BLOCK
+========================================================= */
+function renderWindBlock(d){
+  const cw=d.current_weather||{},h=d.hourly||{};
+  const nowH=new Date().toISOString().slice(0,13);
+  const idx=h.time?h.time.findIndex(t=>t.startsWith(nowH)):-1;
+  const i=idx>=0?idx:0;
+  const pick=(...keys)=>{for(const k of keys){if(h[k]&&h[k][i]!=null)return h[k][i];}return null;};
+  const speed10=cw.windspeed!=null?cw.windspeed:pick('windspeed_10m','wind_speed_10m');
+  const dir10=cw.winddirection!=null?cw.winddirection:pick('winddirection_10m','wind_direction_10m');
+  const gusts=pick('windgusts_10m','wind_gusts_10m');
+  const dirCompass=dir10!=null?degToCompass(dir10):'—';
+  const ihVal=document.getElementById('wind-insight-val');
+  const ihLbl=document.getElementById('wind-insight-label');
+  if(ihVal) ihVal.textContent=(speed10!=null?Math.round(speed10):'—')+' km/h';
+  if(ihLbl){
+    const bft=speed10!=null?kmhToBft(speed10):0;
+    ihLbl.textContent=tr('beaufort')+' '+bft;
+  }
+  const setVal=(id,val,unit)=>{const el=document.getElementById(id); if(el) el.textContent=val!=null?(Math.round(val)+(unit||'')):'—';};
+  const dirEl=document.getElementById('wind-dir-val');
+  if(dirEl) dirEl.textContent=dir10!=null?(dirCompass+' '+Math.round(dir10)+'°'):'—';
+  setVal('wind-gusts-val',gusts,' km/h');
+}
+
+/* =========================================================
+   ASTRO BLOCK
+========================================================= */
+function renderAstro(d){
+  // Moon: Open-Meteo doesn't provide moon directly; use astronomical formula
+  const moon=computeMoon(new Date());
+  const phaseEl=document.getElementById('astro-moon-phase');
+  const iconEl=document.getElementById('astro-moon-icon');
+  if(phaseEl) phaseEl.textContent=Math.round(moon.illum*100)+'%';
+  if(iconEl) iconEl.textContent=moonIcon(moon.phase);
+  // Moonrise/set: use simple sunrise-eq approximation
+  const mr=computeMoonRiseSet(new Date(),LAT,LON);
+  const mrEl=document.getElementById('astro-moonrise');
+  const msEl=document.getElementById('astro-moonset');
+  if(mrEl) mrEl.textContent=mr.rise||'—:—';
+  if(msEl) msEl.textContent=mr.set||'—:—';
+}
+
+/* Moon phase calculation — Conway algorithm */
+function computeMoon(date){
+  const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
+  let r=y%100;r%=19;if(r>9)r-=19;r=((r*11)%30)+m+d;
+  if(m<3)r+=2;r-=(y<2000?4:8.3);r=Math.floor(r+0.5)%30;
+  const age=r<0?r+30:r; // 0..29.5
+  const phase=age/29.5306; // 0..1
+  // Illumination 0..1 (peak at 0.5 = full)
+  const illum=(1-Math.cos(phase*2*Math.PI))/2;
+  return {age,phase,illum};
+}
+function moonIcon(phase){
+  // 8 segments: new, waxing crescent, first quarter, waxing gibbous, full, waning gibbous, last quarter, waning crescent
+  const icons=['\u{1F311}','\u{1F312}','\u{1F313}','\u{1F314}','\u{1F315}','\u{1F316}','\u{1F317}','\u{1F318}'];
+  const seg=Math.floor(((phase+0.0625)%1)*8);
+  return icons[seg]||'\u{1F315}';
+}
+function computeMoonRiseSet(date,lat,lon){
+  // Simplified moon rise/set — approximates within a few minutes
+  // Based on Meeus algorithm (low-precision)
+  const y=date.getFullYear(),m=date.getMonth()+1,d=date.getDate();
+  // Julian Date at 0h UT
+  let yy=y,mm=m;
+  if(mm<=2){yy=y-1;mm=m+12;}
+  const a=Math.floor(yy/100),b=2-a+Math.floor(a/4);
+  const jd=Math.floor(365.25*(yy+4716))+Math.floor(30.6001*(mm+1))+d+b-1524.5;
+  // Find rise/set by scanning altitude
+  const findEvent=(rising)=>{
+    let prev=null;
+    for(let h=0;h<=24;h+=0.25){
+      const alt=moonAlt(jd+h/24,lat,lon);
+      if(prev!==null){
+        if((rising&&prev<0&&alt>=0)||(!rising&&prev>=0&&alt<0)){
+          // Linear interpolation
+          const frac=Math.abs(prev)/(Math.abs(prev)+Math.abs(alt));
+          const ev=h-0.25+frac*0.25;
+          // Convert UT hour to local time (TZ Berlin = UT+1, +2 in DST)
+          const dst=isDST(date)?2:1;
+          const local=(ev+dst)%24;
+          const hh=Math.floor(local),mn=Math.round((local-hh)*60);
+          return String(hh).padStart(2,'0')+':'+String(mn).padStart(2,'0');
+        }
+      }
+      prev=alt;
+    }
+    return null;
+  };
+  return {rise:findEvent(true),set:findEvent(false)};
+}
+function isDST(d){
+  const jan=new Date(d.getFullYear(),0,1).getTimezoneOffset();
+  const jul=new Date(d.getFullYear(),6,1).getTimezoneOffset();
+  return Math.max(jan,jul)!==d.getTimezoneOffset();
+}
+function moonAlt(jd,lat,lon){
+  // Moon position low-precision (Meeus)
+  const T=(jd-2451545.0)/36525;
+  const L=218.316+481267.881*T; // mean longitude
+  const M=134.963+477198.867*T; // mean anomaly
+  const F=93.272+483202.0175*T; // argument of latitude
+  const lambda=(L+6.289*Math.sin(M*Math.PI/180))*Math.PI/180;
+  const beta=(5.128*Math.sin(F*Math.PI/180))*Math.PI/180;
+  const eps=23.439*Math.PI/180;
+  const ra=Math.atan2(Math.sin(lambda)*Math.cos(eps)-Math.tan(beta)*Math.sin(eps),Math.cos(lambda));
+  const dec=Math.asin(Math.sin(beta)*Math.cos(eps)+Math.cos(beta)*Math.sin(eps)*Math.sin(lambda));
+  // Local hour angle
+  const gmst=(280.46061837+360.98564736629*(jd-2451545.0))%360;
+  const lst=(gmst+lon)*Math.PI/180;
+  const ha=lst-ra;
+  const latR=lat*Math.PI/180;
+  return Math.asin(Math.sin(latR)*Math.sin(dec)+Math.cos(latR)*Math.cos(dec)*Math.cos(ha))*180/Math.PI;
+}
+
+function renderCards(data,numDays){
+  const da=data.daily,h=data.hourly,grid=document.getElementById('forecast-grid');
+  const today=new Date().toISOString().slice(0,10);
+  grid.innerHTML='';
+  const t=T[lang];
+  for(let i=0;i<Math.min(numDays,da.time.length);i++){
+    const date=da.time[i],dt=new Date(date+'T12:00:00');
+    const isToday=date===today,dow=dt.getDay();
+    const tHigh=Math.round(da.temperature_2m_max[i]),tLow=Math.round(da.temperature_2m_min[i]);
+    const rain=da.precipitation_probability_max[i]||0,wind=Math.round(da.windspeed_10m_max[i]);
+    const precipMm = da.precipitation_sum ? (da.precipitation_sum[i]||0) : null;
+    const sH=da.sunshine_duration?Math.round(da.sunshine_duration[i]/3600*10)/10:null;
+    const icon=getIcon(da.weathercode[i],rain,tHigh);
+    const dateStr=dt.toLocaleDateString('de-CH',{day:'2-digit',month:'2-digit'});
+    const r=rel(i);
+    let hum=null;
+    if(h&&h.relativehumidity_2m){
+      const vs=h.time.map((t2,j)=>({t2,v:h.relativehumidity_2m[j]})).filter(x=>x.t2.startsWith(date)&&x.v!=null).map(x=>x.v);
+      if(vs.length)hum=Math.round(vs.reduce((a,b)=>a+b,0)/vs.length);
+    }
+    const rP=Math.min(rain,100),wP=Math.min(wind/80*100,100),sP=sH!==null?Math.min(sH/12*100,100):0,hP=hum!==null?Math.min(hum,100):0;
+    grid.innerHTML+=`<div class="day-card${isToday?' today':''}">
+      <div class="day-card-top">
+        <div><div class="day-name-label">${isToday?t.today:t.days[dow]}</div><div class="day-date-label">${dateStr}</div></div>
+        ${isToday?`<span class="today-badge">${t.today}</span>`:''}
+      </div>
+      <div class="day-card-body">
+        <div class="wx-icon">${icon}</div>
+        <div class="temp-row"><span class="temp-high">${tHigh}°</span><span class="temp-low">${tLow}°</span></div>
+        <div class="stat-rows">
+          ${sH!==null?`<div class="stat-row"><span class="stat-label">${t.statSun}</span><div class="stat-bar-wrap"><div class="stat-bar bar-sun" style="width:${sP}%"></div></div><span class="stat-value">${sH}h</span></div>`:''}
+          <div class="stat-row"><span class="stat-label">${t.statRain}</span><div class="stat-bar-wrap"><div class="stat-bar bar-rain" style="width:${rP}%"></div></div><span class="stat-value">${rain}%${precipMm!==null?' · '+precipMm.toFixed(1)+'mm':''}</span></div>
+          ${hum!==null?`<div class="stat-row"><span class="stat-label">${t.statHum}</span><div class="stat-bar-wrap"><div class="stat-bar bar-hum" style="width:${hP}%"></div></div><span class="stat-value">${hum}%</span></div>`:''}
+          <div class="stat-row"><span class="stat-label">${t.statWind}</span><div class="stat-bar-wrap"><div class="stat-bar bar-wind" style="width:${wP}%"></div></div><span class="stat-value">${wind} km/h</span></div>
+        </div>
+        <div class="rel-row">
+          <div class="rel-label-row"><span class="rel-label">${t.statAcc}</span><span class="rel-pct ${r.cls}">${r.pct}%</span></div>
+          <div class="rel-bar-wrap"><div class="rel-bar ${r.cls}" style="width:${r.pct}%"></div></div>
+          <div class="rel-note">${r.note}</div>
+        </div>
+      </div>
+    </div>`;
+  }
+}
+
+function renderFallback(){
+  const fb={current_weather:{temperature:14,weathercode:1},daily:{time:['2026-04-03','2026-04-04','2026-04-05','2026-04-06','2026-04-07','2026-04-08','2026-04-09'],temperature_2m_max:[17,19,19,21,21,18,17],temperature_2m_min:[8,9,10,11,11,9,8],precipitation_probability_max:[0,0,10,10,0,30,40],precipitation_sum:[0,0,1.2,0.8,0,4.5,8.2],windspeed_10m_max:[12,14,18,14,11,20,24],sunshine_duration:[32400,36000,25200,21600,36000,14400,10800],weathercode:[0,0,2,2,0,3,61],uv_index_max:[4.2,5.1,3.8,3.2,5.4,2.1,1.8],sunrise:['2026-04-03T06:33','2026-04-04T06:31','2026-04-05T06:29','2026-04-06T06:27','2026-04-07T06:25','2026-04-08T06:23','2026-04-09T06:21'],sunset:['2026-04-03T19:51','2026-04-04T19:53','2026-04-05T19:54','2026-04-06T19:56','2026-04-07T19:57','2026-04-08T19:59','2026-04-09T20:01']},hourly:{time:[],relativehumidity_2m:[]}};
+  globalData=fb; renderCurrent(fb); renderCards(fb,activeView);
+  document.getElementById('cur-hum').textContent='48%';
+  document.getElementById('cur-low').textContent='9°';
+  document.getElementById('cur-night').textContent='6°';
+  const bar=document.getElementById('data-chip-bar'); bar.classList.add('visible');
+  const chip=document.getElementById('data-chip-text'); chip.dataset.mode='offline'; chip.textContent=tr('offlineChip');
+}
+
+function setView(days){
+  activeView=days;
+  document.querySelectorAll('.view-btn').forEach(b=>b.classList.toggle('active',parseInt(b.dataset.days)===days));
+  document.getElementById('forecast-grid').className=`forecast-grid view-${days}`;
+  if(globalData)renderCards(globalData,days);
+}
+
+/* =========================================================
+   AIR QUALITY
+========================================================= */
+const AQI_LVLS=[{max:20,cls:'good'},{max:40,cls:'good'},{max:60,cls:'fair'},{max:80,cls:'moderate'},{max:100,cls:'poor'},{max:999,cls:'very-poor'}];
+function aqiLvl(v){return AQI_LVLS.find(l=>v<=l.max)||AQI_LVLS[AQI_LVLS.length-1];}
+
+async function loadAirQuality(){
+  try{
+    const url=`https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${LAT}&longitude=${LON}&current=european_aqi,pm10,pm2_5,nitrogen_dioxide,ozone,ammonia&timezone=${TZ}`;
+    const data=(await(await fetch(url)).json());
+    const c=data.current;
+    const aqi=Math.round(c.european_aqi||0),lvl=aqiLvl(aqi);
+    const idx=AQI_LVLS.indexOf(lvl);
+    const names=T[lang].aqiNames;
+    const badge=document.getElementById('aqi-badge');
+    badge.textContent=`AQI ${aqi} – ${names[idx]||names[names.length-1]}`;
+    badge.className=`aqi-badge ${lvl.cls}`;
+    document.getElementById('aqi-sub').textContent=tr('aqiSub');
+    const AQI_INFO = {
+      "PM2.5": {
+        de: { name:"Feinstaub PM2.5", desc:"Partikel unter 2,5 µm – dringen tief in die Lunge ein. WHO-Grenzwert: 15 µg/m³ (Jahresmittel).", title:"Feinstaub PM2.5" },
+        en: { name:"Fine particulate matter", desc:"Particles under 2.5 µm – penetrate deep into the lungs. WHO limit: 15 µg/m³ (annual mean).", title:"Fine particulate matter PM2.5" },
+        url: "https://atmosphere.copernicus.eu/european-air-quality-index"
+      },
+      "PM10": {
+        de: { name:"Feinstaub PM10", desc:"Partikel unter 10 µm – belasten Atemwege und Herz-Kreislauf. WHO-Grenzwert: 45 µg/m³ (Tagesmittel).", title:"Feinstaub PM10" },
+        en: { name:"Coarse particulate matter", desc:"Particles under 10 µm – affect airways and cardiovascular system. WHO limit: 45 µg/m³ (daily mean).", title:"Particulate matter PM10" },
+        url: "https://atmosphere.copernicus.eu/european-air-quality-index"
+      },
+      "NO₂": {
+        de: { name:"Stickstoffdioxid NO₂", desc:"Entsteht durch Verbrennung (Verkehr, Heizungen). Reizt die Schleimhäute und schwächt die Lungenabwehr. WHO-Grenzwert: 25 µg/m³ (Tagesmittel).", title:"Stickstoffdioxid NO₂" },
+        en: { name:"Nitrogen dioxide NO₂", desc:"Produced by combustion (traffic, heating). Irritates mucous membranes and weakens lung defences. WHO limit: 25 µg/m³ (daily mean).", title:"Nitrogen dioxide NO₂" },
+        url: "https://atmosphere.copernicus.eu/european-air-quality-index"
+      },
+      "O₃": {
+        de: { name:"Bodennahes Ozon O₃", desc:"Entsteht durch Sonnenlicht aus Abgasen. Greift die Atemwege an, besonders an heißen, sonnigen Tagen. WHO-Richtwert: 100 µg/m³ (8h-Mittel).", title:"Bodennahes Ozon O₃" },
+        en: { name:"Ground-level ozone O₃", desc:"Forms from sunlight and exhaust gases. Damages airways, especially on hot sunny days. WHO guideline: 100 µg/m³ (8h mean).", title:"Ground-level ozone O₃" },
+        url: "https://atmosphere.copernicus.eu/european-air-quality-index"
+      },
+      "NH₃": {
+        de: { name:"Ammoniak NH₃", desc:"Hauptsächlich aus der Landwirtschaft (Tierhaltung, Gülle, Düngung). Bildet sekundäres Feinstaub-Aerosol. Indikator für agrarische Belastung der Luft.", title:"Ammoniak NH₃" },
+        en: { name:"Ammonia NH₃", desc:"Mainly from agriculture (livestock, slurry, fertilisation). Forms secondary fine particulate aerosol. Indicator for agricultural air burden.", title:"Ammonia NH₃" },
+        url: "https://atmosphere.copernicus.eu/european-air-quality-index"
+      }
+    };
+    const items=[
+      {l:'PM2.5',v:Math.round(c.pm2_5||0),u:'µg/m³',m:25,col:'#6366F1'},
+      {l:'PM10',v:Math.round(c.pm10||0),u:'µg/m³',m:50,col:'#8B5CF6'},
+      {l:'NO₂',v:Math.round(c.nitrogen_dioxide||0),u:'µg/m³',m:40,col:'#EC4899'},
+      {l:'O₃',v:Math.round(c.ozone||0),u:'µg/m³',m:120,col:'#14B8A6'},
+      {l:'NH₃',v:(c.ammonia!=null?(c.ammonia<10?c.ammonia.toFixed(1):Math.round(c.ammonia)):0),u:'µg/m³',m:30,col:'#F59E0B'}
+    ];
+    const ln = lang||'de';
+    document.getElementById('aqi-grid').innerHTML=items.map(it=>{
+      const info = AQI_INFO[it.l]?.[ln] || AQI_INFO[it.l]?.de;
+      const url = AQI_INFO[it.l]?.url || '';
+      return `<div class="aqi-item">
+        <div class="aqi-item-val">${it.v}<span class="aqi-item-unit">${it.u}</span></div>
+        <div class="aqi-item-name-row">
+          <span class="aqi-item-label" style="text-transform:none;letter-spacing:0;font-size:11px;font-weight:600;">${it.l}</span>
+          <button class="aqi-info-btn" onclick="showAqiInfo('${it.l}')" aria-label="Info">i</button>
+        </div>
+        <div class="aqi-item-desc">${info?.name||''}</div>
+        <div class="aqi-item-bar"><div class="aqi-item-bar-fill" style="width:${Math.min(it.v/it.m*100,100)}%;background:${it.col}"></div></div>
+      </div>`;
+    }).join('');
+    window._AQI_INFO = AQI_INFO;
+  }catch(_){document.getElementById('aqi-sub').textContent='—';}
+}
+
+function renderAqiForecast(){/* removed in v2.8 */}
+
+/* =========================================================
+   WARNINGS – ARPA PIEMONTE
+========================================================= */
+const ZONES=['Piem-L','Piem-M','Piem-H'];
+
+async function loadWarnings(){
+  const sec=document.getElementById('warnings-section'),grid=document.getElementById('warnings-grid');
+  sec.style.display='block';
+  try{
+    const cql=encodeURIComponent("NAME LIKE 'Gemeinde Gaiberg'");
+    const URL1=`https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&outputFormat=application/json&CQL_FILTER=${cql}`;
+    const PROXY=`https://corsproxy.io/?${encodeURIComponent(URL1)}`;
+    let json=null;
+    try{const r=await fetch(URL1,{mode:'cors'});if(r.ok)json=await r.json();}catch(_){}
+    if(!json){const r=await fetch(PROXY);if(r.ok)json=await r.json();}
+    if(!json)throw new Error('n/a');
+    renderDwd(json,grid);
+  }catch(_){await fallbackWarnings(grid);}
+  grid.innerHTML+=`<div class="official-links"><a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html?ort=Gaiberg" target="_blank" rel="noopener" class="ext-link">Deutscher Wetterdienst &rarr;</a></div>`;
+}
+
+function renderDwd(json,grid){
+  const features=json.features||[],now=new Date(),warns=[];
+  features.forEach(f=>{
+    const p=f.properties||{};
+    const exp=p.EXPIRES;
+    if(exp&&new Date(exp)<now)return;
+    const sev=p.SEVERITY||'Minor';
+    const hl=p.HEADLINE||p.EVENT||'';
+    const desc=(p.DESCRIPTION||'').substring(0,200);
+    let level=1;
+    if(sev==='Moderate')level=2;
+    if(sev==='Severe')level=3;
+    if(sev==='Extreme')level=4;
+    warns.push({level,hl,desc});
+  });
+  grid.innerHTML='';
+  if(!warns.length){grid.innerHTML=okCard();}
+  else{warns.sort((a,b)=>b.level-a.level);warns.forEach(w=>{grid.innerHTML+=wCard(w.level,w.hl,w.desc);});}
+}
+
+function wCard(level,title,detail){
+  const icons={1:'!',2:'!!',3:'!!!',4:'!!!!'};
+  return`<div class="warning-card level-${Math.min(level,3)}"><div class="warning-icon">${icons[level]||'!'}</div><div class="warning-body"><div class="warning-title">${title}</div>${detail?`<div class="warning-detail">${detail}</div>`:''}<div class="warning-level-label">${T[lang].warnLevels[level]||''}</div></div></div>`;
+}
+function okCard(){
+  return`<div class="warnings-ok"><span class="warnings-ok-dot"></span>${T[lang].warnOk} (${new Date().toLocaleTimeString('de-DE',{hour:'2-digit',minute:'2-digit'})}).</div>`;
+}
+
+async function fallbackWarnings(grid){
+  try{
+    const h=(await(await fetch(`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}&hourly=precipitation,windspeed_10m,cape&timezone=${TZ}&forecast_days=2`)).json()).hourly;
+    const times=h.time.map(t=>new Date(t).getTime()),now=Date.now(),h24=now+86400000;
+    let mR=0,mW=0,mC=0;
+    h.precipitation.forEach((v,i)=>{if(times[i]>=now&&times[i]<=h24&&v)mR=Math.max(mR,v);});
+    h.windspeed_10m.forEach((v,i)=>{if(times[i]>=now&&times[i]<=h24&&v)mW=Math.max(mW,v);});
+    h.cape.forEach((v,i)=>{if(times[i]>=now&&times[i]<=h24&&v)mC=Math.max(mC,v);});
+    const ws=[];
+    if(mR>=20)ws.push(wCard(3,'Extremniederschlag',`${Math.round(mR)} mm/h`));
+    else if(mR>=8)ws.push(wCard(2,'Starkniederschlag',`${Math.round(mR)} mm/h`));
+    if(mW>=90)ws.push(wCard(3,'Sturm',`${Math.round(mW)} km/h`));
+    else if(mW>=60)ws.push(wCard(1,'Starker Wind',`${Math.round(mW)} km/h`));
+    if(mC>=500)ws.push(wCard(2,'Gewittergefahr',`CAPE ${Math.round(mC)} J/kg`));
+    grid.innerHTML=ws.length?ws.join(''):okCard();
+  }catch(_){grid.innerHTML=okCard();}
+}
+
+/* =========================================================
+   NEWS – ecorisveglio.it via rss2json
+========================================================= */
+async function loadNews(){
+  const grid=document.getElementById('news-grid');
+  try{
+    const RSS='https://www.ecorisveglio.it/?s=cannobio&feed=rss2';
+    const API=`https://api.rss2json.com/v1/api.json?rss_url=${encodeURIComponent(RSS)}&count=3`;
+    const data=await(await fetch(API)).json();
+    if(data.status!=='ok'||!data.items?.length)throw new Error('no items');
+    window._newsCache=data.items;
+    renderNews(data.items);
+  }catch(_){
+    grid.innerHTML=`<a class="news-item" href="https://www.ecorisveglio.it/?s=cannobio" target="_blank" rel="noopener"><div class="news-item-title" style="color:var(--sky)">Artikel auf ecorisveglio.it lesen &rarr;</div><div class="news-item-source">ecorisveglio.it</div></a>`;
+  }
+}
+
+function renderNews(items){
+  const grid=document.getElementById('news-grid');
+  const strip=s=>s.replace(/<[^>]*>/g,'').replace(/&[a-z#0-9]+;/gi,' ').replace(/\s+/g,' ').trim();
+  const locale=lang==='it'?'it-IT':lang==='en'?'en-GB':'de-CH';
+  grid.innerHTML=items.map(item=>{
+    const date=item.pubDate?new Date(item.pubDate).toLocaleDateString(locale,{day:'2-digit',month:'long',year:'numeric'}):'';
+    const excerpt=strip(item.description||'').substring(0,130)+'…';
+    return`<a class="news-item" href="${item.link}" target="_blank" rel="noopener">
+      <div class="news-item-meta">${date}</div>
+      <div class="news-item-title">${strip(item.title||'')}</div>
+      <div class="news-item-excerpt">${excerpt}</div>
+      <div class="news-item-source">ecorisveglio.it</div>
+    </a>`;
+  }).join('')+`<div class="news-footer"><a class="news-more" href="https://www.ecorisveglio.it/?s=cannobio" target="_blank" rel="noopener">${T[lang].newsMore}</a></div>`;
+}
+
+/* =========================================================
+   WEBCAMS
+========================================================= */
+const CAMS=[
+  {src:'https://comune.cannobio.vb.it/wp-content/themes/design-comuni-wordpress-theme-main-child/assets/img/webcam_lungolago.webp', name:'Lungolago',           locKey:'lungolago'},
+  {src:'https://comune.cannobio.vb.it/wp-content/themes/design-comuni-wordpress-theme-main-child/assets/img/webcam_piazzalago.webp',name:'Piazza Lago',         locKey:'piazza'},
+  {src:'https://comune.cannobio.vb.it/wp-content/themes/design-comuni-wordpress-theme-main-child/assets/img/webcam_maccagno.webp',  name:'Maccagno',            locKey:'maccagno'},
+  {src:'https://comune.cannobio.vb.it/wp-content/themes/design-comuni-wordpress-theme-main-child/assets/img/webcam_castelli.webp',  name:'Castelli di Cannero', locKey:'castelli'},
+];
+
+function buildCams(){
+  const grid=document.getElementById('cam-grid');
+  grid.innerHTML='';
+  CAMS.forEach(cam=>{
+    const loc=T[lang].camLocs[cam.locKey]||cam.name;
+    const card=document.createElement('div'); card.className='cam-card';
+    card.innerHTML=`<div class="cam-img-wrap"><img src="${cam.src}" alt="${cam.name}" loading="lazy" onerror="this.style.opacity='.2'"><div class="live-dot"><span class="live-pulse"></span>Live</div><div class="cam-overlay"><span class="cam-zoom-icon"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/><line x1="11" y1="8" x2="11" y2="14"/><line x1="8" y1="11" x2="14" y2="11"/></svg></span></div></div><div class="cam-footer"><div class="cam-name">${cam.name}</div><div class="cam-location">${loc}</div></div>`;
+    card.addEventListener('click',()=>openLightbox(cam.src,cam.name+' — '+loc));
+    grid.appendChild(card);
+  });
+}
+function rebuildCams(){buildCams();}
+
+function openLightbox(src,caption){
+  document.getElementById('lightbox-img').src=src;
+  document.getElementById('lightbox-caption').textContent=caption;
+  document.getElementById('lightbox').classList.add('open');
+}
+function closeLightbox(e){if(e.target===document.getElementById('lightbox'))document.getElementById('lightbox').classList.remove('open');}
+document.addEventListener('keydown',e=>{if(e.key==='Escape')document.getElementById('lightbox').classList.remove('open');});
+
+/* =========================================================
+   POLLEN – DWD s31fg.json (partregion 111: Oberrhein/Neckartal)
+========================================================= */
+async function loadPollen(){
+  const URL_POLLEN='https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json';
+  // Try multiple sources: direct (works on some browsers), then several CORS proxies
+  const candidates=[
+    URL_POLLEN,
+    'https://corsproxy.io/?'+encodeURIComponent(URL_POLLEN),
+    'https://api.allorigins.win/raw?url='+encodeURIComponent(URL_POLLEN),
+    'https://api.codetabs.com/v1/proxy/?quest='+encodeURIComponent(URL_POLLEN)
+  ];
+  let data=null;
+  for(const u of candidates){
+    try{
+      const r=await fetch(u,{cache:'no-store'});
+      if(!r.ok) continue;
+      const txt=await r.text();
+      const parsed=JSON.parse(txt);
+      if(parsed&&parsed.content){data=parsed;break;}
+    }catch(_){/* try next */}
+  }
+  if(!data||!data.content){
+    showPollenUnavailable();
+    return;
+  }
+  const region=data.content.find(c=>c.partregion_id===111);
+  if(!region||!region.Pollen){
+    showPollenUnavailable();
+    return;
+  }
+  renderPollen(region.Pollen);
+}
+
+function showPollenUnavailable(){
+  const grid=document.getElementById('pollen-grid');
+  if(grid) grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:14px;">${lang==='en'?'DWD pollen data currently unavailable. ':'DWD-Pollendaten momentan nicht abrufbar. '}<a href="https://www.dwd.de/DE/leistungen/gefahrenindizespollen/gefahrenindexpollen.html" target="_blank" rel="noopener" style="color:var(--text-secondary);text-decoration:none;border-bottom:1px dotted var(--border)">${lang==='en'?'Open at DWD':'Bei DWD ansehen'}</a></div>`;
+}
+
+function pollenLevel(v){
+  if(v==='0'||v==='0-1') return 0;
+  if(v==='1'||v==='1-2') return 1;
+  if(v==='2'||v==='2-3') return 2;
+  if(v==='3') return 3;
   return -1;
 }
 
 function pollenDots(v){
-  const lvl = pollenLevelClass(v);
-  let html = '';
-  for (let i = 0; i < 3; i++){
-    html += `<span class="pollen-dot${i < lvl ? ' active' : ''}"></span>`;
+  const lvl=pollenLevel(v);
+  let html='';
+  for(let i=0;i<3;i++){
+    const active=i<lvl;
+    let cls='pollen-dot';
+    if(active){
+      cls+=' active';
+      if(lvl===1) cls+=' lvl-1';
+      else if(lvl===2) cls+=' lvl-2';
+    }
+    html+=`<span class="${cls}"></span>`;
   }
   return html;
 }
 
-function renderPollen(pollenData){
-  const t = T[currentLang];
-  const grid = document.getElementById('pollen-grid');
-  grid.innerHTML = '';
-  const order = ['Birke','Graeser','Esche','Hasel','Erle','Roggen','Beifuss','Ambrosia'];
-  let anyShown = 0;
-  order.forEach(key => {
-    const p = pollenData[key];
-    if (!p) return;
-    const today = p.today;
-    if (today === '-1' || today === undefined || today === null) return;
-    const lvl = pollenLevelClass(today);
-    anyShown++;
-    const item = document.createElement('div');
-    item.className = 'pollen-item lvl-' + Math.max(0, lvl);
-    item.innerHTML = `
-      <div class="pollen-item-name">${t.pollen[key] || key}</div>
-      <div class="pollen-item-val">${t.pollenLevels[today] || today}</div>
+function renderPollen(pollen){
+  const t=T[lang];
+  const grid=document.getElementById('pollen-grid');
+  if(!grid) return;
+  const order=['Birke','Graeser','Esche','Hasel','Erle','Roggen','Beifuss','Ambrosia'];
+  grid.innerHTML='';
+  let any=0;
+  order.forEach(key=>{
+    const p=pollen[key];
+    if(!p) return;
+    const today=p.today;
+    if(today==='-1'||today==null) return;
+    any++;
+    const lvl=pollenLevel(today);
+    const item=document.createElement('div');
+    item.className='pollen-item lvl-'+Math.max(0,lvl);
+    item.innerHTML=`
+      <div class="pollen-item-name">${(t.pollenNames&&t.pollenNames[key])||key}</div>
+      <div class="pollen-item-val">${(t.pollenLevels&&t.pollenLevels[today])||today}</div>
       <div class="pollen-item-bar">${pollenDots(today)}</div>
     `;
     grid.appendChild(item);
   });
-  if (!anyShown){
-    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:8px;">${currentLang === 'de' ? 'Aktuell keine Pollenbelastung' : 'Currently no pollen burden'}</div>`;
+  if(!any){
+    grid.innerHTML=`<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:8px;">${lang==='en'?'Currently no pollen burden':'Aktuell keine Pollenbelastung'}</div>`;
   }
 }
 
-function renderPollenFallback(){
-  const grid = document.getElementById('pollen-grid');
-  grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:8px;">
-    ${currentLang === 'de' ? 'DWD-Pollendaten momentan nicht erreichbar.' : 'DWD pollen data currently unavailable.'}
-    <a href="https://www.dwd.de/DE/leistungen/gefahrenindizespollen/gefahrenindexpollen.html" target="_blank" rel="noopener" class="ext-link" style="margin-left:6px">DWD &rarr;</a>
-  </div>`;
-}
-
 /* =========================================================
-   FOREST FIRE INDEX (DWD WBI)
-   Approximated from current weather data because the official DWD WBI
-   table is HTML-only and not CORS-enabled.
-   Inputs: temperature, relative humidity, wind speed, recent precipitation.
+   CLIMATE NORMALS 1991–2020 – Open-Meteo ERA5
+   Chunked loading (3×10 years) for stability, with hard fallback
 ========================================================= */
-function calculateWBI(d){
-  // Simplified meteorological dryness proxy based on DWD WBI input variables.
-  // Returns level 1-5 (sehr gering bis sehr hoch).
-  const t = d.current.temperature_2m;
-  const rh = d.current.relative_humidity_2m;
-  const wind = d.current.wind_speed_10m;
-  // Sum precipitation last 24h
-  const hourly = d.hourly;
-  let precip24 = 0;
-  const nowIdx = hourly.time.findIndex(ts => new Date(ts) > new Date()) - 1;
-  for (let i = Math.max(0, nowIdx - 24); i < nowIdx; i++){
-    precip24 += hourly.precipitation[i] || 0;
-  }
-  // Score: dry+warm+windy => higher
-  let score = 0;
-  if (t > 30) score += 3; else if (t > 25) score += 2; else if (t > 20) score += 1;
-  if (rh < 30) score += 3; else if (rh < 45) score += 2; else if (rh < 60) score += 1;
-  if (wind > 25) score += 2; else if (wind > 15) score += 1;
-  if (precip24 < 0.5) score += 2; else if (precip24 < 2) score += 1; else if (precip24 > 10) score -= 2;
-  // Map to 1-5
-  let lvl = 1;
-  if (score >= 9) lvl = 5;
-  else if (score >= 7) lvl = 4;
-  else if (score >= 5) lvl = 3;
-  else if (score >= 3) lvl = 2;
-  return lvl;
-}
 
-function renderForestFire(){
-  if (!forecastData) return;
-  const t = T[currentLang];
-  const lvl = calculateWBI(forecastData);
-  const lvlEl = document.getElementById('fire-level');
-  const iconEl = document.getElementById('fire-icon');
-  lvlEl.textContent = lvl;
-  lvlEl.className = 'fire-level lvl-' + lvl;
-  iconEl.className = 'fire-icon lvl-' + lvl;
-  iconEl.textContent = lvl >= 4 ? '🔥' : lvl >= 3 ? '🌡️' : '🌲';
-  document.getElementById('fire-text-sub').textContent =
-    (currentLang === 'de' ? 'DWD WBI Schätzung · ' : 'DWD WBI estimate · ')
-    + t.fireLevels[lvl];
-}
+// Hardcoded fallback for Gaiberg/Heidelberg region 1991-2020
+// Sources: DWD station Mannheim/Heidelberg-Wasserwerk + ERA5-Land for Gaiberg coords.
+// These are reasonable approximations; live API values override when available.
+const CLIMATE_FALLBACK = {
+  temp: 11.8,
+  precip: 722,
+  sun: 1750,
+  summer: 55,
+  hot: 12,
+  frost: 75,
+  // Cumulative seasonal share (0..1) by day-of-year (0-365)
+  // Based on typical mid-European temperate climate distribution
+  summerShare: buildShareCurve('summer'),
+  hotShare: buildShareCurve('hot'),
+  frostShare: buildShareCurve('frost'),
+  isFallback: true
+};
 
-/* =========================================================
-   DWD WARNINGS (via DWD GeoServer)
-========================================================= */
-async function fetchWarnings(){
-  // DWD Geoserver WFS, JSON output, filter by exact municipality name
-  const cql = encodeURIComponent(`NAME LIKE '${GEMEINDENAME}'`);
-  const URL_WARN = `https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&outputFormat=application/json&CQL_FILTER=${cql}`;
-  try{
-    let data;
-    try{
-      const r = await fetch(URL_WARN);
-      if (r.ok) data = await r.json();
-    } catch(_){}
-    if (!data){
-      const r = await fetch(PROXY + encodeURIComponent(URL_WARN));
-      if (!r.ok) throw new Error('warnings fetch failed');
-      data = await r.json();
+function buildShareCurve(metric){
+  // Returns array of 366 cumulative share values (0..1)
+  // Approximation curves based on typical Central European seasonality
+  const arr=new Array(366);
+  for(let doy=0;doy<366;doy++){
+    let share=0;
+    if(metric==='summer'){
+      // Sommertage: May-Sep, peak Jul-Aug
+      if(doy<120) share=0;                          // before May
+      else if(doy<151) share=(doy-120)/31*0.05;     // May ramp
+      else if(doy<181) share=0.05+(doy-151)/30*0.20;// Jun
+      else if(doy<212) share=0.25+(doy-181)/31*0.30;// Jul
+      else if(doy<243) share=0.55+(doy-212)/31*0.30;// Aug
+      else if(doy<273) share=0.85+(doy-243)/30*0.12;// Sep
+      else if(doy<304) share=0.97+(doy-273)/31*0.03;// Oct tail
+      else share=1.0;
+    }else if(metric==='hot'){
+      // Hitzetage: Jun-Aug, peak Jul-Aug
+      if(doy<151) share=0;
+      else if(doy<181) share=(doy-151)/30*0.10;     // Jun
+      else if(doy<212) share=0.10+(doy-181)/31*0.40;// Jul
+      else if(doy<243) share=0.50+(doy-212)/31*0.45;// Aug
+      else if(doy<273) share=0.95+(doy-243)/30*0.05;// Sep tail
+      else share=1.0;
+    }else if(metric==='frost'){
+      // Frosttage: Nov-Mar, peak Dec-Feb
+      if(doy<31) share=(doy/31)*0.30;               // Jan
+      else if(doy<60) share=0.30+((doy-31)/29)*0.25;// Feb
+      else if(doy<91) share=0.55+((doy-60)/31)*0.10;// Mar
+      else if(doy<120) share=0.65+((doy-91)/29)*0.02;// Apr tail
+      else if(doy<304) share=0.67;                  // May-Oct (no frost)
+      else if(doy<334) share=0.67+((doy-304)/30)*0.08;// Nov
+      else share=0.75+((doy-334)/31)*0.25;          // Dec
     }
-    renderWarnings(data.features || []);
-  } catch(e){
-    console.error('warnings', e);
-    renderWarnings([]);
+    arr[doy]=Math.min(share,1);
+  }
+  return arr;
+}
+
+async function loadClimate(){
+  const CACHE_KEY='gaiberg_climate_1991_2020_v3';
+  let stats=null;
+  try{
+    const cached=localStorage.getItem(CACHE_KEY);
+    if(cached) stats=JSON.parse(cached);
+  }catch(_){}
+
+  if(!stats){
+    // Try chunked loading: 3 chunks of 10 years each
+    stats=await loadClimateChunked();
+    if(stats){
+      try{localStorage.setItem(CACHE_KEY,JSON.stringify(stats));}catch(_){}
+    }
+  }
+
+  if(!stats){
+    // Use hardcoded fallback values
+    stats={...CLIMATE_FALLBACK};
+  }
+
+  // Now load current year-to-date for comparison
+  let current=null;
+  try{
+    const now=new Date();
+    const year=now.getFullYear();
+    const startDate=`${year}-01-01`;
+    const endDate=now.toISOString().slice(0,10);
+    const dayOfYear=Math.floor((now-new Date(year,0,1))/86400000)+1;
+    const url=`https://archive-api.open-meteo.com/v1/archive?latitude=${LAT}&longitude=${LON}`
+      +`&start_date=${startDate}&end_date=${endDate}`
+      +`&daily=temperature_2m_max,temperature_2m_min`
+      +`&timezone=${TZ}`;
+    const r=await fetch(url);
+    if(r.ok){
+      const data=await r.json();
+      if(data&&data.daily){
+        const tmax=data.daily.temperature_2m_max||[];
+        const tmin=data.daily.temperature_2m_min||[];
+        let summer=0,hot=0,frost=0;
+        for(let i=0;i<tmax.length;i++){
+          if(tmax[i]==null||tmin[i]==null) continue;
+          if(tmax[i]>=25) summer++;
+          if(tmax[i]>=30) hot++;
+          if(tmin[i]<0) frost++;
+        }
+        current={year,dayOfYear,summer,hot,frost};
+      }
+    }
+  }catch(_){
+    // silent — current year is optional
+  }
+  renderClimate(stats,current);
+}
+
+async function loadClimateChunked(){
+  // Load 1991-2020 in 3 chunks: 1991-2000, 2001-2010, 2011-2020.
+  // Open-Meteo Archive accepts up to ~10 years cleanly per request.
+  const chunks=[
+    ['1991-01-01','2000-12-31'],
+    ['2001-01-01','2010-12-31'],
+    ['2011-01-01','2020-12-31']
+  ];
+  try{
+    const results=await Promise.all(chunks.map(([s,e])=>{
+      const url=`https://archive-api.open-meteo.com/v1/archive?latitude=${LAT}&longitude=${LON}`
+        +`&start_date=${s}&end_date=${e}`
+        +`&daily=temperature_2m_max,temperature_2m_min,precipitation_sum,sunshine_duration`
+        +`&timezone=${TZ}`;
+      return fetch(url).then(r=>r.ok?r.json():null);
+    }));
+    if(results.some(r=>!r||!r.daily)) return null;
+    // Merge daily arrays from all chunks
+    const merged={time:[],temperature_2m_max:[],temperature_2m_min:[],precipitation_sum:[],sunshine_duration:[]};
+    results.forEach(r=>{
+      const d=r.daily;
+      merged.time=merged.time.concat(d.time||[]);
+      merged.temperature_2m_max=merged.temperature_2m_max.concat(d.temperature_2m_max||[]);
+      merged.temperature_2m_min=merged.temperature_2m_min.concat(d.temperature_2m_min||[]);
+      merged.precipitation_sum=merged.precipitation_sum.concat(d.precipitation_sum||[]);
+      merged.sunshine_duration=merged.sunshine_duration.concat(d.sunshine_duration||[]);
+    });
+    return computeClimateStats(merged);
+  }catch(_){
+    return null;
   }
 }
 
-function renderWarnings(features){
-  const t = T[currentLang];
-  const grid = document.getElementById('warnings-grid');
-  if (!features.length){
-    grid.innerHTML = `<div class="no-warnings">${t.noWarnings}</div>
-      <div class="official-links"><a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html?ort=Gaiberg" target="_blank" rel="noopener" class="ext-link">DWD Gaiberg &rarr;</a></div>`;
-    return;
+function computeClimateStats(daily){
+  const tmax=daily.temperature_2m_max||[];
+  const tmin=daily.temperature_2m_min||[];
+  const pr=daily.precipitation_sum||[];
+  const sun=daily.sunshine_duration||[];
+  const times=daily.time||[];
+  const yearSet=new Set();
+  const byYear={};
+  // Cumulative-by-day-of-year counters across all years
+  // cumByDay[doy] = {summer:n, hot:n, frost:n} averaged over years
+  const dayCount={summer:new Array(366).fill(0),hot:new Array(366).fill(0),frost:new Array(366).fill(0),years:new Array(366).fill(0)};
+  for(let i=0;i<times.length;i++){
+    const dateStr=times[i];
+    const y=parseInt(dateStr.substring(0,4));
+    if(isNaN(y)) continue;
+    yearSet.add(y);
+    if(!byYear[y]) byYear[y]={tSum:0,tCnt:0,prSum:0,sunSum:0,summer:0,hot:0,frost:0};
+    const tm=tmax[i],tn=tmin[i];
+    // Day of year (1-based)
+    const dt=new Date(dateStr);
+    const start=new Date(dt.getFullYear(),0,1);
+    const doy=Math.floor((dt-start)/86400000); // 0-based index
+    if(tm!=null&&tn!=null){
+      byYear[y].tSum+=(tm+tn)/2;
+      byYear[y].tCnt++;
+      if(tm>=25){byYear[y].summer++;dayCount.summer[doy]++;}
+      if(tm>=30){byYear[y].hot++;dayCount.hot[doy]++;}
+      if(tn<0){byYear[y].frost++;dayCount.frost[doy]++;}
+      dayCount.years[doy]++;
+    }
+    if(pr[i]!=null) byYear[y].prSum+=pr[i];
+    if(sun[i]!=null) byYear[y].sunSum+=sun[i];
   }
-  grid.innerHTML = '';
-  features.forEach(f => {
-    const p = f.properties;
-    const sev = (p.SEVERITY || 'Moderate').toLowerCase();
-    let cls = '';
-    if (sev === 'severe') cls = 'sev-major';
-    if (sev === 'extreme') cls = 'sev-severe';
-    const onset = p.ONSET ? new Date(p.ONSET).toLocaleString(currentLang === 'de' ? 'de-DE' : 'en-GB', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}) : '';
-    const expires = p.EXPIRES ? new Date(p.EXPIRES).toLocaleString(currentLang === 'de' ? 'de-DE' : 'en-GB', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}) : '';
-    const item = document.createElement('div');
-    item.className = 'warning-item ' + cls;
-    item.innerHTML = `
-      <div class="warning-item-title">${p.HEADLINE || p.EVENT || '—'}</div>
-      <div class="warning-item-time">${currentLang === 'de' ? 'Gültig' : 'Valid'}: ${onset} – ${expires}</div>
-      <div class="warning-item-desc">${p.DESCRIPTION || ''}</div>
-    `;
-    grid.appendChild(item);
-  });
-  grid.innerHTML += `<div class="official-links"><a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html?ort=Gaiberg" target="_blank" rel="noopener" class="ext-link">DWD Gaiberg &rarr;</a></div>`;
+  const years=Array.from(yearSet);
+  const avg=(arr)=>arr.reduce((a,b)=>a+b,0)/arr.length;
+  const tempAvg=avg(years.map(y=>byYear[y].tSum/Math.max(byYear[y].tCnt,1)));
+  const prAvg=avg(years.map(y=>byYear[y].prSum));
+  const sunAvg=avg(years.map(y=>byYear[y].sunSum))/3600;
+  const summerAvg=avg(years.map(y=>byYear[y].summer));
+  const hotAvg=avg(years.map(y=>byYear[y].hot));
+  const frostAvg=avg(years.map(y=>byYear[y].frost));
+  // Cumulative share by day-of-year (0..1 of total annual count)
+  const cumShare=(metric)=>{
+    const cum=new Array(366);
+    let running=0;
+    let total=0;
+    for(let i=0;i<366;i++) total+=dayCount[metric][i];
+    for(let i=0;i<366;i++){
+      running+=dayCount[metric][i];
+      cum[i]=total>0?running/total:0;
+    }
+    return cum;
+  };
+  return {
+    temp:Math.round(tempAvg*10)/10,
+    precip:Math.round(prAvg),
+    sun:Math.round(sunAvg),
+    summer:Math.round(summerAvg),
+    hot:Math.round(hotAvg),
+    frost:Math.round(frostAvg),
+    summerShare:cumShare('summer'),
+    hotShare:cumShare('hot'),
+    frostShare:cumShare('frost')
+  };
 }
+
+function renderClimate(s,current){
+  const set=(id,v)=>{const el=document.getElementById(id); if(el) el.textContent=v;};
+  set('climate-temp',s.temp.toString().replace('.',',')+'°');
+  set('climate-precip',s.precip+' mm');
+  set('climate-sun',s.sun+' h');
+  // Update title
+  const yearEl=document.getElementById('t-climate-current-year');
+  if(yearEl&&current) yearEl.textContent=current.year+(lang==='en'?' projected':' hochgerechnet');
+  // For each metric: render comparison
+  const metrics=[
+    {key:'summer',normal:s.summer,share:s.summerShare,curr:current?current.summer:null,cls:'summer'},
+    {key:'hot',normal:s.hot,share:s.hotShare,curr:current?current.hot:null,cls:'hot'},
+    {key:'frost',normal:s.frost,share:s.frostShare,curr:current?current.frost:null,cls:'frost'}
+  ];
+  // Common scale: max of normal*1.5 and current*1.2 across all metrics
+  const allVals=metrics.flatMap(m=>[m.normal,m.curr||0]);
+  const scaleMax=Math.max(...allVals)*1.4||60;
+  metrics.forEach(m=>{
+    const trackEl=document.getElementById('climate-cmp-track-'+m.key);
+    const normalEl=document.getElementById('climate-cmp-normal-'+m.key);
+    const markerEl=document.getElementById('climate-cmp-marker-'+m.key);
+    const currentEl=document.getElementById('climate-'+m.key+'-current');
+    const deltaEl=document.getElementById('climate-'+m.key+'-delta');
+    if(!trackEl) return;
+    // Normal range bar (grey): 0 .. normal value
+    const normalPct=Math.min((m.normal/scaleMax)*100,100);
+    if(normalEl) normalEl.style.width=normalPct+'%';
+    // Current marker
+    if(m.curr!=null&&current){
+      const markerPct=Math.min((m.curr/scaleMax)*100,100);
+      if(markerEl) markerEl.style.left=markerPct+'%';
+      if(currentEl) currentEl.textContent=m.curr;
+      // Delta vs expected-by-now (seasonal apportionment)
+      const doyIdx=Math.min(current.dayOfYear-1,365);
+      const expectedShare=m.share[doyIdx]||0;
+      const expectedByNow=m.normal*expectedShare;
+      const diff=m.curr-expectedByNow;
+      if(deltaEl){
+        deltaEl.classList.remove('up','down','neutral');
+        if(Math.abs(diff)<1){
+          deltaEl.textContent=lang==='en'?'on track':'im Plan';
+          deltaEl.classList.add('neutral');
+        }else{
+          const sign=diff>0?'+':'';
+          deltaEl.textContent=sign+Math.round(diff)+(lang==='en'?' vs.norm':' vs.Norm');
+          // For frost, "more than expected" = colder than normal = blue (down for warmth)
+          // For summer/hot, "more than expected" = warmer than normal = red (up)
+          if(m.key==='frost'){
+            deltaEl.classList.add(diff>0?'down':'up');
+          }else{
+            deltaEl.classList.add(diff>0?'up':'down');
+          }
+        }
+      }
+    }else{
+      if(currentEl) currentEl.textContent='—';
+      if(deltaEl) deltaEl.textContent='';
+      if(markerEl) markerEl.style.display='none';
+    }
+  });
+  // Legend translation (already in HTML, just labels)
+  const legNormal=document.getElementById('t-climate-legend-normal');
+  const legCurrent=document.getElementById('t-climate-legend-current');
+  if(legNormal) legNormal.textContent=lang==='en'?'Normal 1991\u20132020':'Normalwert 1991\u20132020';
+  if(legCurrent) legCurrent.textContent=lang==='en'?'Current year':'Aktuelles Jahr';
+}
+
 
 /* =========================================================
-   BOOTSTRAP
+   INIT
 ========================================================= */
-async function init(){
-  currentLang = getQueryLang();
-  document.querySelectorAll('.lang-btn').forEach(b => {
-    b.classList.toggle('active', b.dataset.lang === currentLang);
-  });
-  document.documentElement.lang = currentLang;
-  applyTranslations();
-  await fetchWeather();
-  renderForestFire();
-  fetchAQI();
-  fetchPollen();
-  fetchWarnings();
-}
+applyT();
+renderRelLegend();
+loadWeather();
+loadAirQuality();
+loadWarnings();
+loadPollen();
+loadClimate();
 
-init();
+// Auto-refresh alle 10 Minuten
+setInterval(() => {
+  loadWeather();
+  loadAirQuality();
+  loadWarnings();
+  loadPollen();
+}, 10 * 60 * 1000);
+// ── SAIL POPUP ─────────────────────────────────────────────────
+function openSailPopup() {
+  const t = T[lang];
+  const title = document.getElementById('sail-status')?.textContent || '—';
+  const note  = document.getElementById('sail-note')?.textContent;
+  document.getElementById('sail-popup-title').textContent = title;
+  // Body: sail note (z.B. "Wind 2–3 Bft. Ideal für...")
+  const body = (note && note !== '—') ? note : '';
+  document.getElementById('sail-popup-body').textContent = body;
+  // Disc: leer — Disclaimer steht im Footer der Wind-Card
+  const discEl = document.getElementById('sail-popup-disc');
+  if(discEl) discEl.textContent = '';
+  document.getElementById('sail-popup').classList.add('open');
+  document.getElementById('sail-overlay').classList.add('open');
+}
+function closeSailPopup() {
+  document.getElementById('sail-popup').classList.remove('open');
+  document.getElementById('sail-overlay').classList.remove('open');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape'){ closeSailPopup(); closeAqiInfo(); }});
+
+function showAqiInfo(key) {
+  const ln = lang || 'de';
+  const info = window._AQI_INFO?.[key];
+  if (!info) return;
+  const d = info[ln] || info.de;
+  document.getElementById('aqi-popup-title').textContent = d.title || key;
+  document.getElementById('aqi-popup-body').textContent = d.desc || '';
+  const srcLabel = ln==='de' ? 'Datenquelle: Copernicus CAMS · European AQI' : ln==='it' ? 'Fonte: Copernicus CAMS · European AQI' : 'Source: Copernicus CAMS · European AQI';
+  document.getElementById('aqi-popup-source').innerHTML = `${srcLabel}<br><a href="${info.url}" target="_blank" rel="noopener">${info.url}</a>`;
+  document.getElementById('aqi-popup').classList.add('open');
+  document.getElementById('aqi-overlay').classList.add('open');
+}
+function closeAqiInfo() {
+  document.getElementById('aqi-popup').classList.remove('open');
+  document.getElementById('aqi-overlay').classList.remove('open');
+}
 </script>
+<!-- SAIL INFO POPUP -->
+<div class="sail-popup-overlay" id="sail-overlay" onclick="closeSailPopup()"></div>
+<div class="sail-popup" id="sail-popup">
+  <button class="sail-popup-close" onclick="closeSailPopup()">&#x00D7;</button>
+  <div class="sail-popup-title" id="sail-popup-title">—</div>
+  <div class="sail-popup-body" id="sail-popup-body">—</div>
+  <div class="sail-popup-disc" id="sail-popup-disc"></div>
+</div>
+<!-- AQI INFO POPUP -->
+<div class="aqi-popup-overlay" id="aqi-overlay" onclick="closeAqiInfo()"></div>
+<div class="aqi-popup" id="aqi-popup">
+  <button class="aqi-popup-close" onclick="closeAqiInfo()">&#x00D7;</button>
+  <div class="aqi-popup-title" id="aqi-popup-title"></div>
+  <div class="aqi-popup-body" id="aqi-popup-body"></div>
+  <div class="aqi-popup-source" id="aqi-popup-source"></div>
+</div>
+
 </body>
 </html>
