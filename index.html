@@ -1,0 +1,887 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wetter Gaiberg | Pollenflug, Waldbrandgefahr &amp; Luftqualität im Rhein-Neckar-Kreis</title>
+<meta name="description" content="Aktuelles Wetter für Gaiberg im Rhein-Neckar-Kreis mit DWD-Warnungen, Pollenflug für Oberrhein und unteres Neckartal, Waldbrandgefahrenindex und Luftqualität. 7-Tage-Prognose für den staatlich anerkannten Erholungsort südlich von Heidelberg.">
+<meta name="keywords" content="Wetter Gaiberg, DWD Warnungen Gaiberg, Pollenflug Oberrhein Neckartal, Waldbrandgefahr Baden-Württemberg, Luftqualität Heidelberg, Rhein-Neckar-Kreis Wettervorhersage">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://giovanola.github.io/gaiberg/">
+<link rel="alternate" hreflang="de" href="https://giovanola.github.io/gaiberg/?lang=de">
+<link rel="alternate" hreflang="en" href="https://giovanola.github.io/gaiberg/?lang=en">
+<link rel="alternate" hreflang="x-default" href="https://giovanola.github.io/gaiberg/">
+<!-- Open Graph -->
+<meta property="og:type" content="website">
+<meta property="og:title" content="Wetter Gaiberg im Rhein-Neckar-Kreis">
+<meta property="og:description" content="DWD-Wetter, Pollenflug, Waldbrandgefahr und Luftqualität für Gaiberg, den staatlich anerkannten Erholungsort südlich von Heidelberg.">
+<meta property="og:url" content="https://giovanola.github.io/gaiberg/">
+<meta property="og:site_name" content="Gaiberg">
+<meta property="og:locale" content="de_DE">
+<meta property="og:locale:alternate" content="en_GB">
+<!-- Twitter Card -->
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Wetter Gaiberg im Rhein-Neckar-Kreis">
+<meta name="twitter:description" content="DWD-Wetter, Pollenflug, Waldbrandgefahr und Luftqualität für Gaiberg.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;1,300&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --bg:#FAFAF9;--surface:#FFFFFF;--border:#E8E6E1;
+  --text-primary:#1A1A18;--text-secondary:#6B6860;--text-tertiary:#9B9890;
+  --accent:#1B6B45;--accent-pale:#EBF7F1;
+  --gold:#B7791F;--gold-pale:#FFFBEB;
+  --sky:#1565C0;--sky-pale:#E3F2FD;
+  --forest:#2D5F3F;--forest-pale:#E8F0EA;
+  --rel-high:#1B6B45;--rel-mid:#B7791F;--rel-low:#C0392B;
+  --radius-sm:6px;--radius-md:12px;--radius-lg:20px;
+  --shadow-sm:0 1px 3px rgba(0,0,0,.06),0 1px 2px rgba(0,0,0,.04);
+  --shadow-md:0 4px 16px rgba(0,0,0,.07),0 2px 6px rgba(0,0,0,.04);
+  --shadow-lg:0 12px 40px rgba(0,0,0,.08),0 4px 12px rgba(0,0,0,.04);
+  --font-display:'Fraunces',Georgia,serif;--font-body:'Inter',system-ui,sans-serif;
+  --max-w:900px;--transition:200ms cubic-bezier(.4,0,.2,1)
+}
+html{scroll-behavior:smooth;-webkit-font-smoothing:antialiased}
+body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary);line-height:1.6;min-height:100vh;overflow-x:hidden}
+
+/* TOPBAR */
+.topbar{position:sticky;top:0;z-index:100;background:rgba(250,250,249,.92);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);border-bottom:1px solid var(--border);padding:0 clamp(16px,4vw,24px)}
+.topbar-inner{max-width:var(--max-w);margin:0 auto;height:56px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.topbar-brand{display:flex;align-items:center;gap:10px}
+.topbar-icon{width:28px;height:28px;background:var(--forest);border-radius:7px;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.topbar-icon svg{width:16px;height:16px;fill:#fff}
+.topbar-name{font-family:var(--font-display);font-size:15px;font-weight:300;color:var(--text-primary);white-space:nowrap}
+.topbar-right{display:flex;align-items:center;gap:8px}
+.update-chip{font-size:11px;font-weight:500;color:var(--text-tertiary);background:var(--border);border-radius:20px;padding:3px 10px;white-space:nowrap}
+.lang-switcher{display:flex;gap:2px;background:var(--border);border-radius:8px;padding:2px}
+.lang-btn{padding:4px 10px;border-radius:6px;border:none;background:transparent;color:var(--text-secondary);font-family:var(--font-body);font-size:12px;font-weight:500;cursor:pointer;transition:all var(--transition);white-space:nowrap}
+.lang-btn.active{background:var(--surface);color:var(--text-primary);box-shadow:var(--shadow-sm)}
+
+/* OFFLINE DATA CHIP */
+.data-chip-bar{max-width:var(--max-w);margin:0 auto;padding:10px clamp(16px,4vw,24px) 0;display:none}
+.data-chip-bar.visible{display:block}
+.data-chip{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:500;color:var(--gold);background:var(--gold-pale);border:1px solid #FDE68A;border-radius:20px;padding:4px 12px}
+
+/* HERO */
+.hero{padding:clamp(24px,5vw,52px) clamp(16px,4vw,24px) 8px;max-width:var(--max-w);margin:0 auto}
+.hero-eyebrow{display:inline-flex;align-items:center;gap:6px;font-size:11px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;color:var(--forest);margin-bottom:20px}
+.hero-eyebrow::before{content:'';width:20px;height:1px;background:var(--forest)}
+.hero h1{font-family:var(--font-display);font-size:clamp(32px,6vw,54px);font-weight:300;line-height:1.1;letter-spacing:-.02em;margin-bottom:16px;max-width:640px}
+.hero h1 em{font-style:italic;color:var(--forest)}
+.hero-sub{font-size:16px;color:var(--text-secondary);font-weight:300;max-width:520px;line-height:1.7}
+
+/* CONTENT */
+.content{max-width:var(--max-w);margin:0 auto;padding:8px clamp(16px,4vw,24px) 80px;overflow:hidden}
+.section-label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:16px}
+.view-toggle-wrap{display:flex;align-items:center;justify-content:space-between;margin-bottom:16px;flex-wrap:wrap;gap:8px}
+.view-toggle{display:flex;gap:2px;background:var(--border);border-radius:10px;padding:3px}
+.view-btn{padding:6px 18px;border-radius:8px;border:none;background:transparent;color:var(--text-secondary);font-family:var(--font-body);font-size:13px;font-weight:500;cursor:pointer;transition:all var(--transition);white-space:nowrap}
+.view-btn.active{background:var(--forest);color:#fff;font-weight:600;box-shadow:var(--shadow-sm)}
+
+/* CURRENT CARD */
+.current-card{background:var(--forest);border-radius:var(--radius-lg);padding:28px 32px;margin-bottom:12px;color:#fff;display:grid;grid-template-columns:1fr auto;gap:24px;align-items:center}
+@media(max-width:560px){.current-card{grid-template-columns:1fr;text-align:center}}
+.current-left .label{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;opacity:.65;margin-bottom:6px}
+.current-left .temp-big{font-family:var(--font-display);font-size:clamp(48px,10vw,72px);font-weight:300;line-height:1;letter-spacing:-.03em}
+.current-left .condition{font-size:15px;font-weight:300;opacity:.8;margin-top:6px}
+.current-meta{display:grid;grid-template-columns:repeat(3,minmax(72px,1fr));gap:14px 20px;font-size:13px}
+@media(max-width:560px){.current-meta{grid-template-columns:repeat(3,1fr);justify-items:center}}
+.current-meta-item{text-align:left}
+@media(max-width:560px){.current-meta-item{text-align:center}}
+.current-meta-item .val{font-family:var(--font-display);font-size:18px;font-weight:400;line-height:1.2}
+.current-meta-item .lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;opacity:.7;margin-top:2px}
+
+/* UV BLOCK */
+.uv-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.uv-block-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:12px}
+.uv-block-grid{display:grid;gap:10px}
+.uv-item{background:var(--bg);border-radius:var(--radius-md);padding:12px 14px;text-align:center}
+.uv-item-val{font-family:var(--font-display);font-size:22px;font-weight:400;line-height:1.1}
+.uv-item-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);margin-top:4px}
+.uv-block-note{font-size:11px;color:var(--text-tertiary);margin-top:10px;text-align:center;font-style:italic}
+
+/* POLLEN BLOCK */
+.pollen-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:16px;box-shadow:var(--shadow-sm)}
+.pollen-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(110px,1fr));gap:10px;margin-bottom:10px}
+.pollen-item{background:var(--bg);border-radius:var(--radius-md);padding:10px 12px;text-align:center;border-left:3px solid var(--text-tertiary)}
+.pollen-item.lvl-0{border-left-color:#9B9890}
+.pollen-item.lvl-1{border-left-color:#FBBF24}
+.pollen-item.lvl-2{border-left-color:#F59E0B}
+.pollen-item.lvl-3{border-left-color:#DC2626}
+.pollen-item-name{font-size:12px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
+.pollen-item-val{font-size:11px;color:var(--text-secondary)}
+.pollen-item-bar{display:flex;gap:2px;justify-content:center;margin-top:6px}
+.pollen-dot{width:6px;height:6px;border-radius:50%;background:#E8E6E1}
+.pollen-dot.active{background:#DC2626}
+.pollen-region{font-size:11px;color:var(--text-tertiary);text-align:center;margin-top:8px;font-style:italic}
+
+/* FOREST FIRE BLOCK */
+.fire-block{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:18px 22px;margin-bottom:32px;box-shadow:var(--shadow-sm);display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap}
+.fire-left{display:flex;align-items:center;gap:14px}
+.fire-icon{width:44px;height:44px;border-radius:50%;display:flex;align-items:center;justify-content:center;flex-shrink:0;font-size:20px;background:var(--forest-pale);color:var(--forest)}
+.fire-icon.lvl-3,.fire-icon.lvl-4,.fire-icon.lvl-5{background:#FEF2F2;color:#DC2626}
+.fire-icon.lvl-2{background:#FFFBEB;color:#B7791F}
+.fire-text-title{font-size:13px;font-weight:600;color:var(--text-primary)}
+.fire-text-sub{font-size:11px;color:var(--text-secondary);margin-top:2px}
+.fire-level{font-family:var(--font-display);font-size:32px;font-weight:300;color:var(--forest);line-height:1}
+.fire-level.lvl-3,.fire-level.lvl-4,.fire-level.lvl-5{color:#DC2626}
+.fire-level.lvl-2{color:#B7791F}
+.fire-level-lbl{font-size:10px;text-transform:uppercase;letter-spacing:.06em;color:var(--text-tertiary);text-align:right;margin-top:2px}
+
+/* FORECAST */
+.forecast-grid{display:grid;gap:10px;margin-bottom:32px}
+.forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
+.forecast-grid.view-7{grid-template-columns:repeat(auto-fit,minmax(110px,1fr))}
+.forecast-day{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 10px;text-align:center;box-shadow:var(--shadow-sm);transition:all var(--transition);position:relative;overflow:hidden}
+.forecast-day::before{content:'';position:absolute;left:0;top:0;bottom:0;width:3px}
+.forecast-day.rel-high::before{background:var(--rel-high)}
+.forecast-day.rel-mid::before{background:var(--rel-mid)}
+.forecast-day.rel-low::before{background:var(--rel-low)}
+.fday-day{font-size:11px;font-weight:600;color:var(--text-tertiary);text-transform:uppercase;letter-spacing:.06em}
+.fday-icon{font-size:28px;margin:8px 0 4px}
+.fday-temp{font-family:var(--font-display);font-size:16px;font-weight:400;letter-spacing:-.01em}
+.fday-temp .high{color:var(--text-primary)}
+.fday-temp .low{color:var(--text-tertiary);font-size:14px;margin-left:3px}
+.fday-rain{font-size:11px;color:var(--sky);font-weight:500;margin-top:4px}
+
+/* AQI */
+.aqi-card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius-lg);padding:20px 24px;margin-bottom:32px;box-shadow:var(--shadow-sm)}
+.aqi-header{display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;flex-wrap:wrap;gap:8px}
+.aqi-badge{display:inline-flex;align-items:center;gap:8px;padding:5px 14px;border-radius:20px;font-size:13px;font-weight:600}
+.aqi-badge.good{background:var(--accent-pale);color:var(--accent)}
+.aqi-badge.fair{background:var(--gold-pale);color:var(--gold)}
+.aqi-badge.poor{background:#FEF2F2;color:var(--rel-low)}
+.aqi-label-text{font-size:13px;color:var(--text-secondary)}
+.aqi-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(85px,1fr));gap:10px}
+.aqi-item{background:var(--bg);border-radius:var(--radius-md);padding:10px;text-align:center}
+.aqi-val{font-family:var(--font-display);font-size:18px;font-weight:400;line-height:1.1}
+.aqi-lbl{font-size:10px;text-transform:uppercase;color:var(--text-tertiary);margin-top:4px;letter-spacing:.06em}
+
+/* WARNINGS */
+.warnings-section{margin-bottom:32px}
+.warning-item{background:var(--surface);border-left:4px solid var(--rel-mid);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:8px;box-shadow:var(--shadow-sm)}
+.warning-item.sev-major{border-left-color:#DC2626}
+.warning-item.sev-severe{border-left-color:#7F1D1D}
+.warning-item-title{font-size:13px;font-weight:600;color:var(--text-primary);margin-bottom:4px}
+.warning-item-time{font-size:11px;color:var(--text-tertiary);margin-bottom:6px}
+.warning-item-desc{font-size:12px;color:var(--text-secondary);line-height:1.5}
+.no-warnings{padding:14px 18px;background:var(--accent-pale);color:var(--accent);border-radius:var(--radius-md);font-size:13px;font-weight:500;text-align:center}
+.official-links{margin-top:10px;text-align:right}
+.ext-link{font-size:11px;color:var(--text-secondary);text-decoration:none;border-bottom:1px dashed var(--border)}
+.ext-link:hover{color:var(--forest)}
+
+/* RELIABILITY LEGEND */
+.rel-legend{background:var(--bg);border:1px solid var(--border);border-radius:var(--radius-md);padding:14px 18px;margin-bottom:24px}
+.rel-legend-title{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--text-tertiary);margin-bottom:8px}
+.rel-legend-rows{display:grid;gap:6px}
+.rel-row{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--text-secondary)}
+.rel-dot{width:8px;height:8px;border-radius:50%;flex-shrink:0}
+.rel-dot.high{background:var(--rel-high)}
+.rel-dot.mid{background:var(--rel-mid)}
+.rel-dot.low{background:var(--rel-low)}
+
+.info-block{background:var(--bg);border-radius:var(--radius-md);padding:16px 20px;font-size:11px;color:var(--text-tertiary);line-height:1.7}
+.info-block a{color:var(--text-secondary);text-decoration:none;border-bottom:1px dotted var(--border)}
+.info-block a:hover{color:var(--forest)}
+
+footer{text-align:center;padding:30px 20px;font-size:11px;color:var(--text-tertiary);border-top:1px solid var(--border)}
+footer a{color:var(--text-secondary);text-decoration:none}
+footer a:hover{color:var(--forest)}
+
+@keyframes pulse{0%,100%{opacity:1}50%{opacity:.5}}
+.loading{animation:pulse 1.5s ease-in-out infinite}
+</style>
+</head>
+<body>
+
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="topbar-brand">
+      <div class="topbar-icon">
+        <svg viewBox="0 0 24 24"><path d="M12 2L4 9v13h6v-7h4v7h6V9z"/></svg>
+      </div>
+      <span class="topbar-name" id="t-brand">Gaiberg Wetter</span>
+    </div>
+    <div class="topbar-right">
+      <span class="update-chip" id="update-chip">…</span>
+      <div class="lang-switcher" role="group" aria-label="Sprache">
+        <button class="lang-btn active" data-lang="de" onclick="setLang('de')">DE</button>
+        <button class="lang-btn" data-lang="en" onclick="setLang('en')">EN</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="data-chip-bar" id="data-chip-bar">
+  <span class="data-chip" id="data-chip">⚠ <span id="t-data-chip">Datenquelle nicht erreichbar — angezeigte Werte ggf. veraltet</span></span>
+</div>
+
+<div class="hero">
+  <div class="hero-eyebrow" id="t-eyebrow">Rhein-Neckar-Kreis · 49.37° N · 280 m ü. NN</div>
+  <h1 id="t-h1">Wetter in <em>Gaiberg</em></h1>
+  <p class="hero-sub" id="t-sub">Staatlich anerkannter Erholungsort südlich von Heidelberg, am Übergang vom Königstuhl zum Kleinen Odenwald. Aktuelle DWD-Daten für den Rhein-Neckar-Kreis.</p>
+</div>
+
+<div class="content">
+
+  <!-- CURRENT CARD -->
+  <div class="current-card">
+    <div class="current-left">
+      <div class="label" id="t-now">Aktuell</div>
+      <div class="temp-big" id="cur-temp">—°</div>
+      <div class="condition" id="cur-cond">…</div>
+    </div>
+    <div class="current-meta">
+      <div class="current-meta-item"><div class="val" id="cur-high">—°</div><div class="lbl" id="t-lbl-high">Tageshoch</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-low">—°</div><div class="lbl" id="t-lbl-low">Tagestief</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-night">—°</div><div class="lbl" id="t-lbl-night">Nachttief</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-hum">—%</div><div class="lbl" id="t-lbl-hum">Feuchte</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-rain">—%</div><div class="lbl" id="t-lbl-rain">Regenrisiko</div></div>
+      <div class="current-meta-item"><div class="val" id="cur-wind">— km/h</div><div class="lbl" id="t-lbl-wind">Wind</div></div>
+    </div>
+  </div>
+
+  <!-- UV PROTECTION BLOCK -->
+  <div class="uv-block" id="uv-block">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <div class="uv-block-title" id="t-uv-block-title" style="margin-bottom:0;">Sonnenschutz heute</div>
+      <div id="uv-insight-header" style="display:inline-flex;align-items:center;gap:8px;padding:5px 12px;border-radius:20px;background:var(--forest-pale);font-size:12px;font-weight:600;color:var(--forest);">
+        <span id="uv-insight-val">—</span>
+        <span id="uv-insight-label">—</span>
+      </div>
+    </div>
+    <div class="uv-block-grid" style="grid-template-columns:repeat(4,1fr);">
+      <div class="uv-item" id="uv-index-card" style="background:var(--forest-pale);">
+        <div class="uv-item-val" id="cur-uv" style="color:var(--forest);">—</div>
+        <div class="uv-item-lbl" id="t-uv-index-lbl">UV-Index</div>
+      </div>
+      <div class="uv-item">
+        <div class="uv-item-val" id="uv-none-val">—</div>
+        <div class="uv-item-lbl" id="t-uv-none">Ohne Schutz</div>
+      </div>
+      <div class="uv-item">
+        <div class="uv-item-val" id="uv-spf30-val">—</div>
+        <div class="uv-item-lbl" id="t-uv-spf30">LSF 30</div>
+      </div>
+      <div class="uv-item">
+        <div class="uv-item-val" id="uv-spf50-val">—</div>
+        <div class="uv-item-lbl" id="t-uv-spf50">LSF 50</div>
+      </div>
+    </div>
+    <div class="uv-block-note" id="t-uv-note">Richtwert für Hauttyp II. WHO-Standard MED 200 J/m².</div>
+  </div>
+
+  <!-- POLLEN BLOCK -->
+  <div class="pollen-block" id="pollen-block">
+    <div style="display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:8px;margin-bottom:12px;">
+      <div class="uv-block-title" id="t-pollen-title" style="margin-bottom:0;">Pollenflug heute</div>
+      <span style="font-size:11px;color:var(--text-tertiary)" id="t-pollen-source">DWD Pollenflug-Gefahrenindex</span>
+    </div>
+    <div class="pollen-grid" id="pollen-grid"></div>
+    <div class="pollen-region" id="t-pollen-region">Region: Oberrhein und unteres Neckartal</div>
+  </div>
+
+  <!-- FOREST FIRE BLOCK -->
+  <div class="fire-block" id="fire-block">
+    <div class="fire-left">
+      <div class="fire-icon" id="fire-icon">🌲</div>
+      <div>
+        <div class="fire-text-title" id="t-fire-title">Waldbrandgefahr</div>
+        <div class="fire-text-sub" id="fire-text-sub">DWD WBI für Baden-Württemberg</div>
+      </div>
+    </div>
+    <div style="text-align:right">
+      <div class="fire-level" id="fire-level">—</div>
+      <div class="fire-level-lbl" id="fire-level-lbl">Stufe von 5</div>
+    </div>
+  </div>
+
+  <!-- FORECAST -->
+  <div class="forecast-section" style="margin-bottom:32px">
+    <div class="view-toggle-wrap">
+      <div class="section-label" id="t-forecast-label" style="margin-bottom:0">Prognose</div>
+      <div class="view-toggle">
+        <button class="view-btn active" data-days="3" onclick="setView(3)" id="t-btn-3">3 Tage</button>
+        <button class="view-btn" data-days="7" onclick="setView(7)" id="t-btn-7">7 Tage</button>
+      </div>
+    </div>
+    <div class="forecast-grid view-3" id="forecast-grid"></div>
+  </div>
+
+  <!-- AQI -->
+  <div class="aqi-section" style="margin-bottom:32px">
+    <div class="section-label" id="t-aqi-label">Luftqualität</div>
+    <div class="aqi-card">
+      <div class="aqi-header">
+        <div style="display:flex;align-items:center;gap:12px">
+          <span class="aqi-badge good" id="aqi-badge">—</span>
+          <span class="aqi-label-text" id="aqi-sub">…</span>
+        </div>
+        <span style="font-size:11px;color:var(--text-tertiary)">European AQI · Copernicus CAMS</span>
+      </div>
+      <div class="aqi-grid" id="aqi-grid"></div>
+    </div>
+  </div>
+
+  <!-- WARNINGS -->
+  <div class="warnings-section" id="warnings-section">
+    <div class="section-label" id="t-warn-label">DWD-Wetterwarnungen Gemeinde Gaiberg</div>
+    <div id="warnings-grid"></div>
+  </div>
+
+  <div class="rel-legend">
+    <div class="rel-legend-title" id="t-rel-title">Prognosegenauigkeit</div>
+    <div class="rel-legend-rows" id="t-rel-rows"></div>
+  </div>
+
+  <div class="info-block">
+    <p id="t-info">Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY 4.0) auf Basis des DWD ICON-D2 Modells. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Pollenflug: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medizin-Meteorologie</a>. Waldbrandgefahr: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD Waldbrandgefahrenindex</a>. Luftqualität: European AQI (Copernicus CAMS), Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.</p>
+  </div>
+
+</div>
+
+<section style="border-top:1px solid var(--border);padding:clamp(28px,4vw,48px) clamp(16px,4vw,24px);max-width:var(--max-w);margin:0 auto;">
+  <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:24px;">
+    <div>
+      <h2 id="t-seo-m1" style="font-family:var(--font-display);font-size:16px;font-weight:300;margin-bottom:8px;letter-spacing:-0.01em;color:#1A1A18;"></h2>
+      <p id="t-seo-m1p" style="font-size:12px;color:#6B6860;line-height:1.7;"></p>
+    </div>
+    <div>
+      <h2 id="t-seo-m2" style="font-family:var(--font-display);font-size:16px;font-weight:300;margin-bottom:8px;letter-spacing:-0.01em;color:#1A1A18;"></h2>
+      <p id="t-seo-m2p" style="font-size:12px;color:#6B6860;line-height:1.7;"></p>
+    </div>
+    <div>
+      <h2 id="t-seo-m3" style="font-family:var(--font-display);font-size:16px;font-weight:300;margin-bottom:8px;letter-spacing:-0.01em;color:#1A1A18;"></h2>
+      <p id="t-seo-m3p" style="font-size:12px;color:#6B6860;line-height:1.7;"></p>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>Gaiberg, Rhein-Neckar-Kreis &middot; <a href="https://www.gaiberg.de" target="_blank" rel="noopener">gaiberg.de</a> &middot; <a href="https://www.dwd.de" target="_blank" rel="noopener">DWD</a> &middot; <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a></p>
+  <p style="margin-top:6px;font-size:11px;color:var(--text-tertiary);opacity:0.7;">
+    v1.1 &middot; 3. Mai 2026
+  </p>
+</footer>
+
+<script>
+/* =========================================================
+   TRANSLATIONS (DE / EN)
+========================================================= */
+const T = {
+  de:{
+    brand:'Gaiberg Wetter',eyebrow:'Rhein-Neckar-Kreis \u00b7 49.37\u00b0 N \u00b7 280 m \u00fc. NN',
+    h1:'Wetter in <em>Gaiberg</em>',
+    sub:'Staatlich anerkannter Erholungsort s\u00fcdlich von Heidelberg, am \u00dcbergang vom K\u00f6nigstuhl zum Kleinen Odenwald. Aktuelle DWD-Daten f\u00fcr den Rhein-Neckar-Kreis.',
+    now:'Aktuell',high:'Tageshoch',low:'Tagestief',night:'Nachttief',hum:'Feuchte',rain:'Regenrisiko',wind:'Wind',
+    uvBlock:'Sonnenschutz heute',uvIndex:'UV-Index',uvNone:'Ohne Schutz',uvSpf30:'LSF 30',uvSpf50:'LSF 50',
+    uvNote:'Richtwert f\u00fcr Hauttyp II. WHO-Standard MED 200 J/m\u00b2.',
+    pollenTitle:'Pollenflug heute',pollenSource:'DWD Pollenflug-Gefahrenindex',pollenRegion:'Region: Oberrhein und unteres Neckartal',
+    fireTitle:'Waldbrandgefahr',fireSub:'DWD WBI f\u00fcr Baden-W\u00fcrttemberg',fireLvl:'Stufe von 5',
+    forecastLabel:'Prognose',btn3:'3 Tage',btn7:'7 Tage',
+    aqiLabel:'Luftqualit\u00e4t',
+    warnLabel:'DWD-Wetterwarnungen Gemeinde Gaiberg',noWarnings:'Aktuell keine Warnungen f\u00fcr Gaiberg',
+    relTitle:'Prognosegenauigkeit',relHigh:'Hoch \u00b7 Tag 1\u20133',relMid:'Mittel \u00b7 Tag 4\u20135',relLow:'Niedrig \u00b7 Tag 6\u20137',
+    info:'Wetterdaten: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) auf Basis des DWD ICON-D2 Modells. Warnungen: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">Deutscher Wetterdienst</a> (Gemeindeebene). Pollenflug: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medizin-Meteorologie</a>. Waldbrandgefahr: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD Waldbrandgefahrenindex</a>. Luftqualit\u00e4t: European AQI (Copernicus CAMS), Messdaten der <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.',
+    dataChip:'Datenquelle nicht erreichbar \u2014 angezeigte Werte ggf. veraltet',
+    days:['So','Mo','Di','Mi','Do','Fr','Sa'],
+    cond:{0:'Klar',1:'Heiter',2:'Wolkig',3:'Bedeckt',45:'Nebel',48:'Reifnebel',51:'Niesel',53:'Niesel',55:'Niesel',61:'Regen',63:'Regen',65:'Starker Regen',71:'Schnee',73:'Schnee',75:'Starker Schnee',77:'Schnee',80:'Schauer',81:'Schauer',82:'Heftige Schauer',95:'Gewitter',96:'Gewitter mit Hagel',99:'Schweres Gewitter'},
+    seo:[
+      ['Gaiberg im Rhein-Neckar-Kreis','Gaiberg ist eine Gemeinde mit rund 2500 Einwohnern, gelegen in 200 bis 445 Meter H\u00f6he am Westrand des Rhein-Neckar-Kreises an der Grenze zum kleinen Odenwald und zum Kraichgau. Der Ort liegt rund zehn Kilometer s\u00fcdlich von Heidelberg auf der S\u00fcdost-Abdachung des K\u00f6nigstuhls, im Naturpark Neckartal-Odenwald. Seit 1967 ist Gaiberg staatlich anerkannter Erholungsort.'],
+      ['Klima und Wetter','Das Klima in Gaiberg unterscheidet sich aufgrund der H\u00f6henlage deutlich vom milden Heidelberger Talklima. Wer von Heidelberg-Bismarckplatz \u00fcber Drei Eichen nach Gaiberg f\u00e4hrt, sp\u00fcrt rasch den Temperaturwechsel: oft 2 bis 4 Grad k\u00fchler als im Neckartal, mehr Niederschlag und h\u00e4ufigere Nebelbildung. Pollenflug, Waldbrandgefahr und Sonnenschutz spielen f\u00fcr Wanderer und Erholungssuchende eine besondere Rolle.'],
+      ['Naherholung und Wandern','Gaiberg ist Ausgangspunkt zahlreicher Wanderwege durch W\u00e4lder und Wiesen rund um den K\u00f6nigstuhl. Die Region ist beliebt bei Heidelberger Tagesausfl\u00fcglern. F\u00fcr die Tourenplanung sind aktuelle Wetterdaten, der Pollenflug-Index f\u00fcr Oberrhein und unteres Neckartal sowie die Waldbrandgefahrenstufe entscheidend, gerade in den Sommermonaten und w\u00e4hrend der Bl\u00fctezeit.']
+    ],
+    pollen:{Hasel:'Hasel',Erle:'Erle',Esche:'Esche',Birke:'Birke',Graeser:'Gr\u00e4ser',Roggen:'Roggen',Beifuss:'Beifu\u00df',Ambrosia:'Ambrosia'},
+    pollenLevels:{0:'keine',1:'gering',2:'mittel',3:'hoch','-1':'k.A.','0-1':'keine\u2013gering','1-2':'gering\u2013mittel','2-3':'mittel\u2013hoch'},
+    fireLevels:{1:'sehr gering',2:'gering',3:'mittel',4:'hoch',5:'sehr hoch'},
+    aqiLevels:{good:'Gute Luft',fair:'M\u00e4\u00dfige Belastung',poor:'Hohe Belastung',moderate:'Moderate Luft'},
+    aqiSub:'PM2.5, PM10, NO\u2082 und Ozon-Belastung',
+    warnSeverity:{Minor:'Geringf\u00fcgig',Moderate:'M\u00e4\u00dfig',Severe:'Schwer',Extreme:'Extrem'}
+  },
+  en:{
+    brand:'Gaiberg Weather',eyebrow:'Rhein-Neckar District \u00b7 49.37\u00b0 N \u00b7 280 m AMSL',
+    h1:'Weather in <em>Gaiberg</em>',
+    sub:'Officially recognised health resort south of Heidelberg, on the eastern slope of the K\u00f6nigstuhl massif at the edge of the Lesser Odenwald. Live data from the German Weather Service.',
+    now:'Now',high:'High',low:'Low',night:'Night low',hum:'Humidity',rain:'Rain risk',wind:'Wind',
+    uvBlock:'Sun protection today',uvIndex:'UV index',uvNone:'No protection',uvSpf30:'SPF 30',uvSpf50:'SPF 50',
+    uvNote:'Reference value for skin type II. WHO standard MED 200 J/m\u00b2.',
+    pollenTitle:'Pollen forecast today',pollenSource:'DWD pollen risk index',pollenRegion:'Region: Upper Rhine & lower Neckar valley',
+    fireTitle:'Forest fire risk',fireSub:'DWD WBI for Baden-W\u00fcrttemberg',fireLvl:'Level of 5',
+    forecastLabel:'Forecast',btn3:'3 days',btn7:'7 days',
+    aqiLabel:'Air quality',
+    warnLabel:'DWD weather warnings for Gaiberg municipality',noWarnings:'No active warnings for Gaiberg',
+    relTitle:'Forecast accuracy',relHigh:'High \u00b7 day 1\u20133',relMid:'Medium \u00b7 day 4\u20135',relLow:'Low \u00b7 day 6\u20137',
+    info:'Weather data: <a href="https://open-meteo.com" target="_blank" rel="noopener">Open-Meteo</a> (CC BY\u00a04.0) based on the DWD ICON-D2 model. Warnings: <a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html" target="_blank" rel="noopener">German Weather Service</a> (municipality level). Pollen: <a href="https://www.dwd.de/pollenflug" target="_blank" rel="noopener">DWD Medical Meteorology</a>. Forest fire: <a href="https://www.dwd.de/DE/leistungen/waldbrandgef/waldbrandgef.html" target="_blank" rel="noopener">DWD WBI</a>. Air quality: European AQI (Copernicus CAMS), measurements from <a href="https://www.lubw.baden-wuerttemberg.de/luft/messwerte-immissionswerte" target="_blank" rel="noopener">LUBW</a>.',
+    dataChip:'Data source unavailable \u2014 displayed values may be outdated',
+    days:['Sun','Mon','Tue','Wed','Thu','Fri','Sat'],
+    cond:{0:'Clear',1:'Mainly clear',2:'Partly cloudy',3:'Overcast',45:'Fog',48:'Rime fog',51:'Drizzle',53:'Drizzle',55:'Drizzle',61:'Rain',63:'Rain',65:'Heavy rain',71:'Snow',73:'Snow',75:'Heavy snow',77:'Snow',80:'Showers',81:'Showers',82:'Heavy showers',95:'Thunderstorm',96:'Thunder & hail',99:'Severe storm'},
+    seo:[
+      ['Gaiberg in the Rhein-Neckar District','Gaiberg is a municipality with around 2,500 inhabitants, located between 200 and 445 metres elevation on the western edge of the Rhein-Neckar district, at the boundary of the Lesser Odenwald and Kraichgau regions. The village lies roughly ten kilometres south of Heidelberg on the south-eastern slope of the K\u00f6nigstuhl massif, within the Neckartal-Odenwald nature park. Gaiberg has been an officially recognised health resort since 1967.'],
+      ['Climate and weather','The climate in Gaiberg differs noticeably from the mild Heidelberg valley climate due to its elevation. Anyone driving from Heidelberg-Bismarckplatz via Drei Eichen up to Gaiberg will quickly notice the temperature change: often 2 to 4 degrees cooler than in the Neckar valley, with higher rainfall and more frequent fog. Pollen, forest fire risk and sun protection are particularly relevant for hikers and visitors.'],
+      ['Recreation and hiking','Gaiberg is the starting point for numerous trails through forests and meadows around the K\u00f6nigstuhl. The region is popular with day-trippers from Heidelberg. For trip planning, current weather, the pollen risk index for the Upper Rhine area and the forest fire warning level are decisive, particularly during summer and pollen season.']
+    ],
+    pollen:{Hasel:'Hazel',Erle:'Alder',Esche:'Ash',Birke:'Birch',Graeser:'Grasses',Roggen:'Rye',Beifuss:'Mugwort',Ambrosia:'Ragweed'},
+    pollenLevels:{0:'none',1:'low',2:'moderate',3:'high','-1':'n/a','0-1':'none\u2013low','1-2':'low\u2013moderate','2-3':'moderate\u2013high'},
+    fireLevels:{1:'very low',2:'low',3:'moderate',4:'high',5:'very high'},
+    aqiLevels:{good:'Good air',fair:'Moderate pollution',poor:'High pollution',moderate:'Moderate air'},
+    aqiSub:'PM2.5, PM10, NO\u2082 and ozone levels',
+    warnSeverity:{Minor:'Minor',Moderate:'Moderate',Severe:'Severe',Extreme:'Extreme'}
+  }
+};
+
+/* =========================================================
+   CONSTANTS
+========================================================= */
+const LAT = 49.3664;
+const LON = 8.74972;
+const TZ = 'Europe/Berlin';
+const GEMEINDENAME = 'Gemeinde Gaiberg';
+const POLLEN_PARTREGION = 111; // Oberrhein und unteres Neckartal
+const PROXY = 'https://corsproxy.io/?';
+
+let currentLang = 'de';
+let currentView = 3;
+let forecastData = null;
+let dataIssue = false;
+
+/* =========================================================
+   LANGUAGE & QUERY STRING
+========================================================= */
+function getQueryLang(){
+  const p = new URLSearchParams(window.location.search);
+  const l = p.get('lang');
+  return (l === 'en' || l === 'de') ? l : 'de';
+}
+
+function setLang(lang){
+  currentLang = lang;
+  document.documentElement.lang = lang;
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === lang);
+  });
+  const u = new URL(window.location);
+  u.searchParams.set('lang', lang);
+  window.history.replaceState({}, '', u);
+  applyTranslations();
+  if (forecastData) renderForecast();
+}
+
+function applyTranslations(){
+  const t = T[currentLang];
+  const set = (id, val) => { const el = document.getElementById(id); if (el) el.innerHTML = val; };
+  set('t-brand', t.brand);
+  set('t-eyebrow', t.eyebrow);
+  set('t-h1', t.h1);
+  set('t-sub', t.sub);
+  set('t-now', t.now);
+  set('t-lbl-high', t.high);
+  set('t-lbl-low', t.low);
+  set('t-lbl-night', t.night);
+  set('t-lbl-hum', t.hum);
+  set('t-lbl-rain', t.rain);
+  set('t-lbl-wind', t.wind);
+  set('t-uv-block-title', t.uvBlock);
+  set('t-uv-index-lbl', t.uvIndex);
+  set('t-uv-none', t.uvNone);
+  set('t-uv-spf30', t.uvSpf30);
+  set('t-uv-spf50', t.uvSpf50);
+  set('t-uv-note', t.uvNote);
+  set('t-pollen-title', t.pollenTitle);
+  set('t-pollen-source', t.pollenSource);
+  set('t-pollen-region', t.pollenRegion);
+  set('t-fire-title', t.fireTitle);
+  set('fire-text-sub', t.fireSub);
+  set('fire-level-lbl', t.fireLvl);
+  set('t-forecast-label', t.forecastLabel);
+  set('t-btn-3', t.btn3);
+  set('t-btn-7', t.btn7);
+  set('t-aqi-label', t.aqiLabel);
+  set('t-warn-label', t.warnLabel);
+  set('t-rel-title', t.relTitle);
+  set('t-info', t.info);
+  set('t-data-chip', t.dataChip);
+  set('aqi-sub', t.aqiSub);
+
+  const rels = document.getElementById('t-rel-rows');
+  if (rels) rels.innerHTML =
+    `<div class="rel-row"><span class="rel-dot high"></span>${t.relHigh}</div>
+     <div class="rel-row"><span class="rel-dot mid"></span>${t.relMid}</div>
+     <div class="rel-row"><span class="rel-dot low"></span>${t.relLow}</div>`;
+
+  // SEO blocks
+  t.seo.forEach((s, i) => {
+    set(`t-seo-m${i+1}`, s[0]);
+    set(`t-seo-m${i+1}p`, s[1]);
+  });
+
+  // Page meta
+  document.title = currentLang === 'de'
+    ? 'Wetter Gaiberg | Pollenflug, Waldbrandgefahr & Luftqualität im Rhein-Neckar-Kreis'
+    : 'Gaiberg Weather | Pollen, Forest Fire Risk & Air Quality near Heidelberg';
+}
+
+function setView(days){
+  currentView = days;
+  document.querySelectorAll('.view-btn').forEach(b => {
+    b.classList.toggle('active', parseInt(b.dataset.days) === days);
+  });
+  if (forecastData) renderForecast();
+}
+
+/* =========================================================
+   WEATHER (Open-Meteo / DWD ICON-D2)
+========================================================= */
+function flagDataIssue(){
+  dataIssue = true;
+  document.getElementById('data-chip-bar').classList.add('visible');
+}
+
+async function fetchWeather(){
+  const url = `https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
+    + `&current=temperature_2m,relative_humidity_2m,precipitation,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,uv_index`
+    + `&hourly=temperature_2m,precipitation_probability,precipitation,weather_code,uv_index`
+    + `&daily=weather_code,temperature_2m_max,temperature_2m_min,precipitation_sum,precipitation_probability_max,uv_index_max,sunrise,sunset`
+    + `&models=icon_d2`
+    + `&timezone=${encodeURIComponent(TZ)}&forecast_days=7`;
+  try{
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('weather fetch failed');
+    const data = await r.json();
+    forecastData = data;
+    renderCurrent(data);
+    renderForecast();
+    renderUV(data);
+    return data;
+  } catch(e){
+    console.error(e);
+    flagDataIssue();
+  }
+}
+
+function renderCurrent(d){
+  const t = T[currentLang];
+  const c = d.current;
+  const today = d.daily;
+  document.getElementById('cur-temp').textContent = Math.round(c.temperature_2m) + '°';
+  document.getElementById('cur-cond').textContent = t.cond[c.weather_code] || '—';
+  document.getElementById('cur-high').textContent = Math.round(today.temperature_2m_max[0]) + '°';
+  document.getElementById('cur-low').textContent = Math.round(today.temperature_2m_min[0]) + '°';
+  document.getElementById('cur-night').textContent = Math.round(today.temperature_2m_min[1]) + '°';
+  document.getElementById('cur-hum').textContent = Math.round(c.relative_humidity_2m) + '%';
+  document.getElementById('cur-rain').textContent = Math.round(today.precipitation_probability_max[0] || 0) + '%';
+  document.getElementById('cur-wind').textContent = Math.round(c.wind_speed_10m) + ' km/h';
+  const now = new Date();
+  const hh = String(now.getHours()).padStart(2,'0');
+  const mm = String(now.getMinutes()).padStart(2,'0');
+  document.getElementById('update-chip').textContent = (currentLang === 'de' ? 'Aktualisiert ' : 'Updated ') + hh + ':' + mm;
+}
+
+function renderForecast(){
+  if (!forecastData) return;
+  const t = T[currentLang];
+  const d = forecastData.daily;
+  const grid = document.getElementById('forecast-grid');
+  grid.className = 'forecast-grid view-' + currentView;
+  grid.innerHTML = '';
+  const days = currentView;
+  for (let i = 0; i < days; i++){
+    const date = new Date(d.time[i]);
+    const dayName = i === 0 ? (currentLang === 'de' ? 'Heute' : 'Today')
+                  : i === 1 ? (currentLang === 'de' ? 'Morgen' : 'Tomorrow')
+                  : t.days[date.getDay()];
+    const code = d.weather_code[i];
+    const icon = weatherIcon(code);
+    const high = Math.round(d.temperature_2m_max[i]);
+    const low = Math.round(d.temperature_2m_min[i]);
+    const rain = Math.round(d.precipitation_probability_max[i] || 0);
+    const rel = i < 3 ? 'rel-high' : i < 5 ? 'rel-mid' : 'rel-low';
+    const card = document.createElement('div');
+    card.className = 'forecast-day ' + rel;
+    card.innerHTML = `
+      <div class="fday-day">${dayName}</div>
+      <div class="fday-icon">${icon}</div>
+      <div class="fday-temp"><span class="high">${high}°</span><span class="low">${low}°</span></div>
+      <div class="fday-rain">${rain > 0 ? rain + '%' : ''}</div>
+    `;
+    grid.appendChild(card);
+  }
+}
+
+function weatherIcon(code){
+  if (code === 0) return '☀️';
+  if (code === 1 || code === 2) return '🌤️';
+  if (code === 3) return '☁️';
+  if (code === 45 || code === 48) return '🌫️';
+  if (code >= 51 && code <= 55) return '🌦️';
+  if (code >= 61 && code <= 65) return '🌧️';
+  if (code >= 71 && code <= 77) return '❄️';
+  if (code >= 80 && code <= 82) return '🌧️';
+  if (code >= 95 && code <= 99) return '⛈️';
+  return '🌥️';
+}
+
+/* =========================================================
+   UV INDEX
+========================================================= */
+function renderUV(d){
+  const uv = d.current.uv_index || 0;
+  const max = d.daily.uv_index_max[0] || uv;
+  const insightEl = document.getElementById('uv-insight-val');
+  const labelEl = document.getElementById('uv-insight-label');
+  insightEl.textContent = 'UV ' + uv.toFixed(1);
+  const t = currentLang === 'de'
+    ? (uv < 3 ? 'gering' : uv < 6 ? 'mittel' : uv < 8 ? 'hoch' : uv < 11 ? 'sehr hoch' : 'extrem')
+    : (uv < 3 ? 'low' : uv < 6 ? 'moderate' : uv < 8 ? 'high' : uv < 11 ? 'very high' : 'extreme');
+  labelEl.textContent = t;
+  document.getElementById('cur-uv').textContent = max.toFixed(1);
+  // Sun protection times (rough estimate, skin type II, MED 200 J/m²)
+  const baseMin = uv > 0 ? Math.round(67 / Math.max(uv, 0.5)) : 99;
+  document.getElementById('uv-none-val').textContent = baseMin > 60 ? Math.floor(baseMin/60) + 'h' : baseMin + 'min';
+  const min30 = baseMin * 30;
+  const min50 = baseMin * 50;
+  document.getElementById('uv-spf30-val').textContent = min30 >= 60 ? Math.floor(min30/60) + 'h' : min30 + 'min';
+  document.getElementById('uv-spf50-val').textContent = min50 >= 60 ? Math.floor(min50/60) + 'h' : min50 + 'min';
+}
+
+/* =========================================================
+   AIR QUALITY (Open-Meteo / Copernicus CAMS)
+========================================================= */
+async function fetchAQI(){
+  const url = `https://air-quality-api.open-meteo.com/v1/air-quality?latitude=${LAT}&longitude=${LON}`
+    + `&current=european_aqi,pm10,pm2_5,nitrogen_dioxide,ozone&timezone=${encodeURIComponent(TZ)}`;
+  try{
+    const r = await fetch(url);
+    if (!r.ok) throw new Error('aqi fetch failed');
+    const data = await r.json();
+    renderAQI(data.current);
+  } catch(e){
+    console.error('aqi', e);
+    document.getElementById('aqi-sub').textContent = currentLang === 'de' ? 'Daten momentan nicht verfügbar' : 'Data currently unavailable';
+  }
+}
+
+function renderAQI(c){
+  const t = T[currentLang];
+  const aqi = Math.round(c.european_aqi || 0);
+  const badge = document.getElementById('aqi-badge');
+  badge.textContent = 'EAQI ' + aqi;
+  let cls = 'good', label = t.aqiLevels.good;
+  if (aqi > 60) { cls = 'poor'; label = t.aqiLevels.poor; }
+  else if (aqi > 40) { cls = 'fair'; label = t.aqiLevels.fair; }
+  else if (aqi > 20) { cls = 'good'; label = t.aqiLevels.moderate; }
+  badge.className = 'aqi-badge ' + cls;
+  document.getElementById('aqi-sub').textContent = label;
+
+  const grid = document.getElementById('aqi-grid');
+  grid.innerHTML = `
+    <div class="aqi-item"><div class="aqi-val">${(c.pm2_5||0).toFixed(0)}</div><div class="aqi-lbl">PM2.5</div></div>
+    <div class="aqi-item"><div class="aqi-val">${(c.pm10||0).toFixed(0)}</div><div class="aqi-lbl">PM10</div></div>
+    <div class="aqi-item"><div class="aqi-val">${(c.nitrogen_dioxide||0).toFixed(0)}</div><div class="aqi-lbl">NO\u2082</div></div>
+    <div class="aqi-item"><div class="aqi-val">${(c.ozone||0).toFixed(0)}</div><div class="aqi-lbl">O\u2083</div></div>
+  `;
+}
+
+/* =========================================================
+   POLLEN (DWD via opendata.dwd.de/.../s31fg.json)
+   Fetched through CORS proxy because DWD does not set CORS headers.
+========================================================= */
+async function fetchPollen(){
+  const URL_POLLEN = 'https://opendata.dwd.de/climate_environment/health/alerts/s31fg.json';
+  try{
+    let data;
+    try {
+      const r = await fetch(URL_POLLEN);
+      if (r.ok) data = await r.json();
+    } catch(_) {}
+    if (!data) {
+      const r = await fetch(PROXY + encodeURIComponent(URL_POLLEN));
+      if (!r.ok) throw new Error('pollen fetch failed');
+      data = await r.json();
+    }
+    const region = data.content.find(c => c.partregion_id === POLLEN_PARTREGION);
+    if (region) renderPollen(region.Pollen);
+    else renderPollenFallback();
+  } catch(e){
+    console.error('pollen', e);
+    renderPollenFallback();
+  }
+}
+
+function pollenLevelClass(v){
+  if (v === '0' || v === '0-1') return 0;
+  if (v === '1' || v === '1-2') return 1;
+  if (v === '2' || v === '2-3') return 2;
+  if (v === '3') return 3;
+  return -1;
+}
+
+function pollenDots(v){
+  const lvl = pollenLevelClass(v);
+  let html = '';
+  for (let i = 0; i < 3; i++){
+    html += `<span class="pollen-dot${i < lvl ? ' active' : ''}"></span>`;
+  }
+  return html;
+}
+
+function renderPollen(pollenData){
+  const t = T[currentLang];
+  const grid = document.getElementById('pollen-grid');
+  grid.innerHTML = '';
+  const order = ['Birke','Graeser','Esche','Hasel','Erle','Roggen','Beifuss','Ambrosia'];
+  let anyShown = 0;
+  order.forEach(key => {
+    const p = pollenData[key];
+    if (!p) return;
+    const today = p.today;
+    if (today === '-1' || today === undefined || today === null) return;
+    const lvl = pollenLevelClass(today);
+    anyShown++;
+    const item = document.createElement('div');
+    item.className = 'pollen-item lvl-' + Math.max(0, lvl);
+    item.innerHTML = `
+      <div class="pollen-item-name">${t.pollen[key] || key}</div>
+      <div class="pollen-item-val">${t.pollenLevels[today] || today}</div>
+      <div class="pollen-item-bar">${pollenDots(today)}</div>
+    `;
+    grid.appendChild(item);
+  });
+  if (!anyShown){
+    grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:8px;">${currentLang === 'de' ? 'Aktuell keine Pollenbelastung' : 'Currently no pollen burden'}</div>`;
+  }
+}
+
+function renderPollenFallback(){
+  const grid = document.getElementById('pollen-grid');
+  grid.innerHTML = `<div style="grid-column:1/-1;text-align:center;font-size:12px;color:var(--text-tertiary);padding:8px;">
+    ${currentLang === 'de' ? 'DWD-Pollendaten momentan nicht erreichbar.' : 'DWD pollen data currently unavailable.'}
+    <a href="https://www.dwd.de/DE/leistungen/gefahrenindizespollen/gefahrenindexpollen.html" target="_blank" rel="noopener" class="ext-link" style="margin-left:6px">DWD &rarr;</a>
+  </div>`;
+}
+
+/* =========================================================
+   FOREST FIRE INDEX (DWD WBI)
+   Approximated from current weather data because the official DWD WBI
+   table is HTML-only and not CORS-enabled.
+   Inputs: temperature, relative humidity, wind speed, recent precipitation.
+========================================================= */
+function calculateWBI(d){
+  // Simplified meteorological dryness proxy based on DWD WBI input variables.
+  // Returns level 1-5 (sehr gering bis sehr hoch).
+  const t = d.current.temperature_2m;
+  const rh = d.current.relative_humidity_2m;
+  const wind = d.current.wind_speed_10m;
+  // Sum precipitation last 24h
+  const hourly = d.hourly;
+  let precip24 = 0;
+  const nowIdx = hourly.time.findIndex(ts => new Date(ts) > new Date()) - 1;
+  for (let i = Math.max(0, nowIdx - 24); i < nowIdx; i++){
+    precip24 += hourly.precipitation[i] || 0;
+  }
+  // Score: dry+warm+windy => higher
+  let score = 0;
+  if (t > 30) score += 3; else if (t > 25) score += 2; else if (t > 20) score += 1;
+  if (rh < 30) score += 3; else if (rh < 45) score += 2; else if (rh < 60) score += 1;
+  if (wind > 25) score += 2; else if (wind > 15) score += 1;
+  if (precip24 < 0.5) score += 2; else if (precip24 < 2) score += 1; else if (precip24 > 10) score -= 2;
+  // Map to 1-5
+  let lvl = 1;
+  if (score >= 9) lvl = 5;
+  else if (score >= 7) lvl = 4;
+  else if (score >= 5) lvl = 3;
+  else if (score >= 3) lvl = 2;
+  return lvl;
+}
+
+function renderForestFire(){
+  if (!forecastData) return;
+  const t = T[currentLang];
+  const lvl = calculateWBI(forecastData);
+  const lvlEl = document.getElementById('fire-level');
+  const iconEl = document.getElementById('fire-icon');
+  lvlEl.textContent = lvl;
+  lvlEl.className = 'fire-level lvl-' + lvl;
+  iconEl.className = 'fire-icon lvl-' + lvl;
+  iconEl.textContent = lvl >= 4 ? '🔥' : lvl >= 3 ? '🌡️' : '🌲';
+  document.getElementById('fire-text-sub').textContent =
+    (currentLang === 'de' ? 'DWD WBI Schätzung · ' : 'DWD WBI estimate · ')
+    + t.fireLevels[lvl];
+}
+
+/* =========================================================
+   DWD WARNINGS (via DWD GeoServer)
+========================================================= */
+async function fetchWarnings(){
+  // DWD Geoserver WFS, JSON output, filter by exact municipality name
+  const cql = encodeURIComponent(`NAME LIKE '${GEMEINDENAME}'`);
+  const URL_WARN = `https://maps.dwd.de/geoserver/dwd/ows?service=WFS&version=2.0.0&request=GetFeature&typeName=dwd:Warnungen_Gemeinden&outputFormat=application/json&CQL_FILTER=${cql}`;
+  try{
+    let data;
+    try{
+      const r = await fetch(URL_WARN);
+      if (r.ok) data = await r.json();
+    } catch(_){}
+    if (!data){
+      const r = await fetch(PROXY + encodeURIComponent(URL_WARN));
+      if (!r.ok) throw new Error('warnings fetch failed');
+      data = await r.json();
+    }
+    renderWarnings(data.features || []);
+  } catch(e){
+    console.error('warnings', e);
+    renderWarnings([]);
+  }
+}
+
+function renderWarnings(features){
+  const t = T[currentLang];
+  const grid = document.getElementById('warnings-grid');
+  if (!features.length){
+    grid.innerHTML = `<div class="no-warnings">${t.noWarnings}</div>
+      <div class="official-links"><a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html?ort=Gaiberg" target="_blank" rel="noopener" class="ext-link">DWD Gaiberg &rarr;</a></div>`;
+    return;
+  }
+  grid.innerHTML = '';
+  features.forEach(f => {
+    const p = f.properties;
+    const sev = (p.SEVERITY || 'Moderate').toLowerCase();
+    let cls = '';
+    if (sev === 'severe') cls = 'sev-major';
+    if (sev === 'extreme') cls = 'sev-severe';
+    const onset = p.ONSET ? new Date(p.ONSET).toLocaleString(currentLang === 'de' ? 'de-DE' : 'en-GB', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}) : '';
+    const expires = p.EXPIRES ? new Date(p.EXPIRES).toLocaleString(currentLang === 'de' ? 'de-DE' : 'en-GB', {day:'2-digit', month:'2-digit', hour:'2-digit', minute:'2-digit'}) : '';
+    const item = document.createElement('div');
+    item.className = 'warning-item ' + cls;
+    item.innerHTML = `
+      <div class="warning-item-title">${p.HEADLINE || p.EVENT || '—'}</div>
+      <div class="warning-item-time">${currentLang === 'de' ? 'Gültig' : 'Valid'}: ${onset} – ${expires}</div>
+      <div class="warning-item-desc">${p.DESCRIPTION || ''}</div>
+    `;
+    grid.appendChild(item);
+  });
+  grid.innerHTML += `<div class="official-links"><a href="https://www.dwd.de/DE/wetter/warnungen_gemeinden/warnWetter_node.html?ort=Gaiberg" target="_blank" rel="noopener" class="ext-link">DWD Gaiberg &rarr;</a></div>`;
+}
+
+/* =========================================================
+   BOOTSTRAP
+========================================================= */
+async function init(){
+  currentLang = getQueryLang();
+  document.querySelectorAll('.lang-btn').forEach(b => {
+    b.classList.toggle('active', b.dataset.lang === currentLang);
+  });
+  document.documentElement.lang = currentLang;
+  applyTranslations();
+  await fetchWeather();
+  renderForestFire();
+  fetchAQI();
+  fetchPollen();
+  fetchWarnings();
+}
+
+init();
+</script>
+</body>
+</html>
