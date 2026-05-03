@@ -1336,9 +1336,11 @@ const LAT=49.3664,LON=8.74972,TZ='Europe%2FBerlin';
 async function loadWeather(){
   try{
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
-      +`&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,rain_sum,showers_sum,windspeed_10m_max,sunshine_duration,daylight_duration,weathercode,uv_index_max,sunrise,sunset`
-      +`&hourly=relativehumidity_2m,temperature_2m,windspeed_10m,windgusts_10m,winddirection_10m,pressure_msl,precipitation,precipitation_probability,rain,showers,cape,weathercode&current_weather=true&timezone=${TZ}&forecast_days=7`;
+      +`&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl,precipitation,rain,showers`
+      +`&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,rain_sum,showers_sum,wind_speed_10m_max,sunshine_duration,daylight_duration,weather_code,uv_index_max,sunrise,sunset`
+      +`&hourly=relative_humidity_2m,temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,pressure_msl,precipitation,precipitation_probability,rain,showers,cape,weather_code&timezone=${TZ}&forecast_days=7`;
     const data=await(await fetch(url)).json();
+    normalizeWeatherResponse(data);
     globalData=data;
     renderCurrent(data); renderCards(data,activeView);
     renderWindBlock(data);
@@ -1351,6 +1353,50 @@ async function loadWeather(){
     const heroTs = document.getElementById('hero-ts-text');
     if(heroTs) heroTs.textContent = (T[lang].dataFrom||T.de.dataFrom)+dateStr+', '+timeStr+' · Open-Meteo';
   }catch(_){renderFallback();}
+}
+
+/* Normalize Open-Meteo response to support both legacy (current_weather, windspeed_10m, weathercode)
+   and modern (current, wind_speed_10m, weather_code) names everywhere in the codebase. */
+function normalizeWeatherResponse(data){
+  if(!data) return;
+  // 1) Build a current_weather shim from the modern `current` object if it exists
+  if(data.current&&!data.current_weather){
+    const c=data.current;
+    data.current_weather={
+      temperature:c.temperature_2m,
+      weathercode:c.weather_code,
+      windspeed:c.wind_speed_10m,
+      winddirection:c.wind_direction_10m,
+      time:c.time
+    };
+  }
+  // 2) For hourly: alias modern names back to legacy names
+  if(data.hourly){
+    const h=data.hourly;
+    const aliases={
+      'wind_speed_10m':'windspeed_10m',
+      'wind_gusts_10m':'windgusts_10m',
+      'wind_direction_10m':'winddirection_10m',
+      'weather_code':'weathercode',
+      'relative_humidity_2m':'relativehumidity_2m'
+    };
+    Object.entries(aliases).forEach(([modern,legacy])=>{
+      if(h[modern]&&!h[legacy]) h[legacy]=h[modern];
+      if(h[legacy]&&!h[modern]) h[modern]=h[legacy];
+    });
+  }
+  // 3) Same for daily
+  if(data.daily){
+    const d=data.daily;
+    const aliases={
+      'wind_speed_10m_max':'windspeed_10m_max',
+      'weather_code':'weathercode'
+    };
+    Object.entries(aliases).forEach(([modern,legacy])=>{
+      if(d[modern]&&!d[legacy]) d[legacy]=d[modern];
+      if(d[legacy]&&!d[modern]) d[modern]=d[legacy];
+    });
+  }
 }
 
 function renderCurrent(d){
@@ -1488,15 +1534,36 @@ function renderUVProtection(uvi){
    WIND BLOCK
 ========================================================= */
 function renderWindBlock(d){
-  const cw=d.current_weather||{},h=d.hourly||{};
-  const nowH=new Date().toISOString().slice(0,13);
-  const idx=h.time?h.time.findIndex(t=>t.startsWith(nowH)):-1;
-  const i=idx>=0?idx:0;
-  const pick=(...keys)=>{for(const k of keys){if(h[k]&&h[k][i]!=null)return h[k][i];}return null;};
-  const speed10=cw.windspeed!=null?cw.windspeed:pick('windspeed_10m','wind_speed_10m');
-  const dir10=cw.winddirection!=null?cw.winddirection:pick('winddirection_10m','wind_direction_10m');
-  const gusts=pick('windgusts_10m','wind_gusts_10m');
-  const dirCompass=dir10!=null?degToCompass(dir10):'—';
+  const cw=(d&&d.current_weather)||{};
+  const h=(d&&d.hourly)||{};
+  // Find current hour index, with fallbacks
+  // Open-Meteo with timezone=Europe/Berlin returns LOCAL time strings, so we need to match local time
+  let i=0;
+  if(h.time&&h.time.length){
+    const now=new Date();
+    const localHour=now.getFullYear()+'-'+String(now.getMonth()+1).padStart(2,'0')+'-'+String(now.getDate()).padStart(2,'0')+'T'+String(now.getHours()).padStart(2,'0');
+    const idx=h.time.findIndex(t=>t.startsWith(localHour));
+    if(idx>=0) i=idx;
+  }
+  // Helper: get first non-null value from any of the given hourly array names,
+  // starting at index i, falling back to scanning forward
+  const getHourly=(...keys)=>{
+    for(const k of keys){
+      if(!h[k]||!h[k].length) continue;
+      // Try exact index first
+      if(h[k][i]!=null) return h[k][i];
+      // Scan forward for first non-null
+      for(let j=Math.max(i,0);j<h[k].length;j++){
+        if(h[k][j]!=null) return h[k][j];
+      }
+    }
+    return null;
+  };
+  // Resolve values
+  const speed10=(cw.windspeed!=null?cw.windspeed:getHourly('windspeed_10m','wind_speed_10m'));
+  const dir10=(cw.winddirection!=null?cw.winddirection:getHourly('winddirection_10m','wind_direction_10m'));
+  const gusts=getHourly('windgusts_10m','wind_gusts_10m');
+  // Render header
   const ihVal=document.getElementById('wind-insight-val');
   const ihLbl=document.getElementById('wind-insight-label');
   if(ihVal) ihVal.textContent=(speed10!=null?Math.round(speed10):'—')+' km/h';
@@ -1504,10 +1571,20 @@ function renderWindBlock(d){
     const bft=speed10!=null?kmhToBft(speed10):0;
     ihLbl.textContent=tr('beaufort')+' '+bft;
   }
-  const setVal=(id,val,unit)=>{const el=document.getElementById(id); if(el) el.textContent=val!=null?(Math.round(val)+(unit||'')):'—';};
+  // Render direction
   const dirEl=document.getElementById('wind-dir-val');
-  if(dirEl) dirEl.textContent=dir10!=null?(dirCompass+' '+Math.round(dir10)+'°'):'—';
-  setVal('wind-gusts-val',gusts,' km/h');
+  if(dirEl){
+    if(dir10!=null){
+      dirEl.textContent=degToCompass(dir10)+' '+Math.round(dir10)+'°';
+    }else{
+      dirEl.textContent='—';
+    }
+  }
+  // Render gusts
+  const gustsEl=document.getElementById('wind-gusts-val');
+  if(gustsEl){
+    gustsEl.textContent=gusts!=null?(Math.round(gusts)+' km/h'):'—';
+  }
 }
 
 /* =========================================================
