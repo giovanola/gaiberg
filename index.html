@@ -116,6 +116,7 @@ body{font-family:var(--font-body);background:var(--bg);color:var(--text-primary)
 .forecast-section{margin-bottom:32px}
 .forecast-grid{display:grid;gap:12px}
 .forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
+.forecast-grid.view-6{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 .forecast-grid.view-7{grid-template-columns:repeat(auto-fill,minmax(120px,1fr))}
 .day-card{border:1px solid var(--border);border-radius:var(--radius-md);background:var(--surface);overflow:hidden;transition:box-shadow var(--transition),transform var(--transition)}
 .day-card.today{border-color:var(--sky);box-shadow:0 0 0 2px rgba(21,101,192,.12)}
@@ -321,9 +322,11 @@ footer a{color:var(--text-secondary);text-decoration:none}
   .update-chip{display:none}
   .current-card{flex-direction:column}
   .forecast-grid.view-3{grid-template-columns:repeat(3,1fr)}
+  .forecast-grid.view-6{grid-template-columns:repeat(2,1fr)}
   .forecast-grid.view-7{grid-template-columns:repeat(2,1fr)}
 }
 @media(max-width:480px){
+  .forecast-grid.view-6{grid-template-columns:repeat(2,1fr)}
   .forecast-grid.view-7{grid-template-columns:repeat(2,1fr)}
 }
 
@@ -472,7 +475,7 @@ footer a{color:var(--text-secondary);text-decoration:none}
       <div class="section-label" id="t-forecast-label" style="margin-bottom:0">Prognose</div>
       <div class="view-toggle">
         <button class="view-btn active" data-days="3" onclick="setView(3)" id="t-btn-3">3 Tage</button>
-        <button class="view-btn" data-days="7" onclick="setView(7)" id="t-btn-7">7 Tage</button>
+        <button class="view-btn" data-days="6" onclick="setView(6)" id="t-btn-7">6 Tage</button>
       </div>
     </div>
     <div class="forecast-grid view-3" id="forecast-grid"></div>
@@ -771,7 +774,7 @@ const T = {
     climateDaysNote:'Sommertage: T<sub>max</sub> \u2265 25 \u00b0C \u00b7 Hitzetage: T<sub>max</sub> \u2265 30 \u00b0C \u00b7 Frosttage: T<sub>min</sub> &lt; 0 \u00b0C. Definition nach DWD.',
     aqiForecastLabel:'PM-Vorhersage 4 Tage',
     lubwLink:'LUBW Messwerte',
-    forecastLabel:'Prognose',btn3:'3 Tage',btn7:'7 Tage',
+    forecastLabel:'Prognose',btn3:'3 Tage',btn7:'6 Tage',
     relTitle:'Prognosegenauigkeit',
     relRows:[
       {dot:'var(--rel-high)',text:'<strong>Tag 1\u20132 (90\u201395\u00a0%)</strong>: Sehr zuverl\u00e4ssig. ICON-CH MeteoSwiss erfasst kurzfristige Entwicklungen pr\u00e4zise.'},
@@ -871,7 +874,7 @@ const T = {
     climateDaysNote:'Summer days: T<sub>max</sub> \u2265 25 \u00b0C \u00b7 Hot days: T<sub>max</sub> \u2265 30 \u00b0C \u00b7 Frost days: T<sub>min</sub> &lt; 0 \u00b0C. DWD definition.',
     aqiForecastLabel:'4-day PM forecast',
     lubwLink:'LUBW measurements',
-    forecastLabel:'Forecast',btn3:'3 days',btn7:'7 days',
+    forecastLabel:'Forecast',btn3:'3 days',btn7:'6 days',
     relTitle:'Forecast reliability',
     relRows:[
       {dot:'var(--rel-high)',text:'<strong>Day 1\u20132 (90\u201395\u00a0%)</strong>: Very reliable. ICON-CH MeteoSwiss captures short-term developments with high accuracy.'},
@@ -1348,7 +1351,7 @@ async function loadWeather(){
     const url=`https://api.open-meteo.com/v1/forecast?latitude=${LAT}&longitude=${LON}`
       +`&current=temperature_2m,relative_humidity_2m,weather_code,wind_speed_10m,wind_direction_10m,wind_gusts_10m,pressure_msl,precipitation,rain,showers`
       +`&daily=temperature_2m_max,temperature_2m_min,precipitation_probability_max,precipitation_sum,rain_sum,showers_sum,wind_speed_10m_max,sunshine_duration,daylight_duration,weather_code,uv_index_max,sunrise,sunset`
-      +`&hourly=relative_humidity_2m,temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,pressure_msl,precipitation,precipitation_probability,rain,showers,cape,weather_code&timezone=${TZ}&forecast_days=7`;
+      +`&hourly=relative_humidity_2m,temperature_2m,wind_speed_10m,wind_gusts_10m,wind_direction_10m,pressure_msl,precipitation,precipitation_probability,rain,showers,cape,weather_code&timezone=${TZ}&forecast_days=6`;
     const data=await(await fetch(url)).json();
     normalizeWeatherResponse(data);
     globalData=data;
